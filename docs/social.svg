@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img"
+     aria-label="fairfax: check a GCC, GCC High or Azure Government plan before you build it. 187 facts
+     from Microsoft's own tables, every finding cited.">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFB020"/>
+      <stop offset="55%" stop-color="#FF6B4A"/>
+      <stop offset="100%" stop-color="#FF4E88"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF6B4A" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0A0A14" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0 L0 0 0 28" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="640" fill="#0A0A14"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <circle cx="1110" cy="90" r="330" fill="url(#fade)"/>
+
+  <text x="72" y="112" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="4" fill="#A3E635">MICROSOFT GOV CLOUD
+        &#183; AVAILABILITY CHECK</text>
+  <text x="66" y="232" font-family="Georgia,'Times New Roman',serif" font-size="112" font-weight="700"
+        fill="url(#grad)">fairfax</text>
+  <text x="72" y="300" font-family="-apple-system,Segoe UI,Helvetica,sans-serif" font-size="30" fill="#E8E8F0">Is it available in GCC High?</text>
+  <text x="72" y="342" font-family="-apple-system,Segoe UI,Helvetica,sans-serif" font-size="24" fill="#8B8BA7">Check a GCC, GCC High or Azure Government</text>
+  <text x="72" y="374" font-family="-apple-system,Segoe UI,Helvetica,sans-serif" font-size="24" fill="#8B8BA7">plan before you build it. Every finding cited.</text>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16">
+    <rect x="72" y="418" width="128" height="38" rx="19" fill="none" stroke="#FFB020" stroke-opacity="0.6"/>
+    <text x="136" y="443" fill="#FFB020" text-anchor="middle">187 FACTS</text>
+    <rect x="214" y="418" width="159" height="38" rx="19" fill="none" stroke="#A3E635" stroke-opacity="0.6"/>
+    <text x="293" y="443" fill="#A3E635" text-anchor="middle">55 ENDPOINTS</text>
+    <rect x="386" y="418" width="242" height="38" rx="19" fill="none" stroke="#5B9BFF" stroke-opacity="0.6"/>
+    <text x="507" y="443" fill="#5B9BFF" text-anchor="middle">15 MICROSOFT SOURCES</text>
+  </g>
+
+  <text x="72" y="560" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24" fill="#E8E8F0">$ pip install fairfax</text>
+  <text x="72" y="596" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" fill="#8B8BA7">github.com/intikhab49/fairfax &#183; MIT</text>
+
+  <g transform="translate(726 196) scale(1.24)">
+    <rect x="0" y="0" width="404" height="184" rx="10" fill="#12121F" stroke="#8B8BA7" stroke-opacity="0.35"/>
+    <text x="18" y="30" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#E8E8F0" font-weight="400">$ fairfax check plan.yaml</text>
+    <text x="18" y="52" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#FF6B4A" font-weight="700">BLOCKED (4)</text>
+    <text x="18" y="74" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#E8E8F0" font-weight="400">x defender-for-cloud/ai-services</text>
+    <text x="18" y="96" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#E8E8F0" font-weight="400">x power-automate/actionable-approval-emails</text>
+    <text x="18" y="118" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#E8E8F0" font-weight="400">x power-automate/mobile-ios</text>
+    <text x="18" y="140" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#E8E8F0" font-weight="400">x sentinel/connector/teams</text>
+    <text x="18" y="162" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12.5" fill="#A3E635" font-weight="400">4 blocked &#183; 6 ok &#183; every line cited</text>
+  </g>
+</svg>

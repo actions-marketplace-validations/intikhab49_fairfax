@@ -13,7 +13,7 @@
 [![Endpoints](https://img.shields.io/badge/endpoint%20mappings-55-1baf7a?style=for-the-badge)](#scanning-code-for-wrong-cloud-endpoints)
 [![Sources](https://img.shields.io/badge/sources-Microsoft%20Learn-eb6834?style=for-the-badge)](#the-dataset)
 
-[What it catches](#what-it-catches) · [Quick start](#quick-start) · [Writing a plan](#writing-a-plan) · [Scanning code](#scanning-code-for-wrong-cloud-endpoints) · [The dataset](#the-dataset) · [Limits](#limits) · [Roadmap](#roadmap)
+[Website](https://intikhab49.github.io/fairfax/) · [What it catches](#what-it-catches) · [Quick start](#quick-start) · [Writing a plan](#writing-a-plan) · [Scanning code](#scanning-code-for-wrong-cloud-endpoints) · [The dataset](#the-dataset) · [Limits](#limits) · [FAQ](#faq)
 
 </div>
 
@@ -25,7 +25,7 @@ Microsoft's US government clouds are not copies of commercial Microsoft 365 and 
 
 Microsoft does publish the gaps, spread across a dozen Learn pages and a PDF it republishes every four to six weeks. Most teams find them the expensive way, halfway through a build, when a connector never shows up or a sign-in fails with a wrong-cloud error.
 
-fairfax puts those tables in one place and checks a plan against them before anyone writes code.
+fairfax puts those tables in one place and checks a plan against them before anyone writes code. To look something up without installing anything, the same data is on the website as [availability tables](https://intikhab49.github.io/fairfax/availability/), one page per service, plus an [endpoints page](https://intikhab49.github.io/fairfax/endpoints/).
 
 ## What it catches
 
@@ -233,6 +233,26 @@ Add an entry to the matching file in [`src/fairfax/data/`](https://github.com/in
 ```
 
 Copy the row exactly as Microsoft wrote it, then run `pytest`. The loader rejects unknown statuses, keys and sources.
+
+## FAQ
+
+**How do I check whether a feature is available in GCC High or Azure Government?**
+Run `pip install fairfax`, then `fairfax facts --grep <name>`. It shows the feature's status in each cloud and the Microsoft row behind it. The same data is browsable as [availability tables](https://intikhab49.github.io/fairfax/availability/), one page per service.
+
+**What is the difference between GCC, GCC High and DoD?**
+They are separate US government clouds for Microsoft 365. GCC signs users in through commercial Entra ID (`login.microsoftonline.com`), while GCC High and DoD sign in through Azure Government (`login.microsoftonline.us`). Their feature sets differ too. Of the 70 Power Platform features fairfax tracks, 28 are not available today in GCC, 34 in GCC High and 45 in DoD ([table](https://intikhab49.github.io/fairfax/availability/power-platform/)).
+
+**Can a GCC tenant send data to Microsoft Sentinel in Azure Government?**
+Not through the Microsoft 365 data connectors. Microsoft marks that pairing as not possible for all 13 connectors fairfax tracks, because a GCC tenant's data lives in commercial Azure ([Sentinel table](https://intikhab49.github.io/fairfax/availability/sentinel/)).
+
+**Which endpoints does GCC High use?**
+Among others, `login.microsoftonline.us` for sign-in and `graph.microsoft.us` for Microsoft Graph. The [endpoints page](https://intikhab49.github.io/fairfax/endpoints/) lists all 55 mappings, and `fairfax scan` finds commercial hosts in your code.
+
+**Does fairfax connect to my tenant or Azure subscription?**
+No. It reads a plan file and your code on your own machine. The data ships inside the package.
+
+**Is fairfax made by Microsoft?**
+No. It is an independent MIT-licensed project that quotes Microsoft's documentation and links to every page it quotes.
 
 ## Why "fairfax"
 

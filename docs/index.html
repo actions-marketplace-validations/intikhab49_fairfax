@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GCC High &amp; Azure Government feature availability checker · fairfax</title>
+<meta name="description" content="Open source checker: is a feature available in GCC, GCC High, DoD or Azure Government? 187 features from Microsoft&#x27;s own tables, every finding cited.">
+<link rel="canonical" href="https://intikhab49.github.io/fairfax/">
+<link rel="icon" href="https://intikhab49.github.io/fairfax/favicon.svg" type="image/svg+xml">
+<meta name="author" content="Intikhab Azam">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="fairfax">
+<meta property="og:title" content="GCC High &amp; Azure Government feature availability checker · fairfax">
+<meta property="og:description" content="Open source checker: is a feature available in GCC, GCC High, DoD or Azure Government? 187 features from Microsoft&#x27;s own tables, every finding cited.">
+<meta property="og:url" content="https://intikhab49.github.io/fairfax/">
+<meta property="og:image" content="https://intikhab49.github.io/fairfax/social.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="fairfax: check a GCC, GCC High or Azure Government plan before you build it">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="text/plain" href="https://intikhab49.github.io/fairfax/llms.txt" title="llms.txt">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://intikhab49.github.io/fairfax/#website",
+   "url": "https://intikhab49.github.io/fairfax/",
+   "name": "fairfax",
+   "inLanguage": "en",
+   "publisher": {
+    "@type": "Person",
+    "@id": "https://github.com/intikhab49",
+    "name": "Intikhab Azam",
+    "url": "https://github.com/intikhab49"
+   }
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://intikhab49.github.io/fairfax/#app",
+   "name": "fairfax",
+   "description": "Open source command-line checker for Microsoft's US government clouds. Checks a planned stack (GCC, GCC High or DoD tenant, commercial or Azure Government subscription, a list of features) against Microsoft's own availability tables and cites the row behind each finding. Also scans code for commercial endpoints that belong to the wrong cloud.",
+   "applicationCategory": "DeveloperApplication",
+   "applicationSubCategory": "Cloud compliance checker",
+   "operatingSystem": "Windows, macOS, Linux (Python 3.10+)",
+   "softwareVersion": "0.1.2",
+   "license": "https://opensource.org/licenses/MIT",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "url": "https://intikhab49.github.io/fairfax/",
+   "downloadUrl": "https://pypi.org/project/fairfax/",
+   "installUrl": "https://pypi.org/project/fairfax/",
+   "sameAs": [
+    "https://github.com/intikhab49/fairfax",
+    "https://pypi.org/project/fairfax/"
+   ],
+   "keywords": "GCC High, GCC, DoD, Azure Government, Microsoft 365 government, feature availability, cloud parity, Microsoft Sentinel, Defender for Cloud, Power Platform, Azure OpenAI",
+   "author": {
+    "@type": "Person",
+    "@id": "https://github.com/intikhab49",
+    "name": "Intikhab Azam",
+    "url": "https://github.com/intikhab49"
+   }
+  },
+  {
+   "@type": "SoftwareSourceCode",
+   "@id": "https://github.com/intikhab49/fairfax",
+   "name": "fairfax",
+   "codeRepository": "https://github.com/intikhab49/fairfax",
+   "programmingLanguage": "Python",
+   "license": "https://opensource.org/licenses/MIT",
+   "targetProduct": {
+    "@id": "https://intikhab49.github.io/fairfax/#app"
+   },
+   "author": {
+    "@type": "Person",
+    "@id": "https://github.com/intikhab49",
+    "name": "Intikhab Azam",
+    "url": "https://github.com/intikhab49"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://intikhab49.github.io/fairfax/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How do I check whether a Microsoft feature is available in GCC High or Azure Government?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Microsoft publishes availability per cloud across many pages: fairfax cites 14 Microsoft Learn pages and a PDF, and collects 187 feature rows from them. Run pip install fairfax, then fairfax facts --grep \u003cname> to see a feature's status in each cloud, or browse the availability tables on this site. Each row links to the Microsoft page it came from."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the difference between GCC, GCC High and DoD?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "They are separate US government clouds for Microsoft 365, and they differ in where users sign in and in which features exist. GCC signs users in through commercial Entra ID (login.microsoftonline.com), while GCC High and DoD sign in through Azure Government (login.microsoftonline.us). GCC support runs on worldwide terms, with no assurances about where support agents are or what citizenship they hold. Of the 70 Power Platform features fairfax tracks, 28 are not available today in GCC, 34 in GCC High and 45 in DoD."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can a GCC tenant send data to Microsoft Sentinel in Azure Government?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not through the Microsoft 365 data connectors. Microsoft marks a GCC tenant with a Sentinel workspace in Azure Government as not possible for all 13 connectors fairfax tracks, because a GCC tenant's data lives in commercial Azure. A GCC tenant connects to a workspace in commercial Azure; GCC High and DoD tenants connect to a workspace in Azure Government."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which Azure OpenAI models are available in Azure Government?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Microsoft's page of Foundry Models sold by Azure in Azure Government (updated 2026-09-01) lists gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-5.1, gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra, o3-mini, text-embedding-3-large, text-embedding-3-small, text-embedding-ada-002. Deployment types differ by model and region, and the Azure OpenAI table on this site lists them for each model."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which endpoints does GCC High use instead of login.microsoftonline.com and graph.microsoft.com?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "GCC High uses login.microsoftonline.us for Entra ID sign-in and graph.microsoft.us for Microsoft Graph. DoD uses dod-graph.microsoft.us for Graph. A GCC tenant keeps login.microsoftonline.com and graph.microsoft.com. The endpoints page lists all 55 mappings, and fairfax scan finds commercial hosts in your code."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does fairfax need access to my tenant or Azure subscription?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. It reads a plan file and your source code on your own machine and never connects to Microsoft 365 or Azure. The data ships inside the package."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How current is the data?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Every entry stores the Microsoft page's own updated date and the date fairfax last checked it. All 15 cited pages were checked on 2026-10-11. A weekly workflow lists pages that have gone more than 90 days without a check."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is fairfax made by Microsoft, and is it compliance advice?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No to both. fairfax is an independent open source project under the MIT license. It tells you whether Microsoft offers a feature in a cloud, quoting Microsoft's own rows. It doesn't tell you whether your use of a feature meets FedRAMP, ITAR or CMMC."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+:root{--ink:#16202c;--muted:#5a6675;--blue:#2a78d6;--green:#1baf7a;--bg:#fbfcfd;--code:#0f1722;--line:#e3e8ee}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+.top{border-bottom:1px solid var(--line);background:#fff}
+.top div{max-width:980px;margin:0 auto;padding:12px 22px;display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+.top a{color:var(--ink);text-decoration:none;font-size:.95rem}
+.top a.brand{font-family:Georgia,serif;font-weight:700;font-size:1.2rem;margin-right:auto}
+main{max-width:980px;margin:0 auto;padding:28px 22px 64px}
+img{max-width:100%;height:auto}
+h1{font-size:2rem;line-height:1.2;margin:22px 0 12px}
+h2{font-size:1.35rem;margin:44px 0 10px}
+h3{font-size:1.02rem;margin:22px 0 4px}
+p.lead{font-size:1.12rem;color:var(--muted)}
+a{color:var(--blue)}
+.crumbs{font-size:.88rem;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+.cta{display:inline-block;margin:8px 10px 0 0;padding:11px 18px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600}
+.cta.alt{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+pre{background:var(--code);color:#dfe7ef;padding:16px 18px;border-radius:8px;overflow-x:auto;font-size:.86rem;line-height:1.5}
+code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace}
+p code,li code,td code{background:#eef2f6;padding:1px 5px;border-radius:4px;font-size:.84em}
+.t{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;background:#fff}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f3f6f9;font-weight:600}
+td.s{white-space:nowrap;font-weight:600}
+td.ok{color:#0f7a55;background:#effaf5}
+td.note{color:#8a5a00;background:#fff8e8}
+td.no{color:#b3261e;background:#fdf0ef}
+td .q,td .n{display:block;color:var(--muted);font-size:.84rem;margin-top:3px}
+td .n{color:#8a5a00}
+td.src{font-size:.84rem;min-width:128px;white-space:nowrap}
+.dates{color:var(--muted)}
+.stat{color:var(--green);font-weight:700}
+ul{padding-left:22px}
+footer{max-width:980px;margin:0 auto;padding:18px 22px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<header class="top"><div><a class="brand" href="https://intikhab49.github.io/fairfax/">fairfax</a>
+<a href="https://intikhab49.github.io/fairfax/availability/">Availability tables</a><a href="https://intikhab49.github.io/fairfax/endpoints/">Endpoints</a>
+<a href="https://github.com/intikhab49/fairfax">GitHub</a><a href="https://pypi.org/project/fairfax/">PyPI</a></div></header>
+<main>
+
+<img src="header.svg" alt="fairfax: check a GCC, GCC High or Azure Government plan before you build it. Every finding cites the Microsoft row it came from." width="980" height="278">
+<h1>Check a Microsoft gov-cloud plan before you build it</h1>
+<p class="lead">fairfax is an open source command-line tool and dataset for Microsoft's US government clouds. Give it
+your tenant type (GCC, GCC High or DoD), your Azure cloud and the features you plan to use. It tells you what
+Microsoft doesn't offer there, what can't cross between the clouds and what is retiring, and quotes the Microsoft row
+behind each answer.</p>
+<a class="cta" href="https://github.com/intikhab49/fairfax">View on GitHub</a>
+<a class="cta alt" href="https://intikhab49.github.io/fairfax/availability/">Browse the availability tables</a>
+<a class="cta alt" href="https://pypi.org/project/fairfax/">pip install fairfax</a>
+
+<h2>The problem</h2>
+<p>Microsoft's US government clouds are not copies of commercial Microsoft 365 and Azure. GCC, GCC High, DoD and Azure
+Government each lack features that commercial has, and some pairings of them can't talk to each other at all.
+Microsoft does publish the gaps, spread across more than a dozen Learn pages and a PDF it republishes every few weeks.
+Most teams find them halfway through a build, when a connector never shows up or a sign-in fails with a wrong-cloud
+error.</p>
+
+<h2>What it catches</h2>
+<p>The repository ships a made-up example: a state agency's field inspection app on GCC High and Azure Government.</p>
+<pre><code>$ fairfax check examples/field-inspections/plan.yaml
+fairfax check: Field inspection app (synthetic example)
+tenant GCC High, Azure Government | 10 features | 187 facts, pages checked 2026-10-11
+
+BLOCKED (4)
+
+  defender-for-cloud/ai-services
+    Microsoft Defender for AI Services: not available in Azure Government.
+    Works in commercial Azure (GA).
+    source: Cloud feature availability for US Government customers
+            page updated 2026-09-03, checked 2026-10-11
+            https://learn.microsoft.com/en-us/azure/security/fundamentals/feature-availability#microsoft-defender-for-cloud
+    row:    - Microsoft Defender for AI Services | GA | Not Available
+  power-automate/actionable-approval-emails
+  power-automate/mobile-ios
+  sentinel/connector/teams
+  ...
+
+4 blocked, 0 cross-cloud, 0 retiring, 1 note, 6 ok</code></pre>
+<p><code>fairfax check</code> exits 1 when anything is blocked and <code>fairfax scan</code> exits 1 on a wrong-cloud
+endpoint, so both work as CI gates.</p>
+
+<h2>Availability tables</h2>
+<p>The same dataset, as tables with Microsoft's row, the page link and the dates for every entry:</p>
+<ul><li><a href="https://intikhab49.github.io/fairfax/availability/sentinel/">Microsoft Sentinel in Azure Government, GCC, GCC High and DoD</a>: 54 entries</li><li><a href="https://intikhab49.github.io/fairfax/availability/defender-for-cloud/">Microsoft Defender for Cloud in Azure Government</a>: 24 entries</li><li><a href="https://intikhab49.github.io/fairfax/availability/azure-machine-learning/">Azure Machine Learning in Azure Government</a>: 23 entries</li><li><a href="https://intikhab49.github.io/fairfax/availability/azure-openai/">Azure OpenAI models in Azure Government</a>: 11 entries</li><li><a href="https://intikhab49.github.io/fairfax/availability/azure-ai-language/">Azure AI Language in Azure Government</a>: 5 entries</li><li><a href="https://intikhab49.github.io/fairfax/availability/power-platform/">Power Platform in GCC, GCC High and DoD</a>: 70 entries</li>
+<li><a href="https://intikhab49.github.io/fairfax/endpoints/">Azure Government and GCC High endpoints</a>: 55 host mappings</li></ul>
+
+<h2>Quick start</h2>
+<pre><code>pip install fairfax
+
+fairfax facts --grep sentinel                      # feature keys and their status per cloud
+fairfax check plan.yaml                            # text report; --format md or json
+fairfax scan src/ --tenant gcchigh --azure government
+fairfax facts --stale 90                           # cited pages due for another check</code></pre>
+<p>Python 3.10 or newer, MIT licensed, one dependency (PyYAML). A plan is a short YAML file:</p>
+<pre><code>name: Field inspection app
+tenant: gcchigh        # gcc | gcchigh | dod
+azure: government      # commercial | government
+features:
+  - power-automate/actionable-approval-emails
+  - sentinel/connector/teams
+  - azure-openai/gpt-4o</code></pre>
+
+<h2>How the data stays honest</h2>
+<ul><li>Every entry stores the Microsoft page, the section anchor and the row exactly as Microsoft wrote it.</li>
+<li>Statuses were parsed from those rows by a script, not retyped, and the tests re-parse them on every run.</li>
+<li>Each entry carries the page's own updated date and the date fairfax last checked it.</li>
+<li>Where Microsoft's tables don't answer a question, fairfax says so instead of guessing.</li></ul>
+
+<h2>FAQ</h2>
+<h3>How do I check whether a Microsoft feature is available in GCC High or Azure Government?</h3><p>Microsoft publishes availability per cloud across many pages: fairfax cites 14 Microsoft Learn pages and a PDF, and collects 187 feature rows from them. Run <code>pip install fairfax</code>, then <code>fairfax facts --grep &lt;name&gt;</code> to see a feature&#x27;s status in each cloud, or browse the availability tables on this site. Each row links to the Microsoft page it came from.</p><h3>What is the difference between GCC, GCC High and DoD?</h3><p>They are separate US government clouds for Microsoft 365, and they differ in where users sign in and in which features exist. GCC signs users in through commercial Entra ID (<code>login.microsoftonline.com</code>), while GCC High and DoD sign in through Azure Government (<code>login.microsoftonline.us</code>). GCC support runs on worldwide terms, with no assurances about where support agents are or what citizenship they hold. Of the 70 Power Platform features fairfax tracks, 28 are not available today in GCC, 34 in GCC High and 45 in DoD.</p><h3>Can a GCC tenant send data to Microsoft Sentinel in Azure Government?</h3><p>Not through the Microsoft 365 data connectors. Microsoft marks a GCC tenant with a Sentinel workspace in Azure Government as not possible for all 13 connectors fairfax tracks, because a GCC tenant&#x27;s data lives in commercial Azure. A GCC tenant connects to a workspace in commercial Azure; GCC High and DoD tenants connect to a workspace in Azure Government.</p><h3>Which Azure OpenAI models are available in Azure Government?</h3><p>Microsoft&#x27;s page of Foundry Models sold by Azure in Azure Government (updated 2026-09-01) lists gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-5.1, gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra, o3-mini, text-embedding-3-large, text-embedding-3-small, text-embedding-ada-002. Deployment types differ by model and region, and the Azure OpenAI table on this site lists them for each model.</p><h3>Which endpoints does GCC High use instead of login.microsoftonline.com and graph.microsoft.com?</h3><p>GCC High uses <code>login.microsoftonline.us</code> for Entra ID sign-in and <code>graph.microsoft.us</code> for Microsoft Graph. DoD uses <code>dod-graph.microsoft.us</code> for Graph. A GCC tenant keeps <code>login.microsoftonline.com</code> and <code>graph.microsoft.com</code>. The endpoints page lists all 55 mappings, and <code>fairfax scan</code> finds commercial hosts in your code.</p><h3>Does fairfax need access to my tenant or Azure subscription?</h3><p>No. It reads a plan file and your source code on your own machine and never connects to Microsoft 365 or Azure. The data ships inside the package.</p><h3>How current is the data?</h3><p>Every entry stores the Microsoft page&#x27;s own updated date and the date fairfax last checked it. All 15 cited pages were checked on 2026-10-11. A weekly workflow lists pages that have gone more than 90 days without a check.</p><h3>Is fairfax made by Microsoft, and is it compliance advice?</h3><p>No to both. fairfax is an independent open source project under the MIT license. It tells you whether Microsoft offers a feature in a cloud, quoting Microsoft&#x27;s own rows. It doesn&#x27;t tell you whether your use of a feature meets FedRAMP, ITAR or CMMC.</p>
+</main>
+<footer>
+fairfax 0.1.2 · MIT · by <a href="https://github.com/intikhab49">Intikhab Azam</a> ·
+<a href="https://github.com/intikhab49/fairfax">Source</a> · <a href="https://intikhab49.github.io/fairfax/llms.txt">llms.txt</a><br>
+Statuses are quoted from Microsoft's own documentation and link to it. fairfax is an independent open source
+project, not affiliated with Microsoft, and not compliance advice.
+</footer>
+</body>
+</html>

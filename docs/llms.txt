@@ -1,0 +1,31 @@
+# fairfax
+
+> Open source CLI and cited dataset that checks a Microsoft US government cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own feature availability tables. 187 features, 8 cross-cloud rules and 55 endpoint mappings; every entry quotes the Microsoft row it came from and carries the page's updated date and the date it was last checked.
+
+- Install: `pip install fairfax` (Python 3.10+, MIT, one dependency: PyYAML). Version 0.1.2.
+- `fairfax check plan.yaml`: findings grouped as blocked, cross-cloud, retiring, notes and ok; exits 1 when anything is blocked. Output as text, Markdown or JSON.
+- `fairfax scan <path> --tenant gcchigh --azure government`: finds commercial hosts in code (login.microsoftonline.com, graph.microsoft.com, *.vault.azure.net) and names the government host.
+- `fairfax facts --grep <text>`: feature keys and their status per cloud. `--format json` for data.
+- It works offline. It never connects to a tenant or subscription, and it is not compliance advice.
+- Independent project by Intikhab Azam, not affiliated with Microsoft.
+
+## Availability tables
+
+- [Microsoft Sentinel in Azure Government, GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/sentinel/): Which Microsoft Sentinel features work in Azure Government, and which Microsoft 365 connectors work for GCC, GCC High and DoD. 54 entries, each cited.
+- [Microsoft Defender for Cloud in Azure Government](https://intikhab49.github.io/fairfax/availability/defender-for-cloud/): Which Defender for Cloud plans and features are available in Azure Government versus commercial Azure. 24 features from Microsoft's tables, each cited.
+- [Azure Machine Learning in Azure Government](https://intikhab49.github.io/fairfax/availability/azure-machine-learning/): Which Azure Machine Learning features work in Azure Government versus commercial Azure, with region limits. 23 features, each cited.
+- [Azure OpenAI models in Azure Government](https://intikhab49.github.io/fairfax/availability/azure-openai/): Which Azure OpenAI models Microsoft sells in Azure Government and their deployment types in usgovarizona and usgovvirginia. 11 models, each cited.
+- [Azure AI Language in Azure Government](https://intikhab49.github.io/fairfax/availability/azure-ai-language/): Which Azure AI Language features have a US Gov Virginia or US Gov Arizona region, and which one is retiring. 5 features, each cited.
+- [Power Platform in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/power-platform/): Which Power Apps, Power Automate, Copilot Studio, Power Pages, AI Builder and Dataverse features work in GCC, GCC High and DoD. 70 features, each cited.
+- [Overview and sources](https://intikhab49.github.io/fairfax/availability/): every service, every cited Microsoft page, download links
+- [Endpoints](https://intikhab49.github.io/fairfax/endpoints/): 55 commercial-to-government host mappings
+
+## Docs
+
+- [README](https://github.com/intikhab49/fairfax#readme): usage, plan format, how the dataset is built, limits, roadmap
+- [PyPI](https://pypi.org/project/fairfax/): package page
+- [Dataset (YAML)](https://github.com/intikhab49/fairfax/tree/main/src/fairfax/data): the facts, rules and endpoints
+
+## Optional
+
+- [llms-full.txt](https://intikhab49.github.io/fairfax/llms-full.txt): every fact, rule and endpoint as plain text
