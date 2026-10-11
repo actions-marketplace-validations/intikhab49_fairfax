@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "fairfax"
 dynamic = ["version"]
-description = "Check a planned Microsoft gov-cloud stack (GCC, GCC High, DoD, Azure Government) against Microsoft's own availability tables. Every finding cites the row it came from."
+description = "Check a planned Microsoft gov-cloud stack (GCC, GCC High, DoD, Azure Government) against Microsoft's own feature availability tables. Every finding cites the row it came from."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = ["PyYAML>=6"]
 authors = [{name = "Intikhab Azam"}]
-keywords = ["gcc-high", "gcc", "azure-government", "dod", "microsoft-365", "fedramp", "sentinel", "power-platform", "cloud-parity", "linter"]
+keywords = ["gcc-high", "gcc", "dod", "azure-government", "government-cloud", "microsoft-365", "feature-availability", "cloud-parity", "sentinel", "defender-for-cloud", "power-platform", "azure-openai", "endpoints", "fedramp", "linter"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -21,15 +21,22 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Environment :: Console",
     "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
     "Intended Audience :: System Administrators",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
     "Topic :: Software Development :: Quality Assurance",
     "Topic :: System :: Systems Administration",
 ]
 
 [project.urls]
-Homepage = "https://github.com/intikhab49/fairfax"
+Homepage = "https://intikhab49.github.io/fairfax/"
+Documentation = "https://github.com/intikhab49/fairfax#readme"
+"Availability tables" = "https://intikhab49.github.io/fairfax/availability/"
 Repository = "https://github.com/intikhab49/fairfax"
 Issues = "https://github.com/intikhab49/fairfax/issues"
+Changelog = "https://github.com/intikhab49/fairfax/releases"
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
