@@ -1,4 +1,4 @@
-"""govgap: check a Microsoft gov-cloud plan against Microsoft's own availability tables."""
+"""fairfax: check a Microsoft gov-cloud plan against Microsoft's own availability tables."""
 
 from __future__ import annotations
 
@@ -31,14 +31,14 @@ def cmd_check(a) -> int:
     try:
         plan = check_mod.load_plan(a.plan)
     except check_mod.PlanError as e:
-        print(f"govgap: {e}", file=sys.stderr)
+        print(f"fairfax: {e}", file=sys.stderr)
         return 2
     report = check_mod.check(ds, plan, _today(a.today))
     if report.unknown:
         for key, close in report.unknown.items():
             hint = f" Did you mean {', '.join(close)}?" if close else ""
-            print(f"govgap: unknown feature {key!r}.{hint}", file=sys.stderr)
-        print("govgap: list feature keys with `govgap facts --grep <word>`.", file=sys.stderr)
+            print(f"fairfax: unknown feature {key!r}.{hint}", file=sys.stderr)
+        print("fairfax: list feature keys with `fairfax facts --grep <word>`.", file=sys.stderr)
         return 2
     fmt = {"text": render.check_text, "md": render.check_md, "json": render.check_json}[a.format]
     _emit(fmt(report), a.output)
@@ -51,11 +51,11 @@ def cmd_scan(a) -> int:
         try:
             plan = check_mod.load_plan(a.plan)
         except check_mod.PlanError as e:
-            print(f"govgap: {e}", file=sys.stderr)
+            print(f"fairfax: {e}", file=sys.stderr)
             return 2
         tenant, azure = tenant or plan.tenant, azure or plan.azure
     if not tenant and not azure:
-        print("govgap: say which clouds you target: --plan plan.yaml, or --tenant and/or --azure.", file=sys.stderr)
+        print("fairfax: say which clouds you target: --plan plan.yaml, or --tenant and/or --azure.", file=sys.stderr)
         return 2
     hits, files = scan_mod.scan(a.paths, dataset_mod.load(), tenant, azure, a.exclude or [])
     fmt = {"text": render.scan_text, "md": render.scan_md, "json": render.scan_json}[a.format]
@@ -85,10 +85,10 @@ def cmd_facts(a) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        prog="govgap",
+        prog="fairfax",
         description="Check a Microsoft gov-cloud plan (GCC, GCC High, DoD, Azure Government) against "
                     "Microsoft's own availability tables. Every finding cites the row it came from.")
-    p.add_argument("--version", action="version", version=f"govgap {__version__}")
+    p.add_argument("--version", action="version", version=f"fairfax {__version__}")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     c = sub.add_parser("check", help="check a plan file and report what is blocked, cross-cloud or retiring")
@@ -126,7 +126,7 @@ def main(argv: list | None = None) -> int:
     try:
         return args.func(args)
     except dataset_mod.DatasetError as e:
-        print(f"govgap: dataset error: {e}", file=sys.stderr)
+        print(f"fairfax: dataset error: {e}", file=sys.stderr)
         return 2
 
 

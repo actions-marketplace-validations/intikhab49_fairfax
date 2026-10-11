@@ -30,7 +30,7 @@ def _summary(counts: dict) -> str:
 # ---------------------------------------------------------------- check
 def check_text(r: Report) -> str:
     p = r.plan
-    out = [f"govgap check: {p.name or p.path}",
+    out = [f"fairfax check: {p.name or p.path}",
            f"{_context(p.tenant, p.azure)} | {len(p.features)} features | {r.facts} facts, pages checked {r.checked}"]
     for group, items in r.groups().items():
         if not items:
@@ -62,7 +62,7 @@ def check_md(r: Report) -> str:
     p = r.plan
     tenant = TENANT_LABEL[p.tenant]
     azure = CLOUD_LABEL[p.azure] if p.azure else "not given"
-    out = [f"# govgap check: {p.name or p.path}", "",
+    out = [f"# fairfax check: {p.name or p.path}", "",
            "| Tenant | Azure | Features | Dataset |", "|---|---|---|---|",
            f"| {tenant} | {azure} | {len(p.features)} | {r.facts} facts, pages checked {r.checked} |", "",
            f"**{_summary(r.counts())}**"]
@@ -103,7 +103,7 @@ def _scan_summary(hits, files) -> str:
 
 
 def scan_text(hits, files, tenant, azure) -> str:
-    out = [f"govgap scan: {_context(tenant, azure)}"]
+    out = [f"fairfax scan: {_context(tenant, azure)}"]
     current = None
     for h in hits:
         if h.path != current:
@@ -118,7 +118,7 @@ def scan_text(hits, files, tenant, azure) -> str:
 
 
 def scan_md(hits, files, tenant, azure) -> str:
-    out = [f"# govgap scan: {_context(tenant, azure)}", "", _scan_summary(hits, files)]
+    out = [f"# fairfax scan: {_context(tenant, azure)}", "", _scan_summary(hits, files)]
     if hits:
         out += ["", "| Where | Found | Use | Why |", "|---|---|---|---|"]
         for h in hits:

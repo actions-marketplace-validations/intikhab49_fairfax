@@ -140,7 +140,7 @@ def _status_ok(v) -> bool:
 
 
 def load(path: str | Path | None = None) -> Dataset:
-    root = Path(path) if path else resources.files("govgap") / "data"
+    root = Path(path) if path else resources.files("fairfax") / "data"
     files = sorted((p for p in root.iterdir() if p.name.endswith(".yaml")), key=lambda p: p.name)
     raw = {p.name: yaml.safe_load(p.read_text(encoding="utf-8")) or {} for p in files}
     if "sources.yaml" not in raw:

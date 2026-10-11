@@ -12,8 +12,8 @@ import pathlib
 import xml.dom.minidom
 from html import escape
 
-from govgap import dataset
-from govgap.check import check, load_plan
+from fairfax import dataset
+from fairfax.check import check, load_plan
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 W, H = 1200, 340
@@ -30,7 +30,7 @@ def card(x0, y0):
     report = check(ds, load_plan(ROOT / "examples" / "field-inspections" / "plan.yaml"), dt.date(2026, 10, 11))
     counts = report.counts()
     blocked = [f.feature for f in report.groups()["blocked"]]
-    lines = [(f"$ govgap check plan.yaml", "#E8E8F0", "400"),
+    lines = [(f"$ fairfax check plan.yaml", "#E8E8F0", "400"),
              (f"BLOCKED ({len(blocked)})", CORAL, "700")]
     lines += [(f"x {b}", "#E8E8F0", "400") for b in blocked]
     lines.append((f"{counts['blocked']} blocked &#183; {counts['ok']} ok &#183; every line cited", LIME, "400"))
@@ -58,7 +58,7 @@ def build():
     card_svg, n_facts, n_endpoints, n_sources = card(750, 64)
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}"
      viewBox="0 0 {W} {H}" role="img"
-     aria-label="govgap: check a GCC, GCC High or Azure Government plan before you build it.
+     aria-label="fairfax: check a GCC, GCC High or Azure Government plan before you build it.
      {n_facts} facts from Microsoft's own tables, every finding cited.">
   <defs>
     <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
@@ -83,7 +83,7 @@ def build():
         &#183; AVAILABILITY CHECK</text>
 
   <text x="60" y="164" font-family="Georgia,'Times New Roman',serif" font-size="68" font-weight="700"
-        fill="url(#grad)">govgap</text>
+        fill="url(#grad)">fairfax</text>
 
   <text x="64" y="204" font-family="{SANS}" font-size="19" fill="#E8E8F0">Check a GCC, GCC High or Azure
         Government plan before you build it.</text>

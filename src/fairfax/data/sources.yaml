@@ -1,5 +1,5 @@
 # Microsoft pages the facts cite. page_updated is the page's own updated_at date;
-# checked is when govgap last read the page and confirmed every row it cites.
+# checked is when fairfax last read the page and confirmed every row it cites.
 sources:
   security-fa:
     title: "Cloud feature availability for US Government customers"

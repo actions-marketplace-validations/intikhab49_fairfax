@@ -16,4 +16,4 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -e .
-      - run: govgap facts --stale 90
+      - run: fairfax facts --stale 90

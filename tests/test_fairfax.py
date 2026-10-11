@@ -4,9 +4,9 @@ from pathlib import Path
 
 import pytest
 
-from govgap import cli, dataset
-from govgap.check import Plan, check, load_plan, PlanError
-from govgap.scan import scan
+from fairfax import cli, dataset
+from fairfax.check import Plan, check, load_plan, PlanError
+from fairfax.scan import scan
 
 ROOT = Path(__file__).resolve().parents[1]
 EXAMPLE = ROOT / "examples" / "field-inspections"
@@ -179,7 +179,7 @@ def test_scan_gov_tier_mixup_and_longest_suffix(ds, tmp_path):
 
 
 def test_scan_ignore_marker_and_exclude(ds, tmp_path):
-    paths = write(tmp_path, 'A = "https://graph.microsoft.com"  # govgap: ignore\n')
+    paths = write(tmp_path, 'A = "https://graph.microsoft.com"  # fairfax: ignore\n')
     assert scan(paths, ds, "gcchigh", "government")[0] == []
     paths = write(tmp_path, 'A = "https://graph.microsoft.com"\n')
     assert scan(paths, ds, "gcchigh", "government", exclude=["*.py"])[0] == []
@@ -194,7 +194,7 @@ def test_cli_check_formats_and_exit_codes(capsys):
     data = json.loads(out)
     assert data["summary"]["blocked"] == 4 and data["dataset"]["facts"] >= 60
     code, out, _ = run(capsys, "check", plan, "--format", "md", "--today", "2026-10-11")
-    assert out.startswith("# govgap check: Field inspection app") and "## Blocked (4)" in out
+    assert out.startswith("# fairfax check: Field inspection app") and "## Blocked (4)" in out
 
 
 def test_cli_unknown_feature_exits_2(capsys, tmp_path):

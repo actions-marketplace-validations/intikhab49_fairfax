@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/header.svg" alt="govgap: check a GCC, GCC High or Azure Government plan before you build it. Every finding cites the Microsoft row it came from. The example plan shows 4 blocked features and 6 that are fine." width="100%">
+<img src="docs/header.svg" alt="fairfax: check a GCC, GCC High or Azure Government plan before you build it. Every finding cites the Microsoft row it came from. The example plan shows 4 blocked features and 6 that are fine." width="100%">
 
-# govgap — check a Microsoft gov-cloud plan before you build it
+# fairfax — check a Microsoft gov-cloud plan before you build it
 
 **Give it your tenant type (GCC, GCC High or DoD), your Azure cloud and the features you plan to use. It tells you what Microsoft doesn't offer there, what can't cross between the clouds and what is retiring, and quotes the Microsoft row behind each answer.**
 
@@ -24,15 +24,15 @@ Microsoft's US government clouds are not copies of commercial Microsoft 365 and 
 
 Microsoft does publish the gaps, spread across a dozen Learn pages and a PDF it republishes every four to six weeks. Most teams find them the expensive way, halfway through a build, when a connector never shows up or a sign-in fails with a wrong-cloud error.
 
-govgap puts those tables in one place and checks a plan against them before anyone writes code.
+fairfax puts those tables in one place and checks a plan against them before anyone writes code.
 
 ## What it catches
 
 The repo ships a made-up example: a state agency's field inspection app on GCC High and Azure Government. Supervisors approve reports by email or on their iPhones, Azure OpenAI drafts summaries, and Sentinel watches Teams.
 
 ```text
-$ govgap check examples/field-inspections/plan.yaml
-govgap check: Field inspection app (synthetic example)
+$ fairfax check examples/field-inspections/plan.yaml
+fairfax check: Field inspection app (synthetic example)
 tenant GCC High, Azure Government | 10 features | 187 facts, pages checked 2026-10-11
 
 BLOCKED (4)
@@ -75,8 +75,8 @@ OK (6)
 Four of the ten planned features don't exist in that cloud, and each finding shows where Microsoft says so. The app's code was copied from commercial samples, so the scanner finds the endpoints that would fail too:
 
 ```text
-$ govgap scan examples/field-inspections --plan examples/field-inspections/plan.yaml
-govgap scan: tenant GCC High, Azure Government
+$ fairfax scan examples/field-inspections --plan examples/field-inspections/plan.yaml
+fairfax scan: tenant GCC High, Azure Government
 
 examples/field-inspections/app/settings.py
   9:23  login.microsoftonline.com  ->  login.microsoftonline.us
@@ -97,13 +97,13 @@ examples/field-inspections/app/settings.py
 ## Quick start
 
 ```bash
-pip install git+https://github.com/intikhab49/govgap
+pip install git+https://github.com/intikhab49/fairfax
 
-govgap facts --grep sentinel                      # find feature keys and their status per cloud
-govgap check plan.yaml                            # text report
-govgap check plan.yaml --format md -o report.md   # or --format json
-govgap scan src/ --tenant gcchigh --azure government
-govgap facts --stale 90                           # cited pages due for another check
+fairfax facts --grep sentinel                      # find feature keys and their status per cloud
+fairfax check plan.yaml                            # text report
+fairfax check plan.yaml --format md -o report.md   # or --format json
+fairfax scan src/ --tenant gcchigh --azure government
+fairfax facts --stale 90                           # cited pages due for another check
 ```
 
 Python 3.10 or newer. The only dependency is PyYAML.
@@ -120,7 +120,7 @@ features:
   - azure-openai/gpt-4o
 ```
 
-Feature keys look like `service/feature`. `govgap facts` lists all 187 with their status in each cloud, and `--grep` narrows the list. A key govgap doesn't know is an error with suggestions, so a typo can't pass silently.
+Feature keys look like `service/feature`. `fairfax facts` lists all 187 with their status in each cloud, and `--grep` narrows the list. A key fairfax doesn't know is an error with suggestions, so a typo can't pass silently.
 
 Each fact depends on one of three things:
 
@@ -140,13 +140,13 @@ Findings land in five groups:
 
 ## Scanning code for wrong-cloud endpoints
 
-Code copied from commercial samples carries commercial hosts: `login.microsoftonline.com`, `graph.microsoft.com`, `*.vault.azure.net`. `govgap scan` finds them and names the right host for your clouds, using 55 mappings from Microsoft's endpoint tables.
+Code copied from commercial samples carries commercial hosts: `login.microsoftonline.com`, `graph.microsoft.com`, `*.vault.azure.net`. `fairfax scan` finds them and names the right host for your clouds, using 55 mappings from Microsoft's endpoint tables.
 
 It knows the GCC exception. A GCC tenant keeps the worldwide Entra ID and Graph endpoints, so those are fine for GCC. If the same plan also has an Azure Government subscription, the sign-in host is marked CHECK instead: it's right for calls to your GCC tenant and wrong for calls to Azure Government, and only you know which one a given line is for.
 
 It also catches mix-ups between government tiers, such as a GCC High app calling the GCC Power BI API (`api.powerbigov.us` instead of `api.high.powerbigov.us`).
 
-Add `govgap: ignore` in a comment to skip a line, or `--exclude 'docs/*'` to skip paths. `--strict` makes CHECK lines fail too.
+Add `fairfax: ignore` in a comment to skip a line, or `--exclude 'docs/*'` to skip paths. `--strict` makes CHECK lines fail too.
 
 ## How it works
 
@@ -154,9 +154,9 @@ Add `govgap: ignore` in a comment to skip a line, or `--exclude 'docs/*'` to ski
 flowchart LR
     MS["Microsoft's own tables<br/><i>14 Learn pages · 1 PDF</i>"] --> ROWS["rows and quotes,<br/>copied exactly"]
     ROWS --> DATA["YAML dataset<br/>187 facts · 8 rules · 55 endpoints"]
-    PLAN["plan.yaml<br/><i>tenant · azure · features</i>"] --> CHECK["govgap check"]
+    PLAN["plan.yaml<br/><i>tenant · azure · features</i>"] --> CHECK["fairfax check"]
     DATA --> CHECK
-    DATA --> SCAN["govgap scan"]
+    DATA --> SCAN["fairfax scan"]
     CODE["your code and config"] --> SCAN
     CHECK --> OUT["findings, each with<br/>the row, the page and two dates"]
     SCAN --> OUT
@@ -173,18 +173,18 @@ flowchart LR
 
 ## The dataset
 
-<img src="docs/charts/gaps.png" alt="Two bar charts. Left: of the same 70 Power Platform features, 28 are not available today in GCC, 34 in GCC High and 45 in DoD. Right: tracked features not available in Azure Government: 13 of 23 for Azure Machine Learning, 14 of 41 for Microsoft Sentinel, 7 of 24 for Defender for Cloud, 3 of 5 for Azure AI Language. Counts are of the features govgap tracks, not a share of each product." width="100%">
+<img src="docs/charts/gaps.png" alt="Two bar charts. Left: of the same 70 Power Platform features, 28 are not available today in GCC, 34 in GCC High and 45 in DoD. Right: tracked features not available in Azure Government: 13 of 23 for Azure Machine Learning, 14 of 41 for Microsoft Sentinel, 7 of 24 for Defender for Cloud, 3 of 5 for Azure AI Language. Counts are of the features fairfax tracks, not a share of each product." width="100%">
 
 Every entry stores:
 
 - the Microsoft page and the section anchor
 - the row or quote, exactly as Microsoft wrote it
-- the page's own updated date and the date govgap last checked it
+- the page's own updated date and the date fairfax last checked it
 - a confidence level
 
 The statuses were parsed from those rows, not retyped by hand ([`tools/build_facts.py`](tools/build_facts.py) is the script that did it). A test re-parses the rows on every run, so an edit that changes a status without its row (or the other way round) fails.
 
-| Source | What govgap takes from it | Page updated | Entries |
+| Source | What fairfax takes from it | Page updated | Entries |
 |---|---|---|---|
 | [Cloud feature availability for US Government customers](https://learn.microsoft.com/en-us/azure/security/fundamentals/feature-availability) | Defender for Cloud in Azure Government, Sentinel's Microsoft 365 connectors per tenant type, GCC pairing | 2026-09-03 | 40 |
 | [Microsoft Sentinel feature support](https://learn.microsoft.com/en-us/azure/sentinel/feature-availability) | Sentinel features and connectors in Azure Government | 2026-09-29 | 41 |
@@ -197,27 +197,27 @@ The statuses were parsed from those rows, not retyped by hand ([`tools/build_fac
 | Power Apps, Power Automate, Power BI and Dataverse US Government pages | portal, API and Dataverse hosts per tier, cross-cloud firewall rule | 2025-05-08 to 2026-08-14 | 8 |
 | [Office 365 GCC service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc) and [Security & Compliance PowerShell](https://learn.microsoft.com/en-us/powershell/exchange/connect-to-scc-powershell) | GCC support terms, compliance PowerShell hosts | 2025-12-02, 2026-08-27 | 2 |
 
-Every entry is first-party Microsoft text except one rule marked **unverified**: whether a GCC tenant's Entra ID sign-in logs can reach a Sentinel workspace in Azure Government. Microsoft's tables don't cover it, so govgap tells you that and says to test it.
+Every entry is first-party Microsoft text except one rule marked **unverified**: whether a GCC tenant's Entra ID sign-in logs can reach a Sentinel workspace in Azure Government. Microsoft's tables don't cover it, so fairfax tells you that and says to test it.
 
-`govgap facts --stale 90` lists the pages due for another check, and a scheduled workflow in this repo runs it every week.
+`fairfax facts --stale 90` lists the pages due for another check, and a scheduled workflow in this repo runs it every week.
 
 ## Limits
 
-- **It only knows what is in the dataset.** 187 features is a small part of Microsoft's catalog. If govgap doesn't list a feature, that tells you nothing about whether it works.
-- **For Azure OpenAI it lists the models Microsoft sells in Azure Government.** A model missing from `govgap facts --grep azure-openai` isn't on that page.
-- **Microsoft's tables can lag or disagree with each other.** Where two pages overlap, govgap uses the more specific one, such as the tenant-by-cloud connector matrix over the general Sentinel list, and shows you the row so you can judge.
+- **It only knows what is in the dataset.** 187 features is a small part of Microsoft's catalog. If fairfax doesn't list a feature, that tells you nothing about whether it works.
+- **For Azure OpenAI it lists the models Microsoft sells in Azure Government.** A model missing from `fairfax facts --grep azure-openai` isn't on that page.
+- **Microsoft's tables can lag or disagree with each other.** Where two pages overlap, fairfax uses the more specific one, such as the tenant-by-cloud connector matrix over the general Sentinel list, and shows you the row so you can judge.
 - **Dates matter.** The Power Platform PDF is dated May 2026, and planned dates that have passed are flagged rather than trusted.
 - **It doesn't read your tenant.** It checks a plan and your code. Checking a live tenant's configuration is a different job; CISA's ScubaGear checks Microsoft 365 tenants against its security baselines.
 - **It is not compliance advice.** It tells you whether Microsoft offers a feature in a cloud, not whether your use of it meets FedRAMP, ITAR or CMMC.
 
 ## Roadmap
 
-- **Next:** decode cross-cloud sign-in errors such as `AADSTS900439` into cause and fix; show Microsoft 365 roadmap dates on blocked findings; an MCP server so coding agents can ask govgap instead of guessing.
+- **Next:** decode cross-cloud sign-in errors such as `AADSTS900439` into cause and fix; show Microsoft 365 roadmap dates on blocked findings; an MCP server so coding agents can ask fairfax instead of guessing.
 - **Later:** a drift watcher that re-reads each cited page and flags rows that changed, rules for Bicep and Terraform, a read-only probe of a live Azure Government subscription, and FedRAMP and IL scope checks.
 
 ## Adding a fact
 
-Add an entry to the matching file in [`src/govgap/data/`](src/govgap/data):
+Add an entry to the matching file in [`src/fairfax/data/`](src/fairfax/data):
 
 ```yaml
   - id: defender-for-cloud.ai-services
@@ -232,6 +232,10 @@ Add an entry to the matching file in [`src/govgap/data/`](src/govgap/data):
 ```
 
 Copy the row exactly as Microsoft wrote it, then run `pytest`. The loader rejects unknown statuses, keys and sources.
+
+## Why "fairfax"
+
+Fairfax is what Microsoft's own code calls Azure Government, next to Mooncake for Azure China and Blackforest for the old Azure Germany. In the Azure Functions host, for example, `FairfaxStorageSuffix` is `core.usgovcloudapi.net` ([source](https://github.com/Azure/azure-functions-host/blob/08269604939797bf30b52c4dcb7077a2d57fc87b/src/WebJobs.Script/CloudConstants.cs#L8-L19)).
 
 ## License
 

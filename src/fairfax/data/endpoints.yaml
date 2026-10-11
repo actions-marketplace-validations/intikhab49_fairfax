@@ -1,4 +1,4 @@
-# Commercial to US Government host map used by `govgap scan`.
+# Commercial to US Government host map used by `fairfax scan`.
 endpoints:
   - id: endpoint.botframework-com
     service: "Azure Bot Service"

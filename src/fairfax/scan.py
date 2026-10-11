@@ -19,7 +19,7 @@ from .dataset import Dataset, Endpoint
 TOKEN = re.compile(r"(?<![A-Za-z0-9-])[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
 SKIP_DIRS = {".git", ".hg", ".svn", "node_modules", ".venv", "venv", "__pycache__", ".tox", ".mypy_cache",
              ".pytest_cache", ".ruff_cache", "dist", "build", ".terraform", ".next", "site-packages", "vendor"}
-IGNORE_MARK = "govgap: ignore"
+IGNORE_MARK = "fairfax: ignore"
 MAX_BYTES = 5_000_000
 SIDE = {"m365": "Microsoft 365 side", "azure": "Azure side"}
 

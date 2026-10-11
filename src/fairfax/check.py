@@ -157,7 +157,7 @@ def evaluate(fact: Fact, plan: Plan, today: dt.date) -> list:
                                           "doesn't say. Add `azure: commercial` or `azure: government`."))
     elif status is None:
         out.append(_finding(fact, "note", f"{fact.name}: Microsoft's table doesn't cover it {where(fact.by, key)}, "
-                                          "so govgap can't say either way."))
+                                          "so fairfax can't say either way."))
     elif status.startswith("planned:"):
         eta = status.split(":", 1)[1]
         verdict = f"not available yet {where(fact.by, key)}"

@@ -2,7 +2,7 @@
 
 Statuses are parsed from the row text found in the page dumps. Any row, quote or host that can't be
 found is a hard error, so nothing in the output was retyped by hand. Since 0.1.0 the YAML files in
-src/govgap/data are the source of truth: re-running this overwrites any hand edits made since.
+src/fairfax/data are the source of truth: re-running this overwrites any hand edits made since.
 
 Usage:
   python tools/dump_learn.py <saved-page.html> <dump_dir>/<key>.txt   (once per page in URLS)
@@ -755,7 +755,7 @@ def write(name, header, key, items):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     src_lines = ["# Microsoft pages the facts cite. page_updated is the page's own updated_at date;",
-                 "# checked is when govgap last read the page and confirmed every row it cites.", "sources:"]
+                 "# checked is when fairfax last read the page and confirmed every row it cites.", "sources:"]
     for k, s in SOURCES.items():
         src_lines.append(f"  {k}:")
         for sk in ("title", "url", "page_updated", "checked"):
@@ -768,7 +768,7 @@ def main():
     write("azure-ai.yaml", hdr, "facts", build_language() + build_aoai())
     write("power-platform.yaml", hdr + "\n# Columns in the PDF: GCC (IL2), GCC High (IL4), DoD (IL5).", "facts", build_bap())
     write("rules.yaml", "# Stack-level rules: they fire on tenant and Azure cloud, not on a single feature.", "rules", build_rules())
-    write("endpoints.yaml", "# Commercial to US Government host map used by `govgap scan`.", "endpoints", build_endpoints())
+    write("endpoints.yaml", "# Commercial to US Government host map used by `fairfax scan`.", "endpoints", build_endpoints())
 
 
 if __name__ == "__main__":

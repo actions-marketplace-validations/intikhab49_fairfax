@@ -1,4 +1,4 @@
-"""Backend settings for the field inspection app (synthetic example for govgap).
+"""Backend settings for the field inspection app (synthetic example for fairfax).
 
 Copied from a commercial-cloud tutorial, which is how most of these endpoints end up in gov code.
 """

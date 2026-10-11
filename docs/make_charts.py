@@ -1,6 +1,6 @@
 """Generate the README chart from the bundled dataset. Regenerate with:  python docs/make_charts.py
 
-Counts are of the features govgap tracks, not a share of each product, and the caption says so.
+Counts are of the features fairfax tracks, not a share of each product, and the caption says so.
 Azure OpenAI is left out: the dataset lists only the models Microsoft sells in Azure Government,
 so its gap count would always be zero.
 Palette and style follow the Open Jev charts.
@@ -12,7 +12,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-from govgap import dataset  # noqa: E402
+from fairfax import dataset  # noqa: E402
 
 SURFACE, INK, INK_2, MUTED, BASELINE = "#fcfcfb", "#0b0b0b", "#52514e", "#898781", "#c3c2b7"
 S1, CRITICAL = "#2a78d6", "#d03b3b"
@@ -72,13 +72,13 @@ def main():
         b.text(t + 0.6, y, f"{g} of {t}", va="center", fontsize=11, color=INK, fontweight="bold")
     b.set_xlim(0, max(totals) + 8)
     b.set_title("Azure services: tracked features missing in Azure Government")
-    b.set_xlabel("features govgap tracks for each service")
+    b.set_xlabel("features fairfax tracks for each service")
     b.grid(axis="y", visible=False)
     b.legend(loc="lower right", frameon=False, fontsize=9)
 
     for ax in (a, b):
         ax.set_axisbelow(True)
-    fig.text(0.0, 1.0, f"Gaps in govgap's dataset, from Microsoft's own tables (pages checked {ds.checked}). "
+    fig.text(0.0, 1.0, f"Gaps in the fairfax dataset, from Microsoft's own tables (pages checked {ds.checked}). "
                        "Counts are of tracked features, not a share of each product.",
              ha="left", va="bottom", fontsize=10, color=INK_2, transform=fig.transFigure)
     fig.tight_layout()

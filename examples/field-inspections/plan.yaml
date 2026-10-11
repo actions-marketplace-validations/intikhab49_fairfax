@@ -1,4 +1,4 @@
-# A made-up stack, used to show what govgap catches. It is not a real system.
+# A made-up stack, used to show what fairfax catches. It is not a real system.
 # A state agency's inspectors file reports from a Power Apps tab in Teams. Supervisors approve them
 # by email or on their iPhones, Azure OpenAI drafts summaries, and Sentinel watches the whole thing.
 name: Field inspection app (synthetic example)

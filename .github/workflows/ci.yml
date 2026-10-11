@@ -27,5 +27,5 @@ jobs:
         shell: bash
         run: |
           set +e
-          govgap check examples/field-inspections/plan.yaml > /dev/null
+          fairfax check examples/field-inspections/plan.yaml > /dev/null
           test $? -eq 1
