@@ -1,0 +1,176 @@
+# Generated from Microsoft's own tables, then reviewed. Each row is the source text the status came from.
+facts:
+  - id: ai-language.conversational-language-understanding
+    feature: ai-language/conversational-language-understanding
+    name: "Azure AI Language: Conversational language understanding (CLU) and orchestration workflow"
+    by: azure
+    status: {commercial: available, government: not-available}
+    source: lang-regions
+    anchor: conversational-language-understanding-and-orchestration-workflow
+    row: "No USGovVirginia or USGovArizona row in the region table"
+    confidence: high
+
+  - id: ai-language.custom-ner
+    feature: ai-language/custom-ner
+    name: "Azure AI Language: Custom named entity recognition"
+    by: azure
+    status: {commercial: available, government: not-available}
+    source: lang-regions
+    anchor: custom-named-entity-recognition
+    row: "No USGovVirginia or USGovArizona row in the region table"
+    confidence: high
+
+  - id: ai-language.custom-text-classification
+    feature: ai-language/custom-text-classification
+    name: "Azure AI Language: Custom text classification"
+    by: azure
+    status: {commercial: available, government: not-available}
+    retires: 2029-03-31
+    retires_source: ctc-overview
+    retires_quote: "Custom text classification retires from Azure Language on March 31, 2029."
+    instead: "Microsoft says to direct all new projects to Microsoft Foundry."
+    source: lang-regions
+    anchor: custom-text-classification
+    row: "No USGovVirginia or USGovArizona row in the region table"
+    confidence: high
+
+  - id: ai-language.summarization
+    feature: ai-language/summarization
+    name: "Azure AI Language: Summarization"
+    by: azure
+    status: {commercial: available, government: available}
+    source: lang-regions
+    anchor: summarization
+    row: "USGovVirginia | ✓ | ✓ ; USGovArizona | ✓ | ✓"
+    confidence: high
+
+  - id: ai-language.custom-question-answering
+    feature: ai-language/custom-question-answering
+    name: "Azure AI Language: Custom question answering"
+    by: azure
+    status: {commercial: available, government: available}
+    source: lang-regions
+    anchor: custom-question-and-answering
+    row: "USGovArizona | ✓ | ✓ ; USGovVirginia | ✓ | ✓"
+    confidence: high
+
+  - id: azure-openai.gpt-4.1
+    feature: azure-openai/gpt-4.1
+    name: "Azure OpenAI model gpt-4.1"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia)."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-4.1: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.gpt-4.1-mini
+    feature: azure-openai/gpt-4.1-mini
+    name: "Azure OpenAI model gpt-4.1-mini"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia)."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-4.1-mini: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.gpt-4o
+    feature: azure-openai/gpt-4o
+    name: "Azure OpenAI model gpt-4o"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia); Provisioned (usgovarizona and usgovvirginia)."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-4o: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia); Provisioned (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.gpt-5.1
+    feature: azure-openai/gpt-5.1
+    name: "Azure OpenAI model gpt-5.1"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia). No regional Standard deployment."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-5.1: Data Zone Standard (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.gpt-5.6-luna
+    feature: azure-openai/gpt-5.6-luna
+    name: "Azure OpenAI model gpt-5.6-luna"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia). No regional Standard deployment."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-5.6-luna: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.gpt-5.6-sol
+    feature: azure-openai/gpt-5.6-sol
+    name: "Azure OpenAI model gpt-5.6-sol"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia). No regional Standard deployment."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-5.6-sol: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.gpt-5.6-terra
+    feature: azure-openai/gpt-5.6-terra
+    name: "Azure OpenAI model gpt-5.6-terra"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia). No regional Standard deployment."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "gpt-5.6-terra: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.o3-mini
+    feature: azure-openai/o3-mini
+    name: "Azure OpenAI model o3-mini"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia). No regional Standard deployment."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "o3-mini: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    confidence: high
+
+  - id: azure-openai.text-embedding-3-large
+    feature: azure-openai/text-embedding-3-large
+    name: "Azure OpenAI model text-embedding-3-large"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona)."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "text-embedding-3-large: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona)"
+    confidence: high
+
+  - id: azure-openai.text-embedding-3-small
+    feature: azure-openai/text-embedding-3-small
+    name: "Azure OpenAI model text-embedding-3-small"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona)."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "text-embedding-3-small: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona)"
+    confidence: high
+
+  - id: azure-openai.text-embedding-ada-002
+    feature: azure-openai/text-embedding-ada-002
+    name: "Azure OpenAI model text-embedding-ada-002"
+    by: azure
+    status: {government: available}
+    note: "Deployment types in Azure Government: Standard (usgovarizona and usgovvirginia)."
+    source: aoai-gov
+    anchor: model-summary-table-and-region-availability
+    row: "text-embedding-ada-002: Standard (usgovarizona and usgovvirginia)"
+    confidence: high

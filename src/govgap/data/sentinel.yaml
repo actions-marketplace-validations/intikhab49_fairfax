@@ -1,0 +1,542 @@
+# Generated from Microsoft's own tables, then reviewed. Each row is the source text the status came from.
+facts:
+  - id: sentinel.connector.office-irm
+    feature: sentinel/connector/office-irm
+    name: "Office IRM data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: preview, dod+commercial: not-possible, dod+government: not-available}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Office IRM: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Public Preview ; Office 365 DoD | - | Not Available"
+    confidence: high
+
+  - id: sentinel.connector.dynamics-365
+    feature: sentinel/connector/dynamics-365
+    name: "Dynamics 365 data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: ga, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: ga, dod+commercial: not-possible, dod+government: ga}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Dynamics 365: Office 365 GCC | GA | - ; Office 365 GCC High | - | GA ; Office 365 DoD | - | GA"
+    confidence: high
+
+  - id: sentinel.connector.defender-xdr
+    feature: sentinel/connector/defender-xdr
+    name: "Microsoft Defender XDR data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: ga, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: ga, dod+commercial: not-possible, dod+government: not-available}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender XDR: Office 365 GCC | GA | - ; Office 365 GCC High | - | GA ; Office 365 DoD | - | Not Available"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-cloud-apps
+    feature: sentinel/connector/defender-for-cloud-apps
+    name: "Microsoft Defender for Cloud Apps data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: ga, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: ga, dod+commercial: not-possible, dod+government: ga}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender for Cloud Apps: Office 365 GCC | GA | - ; Office 365 GCC High | - | GA ; Office 365 DoD | - | GA"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-cloud-apps-shadow-it
+    feature: sentinel/connector/defender-for-cloud-apps-shadow-it
+    name: "Microsoft Defender for Cloud Apps / Shadow IT logs data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: preview, dod+commercial: not-possible, dod+government: preview}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender for Cloud Apps / Shadow IT logs: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Public Preview ; Office 365 DoD | - | Public Preview"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-cloud-apps-alerts
+    feature: sentinel/connector/defender-for-cloud-apps-alerts
+    name: "Microsoft Defender for Cloud Apps / Alerts data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: preview, dod+commercial: not-possible, dod+government: preview}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender for Cloud Apps / Alerts: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Public Preview ; Office 365 DoD | - | Public Preview"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-endpoint
+    feature: sentinel/connector/defender-for-endpoint
+    name: "Microsoft Defender for Endpoint data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: ga, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: ga, dod+commercial: not-possible, dod+government: ga}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender for Endpoint: Office 365 GCC | GA | - ; Office 365 GCC High | - | GA ; Office 365 DoD | - | GA"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-identity
+    feature: sentinel/connector/defender-for-identity
+    name: "Microsoft Defender for Identity data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: ga, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: ga, dod+commercial: not-possible, dod+government: ga}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender for Identity: Office 365 GCC | GA | - ; Office 365 GCC High | - | GA ; Office 365 DoD | - | GA"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-office-365
+    feature: sentinel/connector/defender-for-office-365
+    name: "Microsoft Defender for Office 365 data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: preview, dod+commercial: not-possible, dod+government: not-available}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Defender for Office 365: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Public Preview ; Office 365 DoD | - | Not Available"
+    confidence: high
+
+  - id: sentinel.connector.power-bi
+    feature: sentinel/connector/power-bi
+    name: "Microsoft Power BI data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: preview, dod+commercial: not-possible, dod+government: not-available}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Power BI: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Public Preview ; Office 365 DoD | - | Not Available"
+    confidence: high
+
+  - id: sentinel.connector.project
+    feature: sentinel/connector/project
+    name: "Microsoft Project data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: preview, dod+commercial: not-possible, dod+government: not-available}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Microsoft Project: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Public Preview ; Office 365 DoD | - | Not Available"
+    confidence: high
+
+  - id: sentinel.connector.office-365
+    feature: sentinel/connector/office-365
+    name: "Office 365 data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: ga, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: ga, dod+commercial: not-possible, dod+government: ga}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Office 365: Office 365 GCC | GA | - ; Office 365 GCC High | - | GA ; Office 365 DoD | - | GA"
+    confidence: high
+
+  - id: sentinel.connector.teams
+    feature: sentinel/connector/teams
+    name: "Teams data connector for Microsoft Sentinel"
+    by: tenant+azure
+    status: {gcc+commercial: preview, gcc+government: not-possible, gcchigh+commercial: not-possible, gcchigh+government: not-available, dod+commercial: not-possible, dod+government: not-available}
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    row: "Teams: Office 365 GCC | Public Preview | - ; Office 365 GCC High | - | Not Available ; Office 365 DoD | - | Not Available"
+    confidence: high
+
+  - id: sentinel.scheduled-rules
+    feature: sentinel/scheduled-rules
+    name: "Microsoft Sentinel: Scheduled and Microsoft rules"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: analytics
+    row: "Scheduled and Microsoft rules | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.nrt-rules
+    feature: sentinel/nrt-rules
+    name: "Microsoft Sentinel: NRT rules"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: analytics
+    row: "NRT rules | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.content-hub
+    feature: sentinel/content-hub
+    name: "Microsoft Sentinel: Content hub and solutions"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: content-and-content-management
+    row: "Content hub and solutions | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.repositories
+    feature: sentinel/repositories
+    name: "Microsoft Sentinel: Repositories"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: content-and-content-management
+    row: "Repositories | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.workbooks
+    feature: sentinel/workbooks
+    name: "Microsoft Sentinel: Workbooks"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: content-and-content-management
+    row: "Workbooks | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.entra-id
+    feature: sentinel/connector/entra-id
+    name: "Microsoft Sentinel: Microsoft Entra ID data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Entra ID | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.entra-id-protection
+    feature: sentinel/connector/entra-id-protection
+    name: "Microsoft Sentinel: Microsoft Entra ID Protection data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Entra ID Protection | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.azure-activity
+    feature: sentinel/connector/azure-activity
+    name: "Microsoft Sentinel: Azure Activity data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Azure Activity | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.key-vault
+    feature: sentinel/connector/key-vault
+    name: "Microsoft Sentinel: Azure Key Vault data connector"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Azure Key Vault | Public preview | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.azure-information-protection
+    feature: sentinel/connector/azure-information-protection
+    name: "Microsoft Sentinel: Azure Information Protection (Preview) data connector"
+    by: azure
+    status: {commercial: not-available, government: not-available}
+    note: "Microsoft lists this connector as deprecated."
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Azure Information Protection (Preview) | Deprecated | No | No"
+    confidence: high
+
+  - id: sentinel.codeless-connector-platform
+    feature: sentinel/codeless-connector-platform
+    name: "Microsoft Sentinel: Codeless Connectors Platform"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Codeless Connectors Platform | Public preview | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.dns
+    feature: sentinel/connector/dns
+    name: "Microsoft Sentinel: DNS data connector"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "DNS | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.connector.defender-for-cloud
+    feature: sentinel/connector/defender-for-cloud
+    name: "Microsoft Sentinel: Microsoft Defender for Cloud data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Defender for Cloud | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.purview-insider-risk
+    feature: sentinel/connector/purview-insider-risk
+    name: "Microsoft Sentinel: Microsoft Purview Insider Risk Management (Preview) data connector"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Purview Insider Risk Management (Preview) | Public preview | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.purview
+    feature: sentinel/connector/purview
+    name: "Microsoft Sentinel: Microsoft Purview (Preview) data connector"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Purview (Preview) | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.connector.purview-information-protection
+    feature: sentinel/connector/purview-information-protection
+    name: "Microsoft Sentinel: Microsoft Purview Information Protection data connector"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Purview Information Protection | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.business-apps-solution
+    feature: sentinel/business-apps-solution
+    name: "Microsoft Sentinel: Microsoft Sentinel solution for Microsoft Business Apps"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Microsoft Sentinel solution for Microsoft Business Apps | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.summary-rules
+    feature: sentinel/summary-rules
+    name: "Microsoft Sentinel: Summary rules"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Summary rules | GA | Yes | No"
+    confidence: high
+
+  - id: sentinel.connector.syslog-ama
+    feature: sentinel/connector/syslog-ama
+    name: "Microsoft Sentinel: Syslog via AMA data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Syslog via AMA | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.cef-ama
+    feature: sentinel/connector/cef-ama
+    name: "Microsoft Sentinel: Common Event Format (CEF) via AMA data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Common Event Format (CEF) via AMA | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.windows-security-events-ama
+    feature: sentinel/connector/windows-security-events-ama
+    name: "Microsoft Sentinel: Windows Security Events via AMA data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: data-collection
+    row: "Windows Security Events via AMA | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.hunts
+    feature: sentinel/hunts
+    name: "Microsoft Sentinel: Hunts"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: hunting
+    row: "Hunts | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.search-jobs
+    feature: sentinel/search-jobs
+    name: "Microsoft Sentinel: Search large datasets"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: hunting
+    row: "Search large datasets | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.restore
+    feature: sentinel/restore
+    name: "Microsoft Sentinel: Restore historical data"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: hunting
+    row: "Restore historical data | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.automation-rules
+    feature: sentinel/automation-rules
+    name: "Microsoft Sentinel: Automation rules"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: incidents
+    row: "Automation rules | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.playbooks
+    feature: sentinel/playbooks
+    name: "Microsoft Sentinel: Run playbooks on incidents"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: incidents
+    row: "Run playbooks on incidents | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.teams-integration
+    feature: sentinel/teams-integration
+    name: "Microsoft Sentinel: Microsoft Teams integrations"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: sentinel-fa
+    anchor: incidents
+    row: "Microsoft Teams integrations | Public preview | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.fusion
+    feature: sentinel/fusion
+    name: "Microsoft Sentinel: Fusion - advanced multistage attack detections"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: machine-learning
+    row: "Fusion - advanced multistage attack detections 1 | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.workspace-manager
+    feature: sentinel/workspace-manager
+    name: "Microsoft Sentinel: Workspace manager"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: sentinel-fa
+    anchor: managing-microsoft-sentinel
+    row: "Workspace manager | Public preview | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.siem-migration
+    feature: sentinel/siem-migration
+    name: "Microsoft Sentinel: SIEM migration experience"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: sentinel-fa
+    anchor: managing-microsoft-sentinel
+    row: "SIEM migration experience | GA | Yes | No"
+    confidence: high
+
+  - id: sentinel.notebooks
+    feature: sentinel/notebooks
+    name: "Microsoft Sentinel: Notebooks"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: notebooks
+    row: "Notebooks | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.soc-optimizations
+    feature: sentinel/soc-optimizations
+    name: "Microsoft Sentinel: SOC optimizations"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: sentinel-fa
+    anchor: soc-optimizations
+    row: "SOC optimizations | Supported for production use | Yes | No"
+    confidence: high
+
+  - id: sentinel.sap-threat-protection
+    feature: sentinel/sap-threat-protection
+    name: "Microsoft Sentinel: Threat protection for SAP"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: sap
+    row: "Threat protection for SAP | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.connector.sap-agentless
+    feature: sentinel/connector/sap-agentless
+    name: "Microsoft Sentinel: Agentless data connector data connector"
+    by: azure
+    status: {commercial: private-preview, government: not-available}
+    source: sentinel-fa
+    anchor: sap
+    row: "Agentless data connector | Limited preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.geolocation-whois-enrichment
+    feature: sentinel/geolocation-whois-enrichment
+    name: "Microsoft Sentinel: GeoLocation and WhoIs data enrichment"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: threat-intelligence-support
+    row: "GeoLocation and WhoIs data enrichment | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.connector.ti-taxii
+    feature: sentinel/connector/ti-taxii
+    name: "Microsoft Sentinel: Threat Intelligence - TAXII data connector data connector"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: threat-intelligence-support
+    row: "Threat Intelligence - TAXII data connector | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.mdti-matching-analytics
+    feature: sentinel/mdti-matching-analytics
+    name: "Microsoft Sentinel: Microsoft Defender Threat intelligence matching analytics"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: threat-intelligence-support
+    row: "Microsoft Defender Threat intelligence matching analytics | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.url-detonation
+    feature: sentinel/url-detonation
+    name: "Microsoft Sentinel: URL detonation"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: threat-intelligence-support
+    row: "URL detonation | Public preview | Yes | No"
+    confidence: high
+
+  - id: sentinel.ti-upload-api
+    feature: sentinel/ti-upload-api
+    name: "Microsoft Sentinel: Threat Intelligence Upload Indicators API"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: sentinel-fa
+    anchor: threat-intelligence-support
+    row: "Threat Intelligence Upload Indicators API | Public preview | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.ueba-entity-pages
+    feature: sentinel/ueba-entity-pages
+    name: "Microsoft Sentinel: Entity pages"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: sentinel-fa
+    anchor: ueba
+    row: "Entity pages | GA | Yes | Yes"
+    confidence: high
+
+  - id: sentinel.ueba-peer-blast-radius
+    feature: sentinel/ueba-peer-blast-radius
+    name: "Microsoft Sentinel: Peer/Blast radius enrichments"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: sentinel-fa
+    anchor: ueba
+    row: "Peer/Blast radius enrichments | Public preview | Yes | No"
+    confidence: high

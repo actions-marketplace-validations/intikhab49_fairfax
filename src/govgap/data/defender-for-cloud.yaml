@@ -1,0 +1,244 @@
+# Generated from Microsoft's own tables, then reviewed. Each row is the source text the status came from.
+facts:
+  - id: defender-for-cloud.continuous-export
+    feature: defender-for-cloud/continuous-export
+    name: "Continuous export"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Continuous export | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.workflow-automation
+    feature: defender-for-cloud/workflow-automation
+    name: "Workflow automation"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Workflow automation | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.recommendation-exemption-rules
+    feature: defender-for-cloud/recommendation-exemption-rules
+    name: "Recommendation exemption rules"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Recommendation exemption rules | Public Preview | Not Available"
+    confidence: high
+
+  - id: defender-for-cloud.servers
+    feature: defender-for-cloud/servers
+    name: "Microsoft Defender for servers"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for servers | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.ai-services
+    feature: defender-for-cloud/ai-services
+    name: "Microsoft Defender for AI Services"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for AI Services | GA | Not Available"
+    confidence: high
+
+  - id: defender-for-cloud.app-service
+    feature: defender-for-cloud/app-service
+    name: "Microsoft Defender for App Service"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for App Service | GA | Not Available"
+    confidence: high
+
+  - id: defender-for-cloud.dns
+    feature: defender-for-cloud/dns
+    name: "Microsoft Defender for DNS"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for DNS | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.containers
+    feature: defender-for-cloud/containers
+    name: "Microsoft Defender for Containers"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for Containers | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.azure-sql
+    feature: defender-for-cloud/azure-sql
+    name: "Microsoft Defender for Azure SQL database servers"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for Azure SQL database servers | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.sql-servers-on-machines
+    feature: defender-for-cloud/sql-servers-on-machines
+    name: "Microsoft Defender for SQL servers on machines"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for SQL servers on machines | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.open-source-databases
+    feature: defender-for-cloud/open-source-databases
+    name: "Microsoft Defender for open-source relational databases"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for open-source relational databases | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.key-vault
+    feature: defender-for-cloud/key-vault
+    name: "Microsoft Defender for Key Vault"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for Key Vault | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.resource-manager
+    feature: defender-for-cloud/resource-manager
+    name: "Microsoft Defender for Resource Manager"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for Resource Manager | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.storage
+    feature: defender-for-cloud/storage
+    name: "Microsoft Defender for Storage"
+    by: azure
+    status: {commercial: ga, government: ga}
+    note: "Azure DNS Zone isn't supported for malware scanning and sensitive data threat detection."
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for Storage 1 | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.cosmos-db
+    feature: defender-for-cloud/cosmos-db
+    name: "Microsoft Defender for Azure Cosmos DB"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Microsoft Defender for Azure Cosmos DB | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.kubernetes-workload-protection
+    feature: defender-for-cloud/kubernetes-workload-protection
+    name: "Kubernetes workload protection"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Kubernetes workload protection | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.sentinel-alert-sync
+    feature: defender-for-cloud/sentinel-alert-sync
+    name: "Bi-directional alert synchronization with Microsoft Sentinel"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Bi-directional alert synchronization with Microsoft Sentinel | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.just-in-time-vm-access
+    feature: defender-for-cloud/just-in-time-vm-access
+    name: "Just-in-time VM access"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Just-in-time VM access | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.file-integrity-monitoring
+    feature: defender-for-cloud/file-integrity-monitoring
+    name: "File integrity monitoring"
+    by: azure
+    status: {commercial: ga, government: ga}
+    note: "GovCon Cloud Moderate (GCCM) doesn't support File Integrity Monitoring."
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- File integrity monitoring | GA | GA 3"
+    confidence: high
+
+  - id: defender-for-cloud.adaptive-network-hardening
+    feature: defender-for-cloud/adaptive-network-hardening
+    name: "Adaptive network hardening"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Adaptive network hardening | GA | Not Available"
+    confidence: high
+
+  - id: defender-for-cloud.vulnerability-assessment
+    feature: defender-for-cloud/vulnerability-assessment
+    name: "Integrated vulnerability assessment for machines"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Integrated vulnerability assessment for machines | GA | Not Available"
+    confidence: high
+
+  - id: defender-for-cloud.regulatory-compliance
+    feature: defender-for-cloud/regulatory-compliance
+    name: "Regulatory compliance dashboard and reports"
+    by: azure
+    status: {commercial: ga, government: ga}
+    note: "Differences might exist in the standards offered by cloud type."
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Regulatory compliance dashboard and reports 4 | GA | GA"
+    confidence: high
+
+  - id: defender-for-cloud.connect-aws
+    feature: defender-for-cloud/connect-aws
+    name: "Connect AWS account"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Connect AWS account | GA | Not Available"
+    confidence: high
+
+  - id: defender-for-cloud.connect-gcp
+    feature: defender-for-cloud/connect-gcp
+    name: "Connect GCP account"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: security-fa
+    anchor: microsoft-defender-for-cloud
+    row: "- Connect GCP account | GA | Not Available"
+    confidence: high

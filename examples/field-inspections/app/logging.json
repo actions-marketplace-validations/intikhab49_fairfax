@@ -1,0 +1,6 @@
+{
+  "logAnalytics": {
+    "dataCollectorUrl": "https://00000000-0000-0000-0000-000000000000.ods.opinsights.azure.com/api/logs?api-version=2016-04-01",
+    "queryUrl": "https://api.loganalytics.us/v1/workspaces/00000000-0000-0000-0000-000000000000/query"
+  }
+}

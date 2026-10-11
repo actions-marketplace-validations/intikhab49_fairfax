@@ -1,0 +1,81 @@
+# Stack-level rules: they fire on tenant and Azure cloud, not on a single feature.
+rules:
+  - id: pairing.gcc-commercial-entra
+    title: "GCC signs in through commercial Entra ID"
+    when: {tenant: [gcc]}
+    group: note
+    says: "Office 365 GCC signs users in through commercial Entra ID: login.microsoftonline.com, graph.microsoft.com and portal.azure.com, the same endpoints as worldwide Microsoft 365."
+    source: security-fa
+    anchor: microsoft-365-integration
+    quote: "Office 365 and Office 365 GCC are paired with Microsoft Entra ID in Azure."
+    confidence: high
+
+  - id: pairing.gcchigh-gov-entra
+    title: "GCC High and DoD sign in through Azure Government"
+    when: {tenant: [gcchigh, dod]}
+    group: note
+    says: "GCC High and DoD sign users in through Entra ID in Azure Government: login.microsoftonline.us, with graph.microsoft.us (GCC High) or dod-graph.microsoft.us (DoD)."
+    source: security-fa
+    anchor: microsoft-365-integration
+    quote: "Office 365 GCC High and Office 365 DoD are paired with Microsoft Entra ID in Azure Government."
+    confidence: high
+
+  - id: cross-cloud.gcc-with-azure-government
+    title: "Tenant and Azure subscription are in different clouds"
+    when: {tenant: [gcc], azure: [government]}
+    group: cross-cloud
+    says: "Your Microsoft 365 tenant lives in commercial Entra ID, but your Azure subscription is in Azure Government. A token from one cloud is rejected by the other, so every call across that line needs an app registration and credentials in the cloud being called. A managed identity in Azure Government can't sign in to your GCC tenant."
+    source: graph-deployments
+    anchor: microsoft-graph-and-graph-explorer-service-root-endpoints
+    quote: "Access tokens acquired for a national cloud deployment are not interchangeable with those acquired for the global service or any other national cloud."
+    confidence: high
+
+  - id: cross-cloud.gcchigh-with-azure-commercial
+    title: "Tenant and Azure subscription are in different clouds"
+    when: {tenant: [gcchigh, dod], azure: [commercial]}
+    group: cross-cloud
+    says: "Your Microsoft 365 tenant lives in Entra ID in Azure Government, but your Azure subscription is in commercial Azure. A token from one cloud is rejected by the other, so every call across that line needs an app registration and credentials in the cloud being called."
+    source: graph-deployments
+    anchor: microsoft-graph-and-graph-explorer-service-root-endpoints
+    quote: "Access tokens acquired for a national cloud deployment are not interchangeable with those acquired for the global service or any other national cloud."
+    confidence: high
+
+  - id: support.gcc-worldwide-terms
+    title: "GCC support has no location or citizenship assurances"
+    when: {tenant: [gcc]}
+    group: note
+    says: "GCC support runs on worldwide terms: Microsoft gives no assurances about where support agents are or what citizenship they hold. Background checks apply only to staff who can reach customer content."
+    source: gcc-sd
+    anchor: office-365-government-gcc-customer-support
+    quote: "Office 365 GCC customer support is provided under the same terms and conditions offered to Worldwide versions of Office 365, including no support agent physical location or citizenship assurances."
+    confidence: high
+
+  - id: network.power-platform-gov-to-commercial-azure
+    title: "Power Platform calls into commercial Azure cross clouds"
+    when: {tenant: [gcc, gcchigh], azure: [commercial], uses: [power-apps/, power-automate/, power-platform/, dataverse/, power-pages/, copilot-studio/, ai-builder/]}
+    group: cross-cloud
+    says: "Power Platform for GCC and GCC High runs in Azure Government, so calls from your flows and apps to commercial Azure services cross clouds. If a service sits behind a firewall (Azure SQL, for example), the firewall must allow the Azure Government IP ranges for AzureCloud.usgovtexas and AzureCloud.usgovvirginia."
+    source: pa-usgov
+    anchor: connectivity-between-power-apps-us-government-and-public-azure-cloud-services
+    quote: "cross-cloud networking is different and requires opening specific firewall rules to communicate between services"
+    confidence: high
+
+  - id: network.azure-ml-gov-firewall-hosts
+    title: "Azure Machine Learning in Azure Government needs its own firewall hosts"
+    when: {azure: [government], uses: [azure-ml/]}
+    group: note
+    says: "Azure Machine Learning in Azure Government needs usgovvirginia.api.ml.azure.us or usgovarizona.api.ml.azure.us open in your firewall, depending on the region."
+    source: aml-parity
+    anchor: other-azure-government-limitations
+    quote: "For Virginia use: usgovvirginia.api.ml.azure.us"
+    confidence: high
+
+  - id: unverified.entra-logs-gcc-to-gov-sentinel
+    title: "Entra ID logs from a GCC tenant into Sentinel in Azure Government"
+    when: {tenant: [gcc], azure: [government], uses: [sentinel/connector/entra-id]}
+    group: cross-cloud
+    says: "Your tenant's Entra ID is in commercial Azure, and your Sentinel workspace is in Azure Government. Microsoft's tables list the Entra ID connector in both clouds, but none covers sending a commercial tenant's sign-in logs to an Azure Government workspace. Test it before you depend on it."
+    source: security-fa
+    anchor: microsoft-purview-data-connectors
+    quote: "Office 365 GCC is paired with Microsoft Entra ID in Azure."
+    confidence: unverified

@@ -1,0 +1,17 @@
+# A made-up stack, used to show what govgap catches. It is not a real system.
+# A state agency's inspectors file reports from a Power Apps tab in Teams. Supervisors approve them
+# by email or on their iPhones, Azure OpenAI drafts summaries, and Sentinel watches the whole thing.
+name: Field inspection app (synthetic example)
+tenant: gcchigh
+azure: government
+features:
+  - power-apps/canvas-teams-tab
+  - power-automate/actionable-approval-emails
+  - power-automate/mobile-ios
+  - power-automate/teams-flow-bot
+  - azure-openai/gpt-4o
+  - defender-for-cloud/ai-services
+  - defender-for-cloud/key-vault
+  - sentinel/scheduled-rules
+  - sentinel/connector/office-365
+  - sentinel/connector/teams

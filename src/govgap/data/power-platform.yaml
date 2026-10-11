@@ -1,0 +1,702 @@
+# Generated from Microsoft's own tables, then reviewed. Each row is the source text the status came from.
+# Columns in the PDF: GCC (IL2), GCC High (IL4), DoD (IL5).
+facts:
+  - id: dataverse.synapse-link
+    feature: dataverse/synapse-link
+    name: "Azure Synapse Link for Dataverse (and Data Lake)"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Azure Synapse Link for Dataverse (and Data Lake) | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.continuous-access-evaluation
+    feature: power-platform/continuous-access-evaluation
+    name: "Continuous access evaluation integration with Power Platform (preview)"
+    by: tenant
+    status: {gcc: private-preview, gcchigh: private-preview, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Continuous access evaluation integration with Power Platform (preview) | Private Preview | Private Preview | Not Available"
+    confidence: high
+
+  - id: power-platform.customer-lockbox
+    feature: power-platform/customer-lockbox
+    name: "Customer Lockbox"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Customer Lockbox | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.appsource-install
+    feature: power-platform/appsource-install
+    name: "Install Applications via AppSource"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Install Applications via AppSource | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-platform.pay-as-you-go
+    feature: power-platform/pay-as-you-go
+    name: "Pay as you Go licensing model"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Pay as you Go licensing model | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: dataverse.capacity-management
+    feature: dataverse/capacity-management
+    name: "Capacity management for Dataverse environment"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Capacity management for Dataverse environment | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-platform.customer-managed-key
+    feature: power-platform/customer-managed-key
+    name: "Customer managed key"
+    by: tenant
+    status: {gcc: not-available, gcchigh: ga, dod: "planned:CY2026-H1"}
+    source: bap
+    anchor: ""
+    row: "Customer managed key | Not Available | Available | CY2026-H1"
+    confidence: high
+
+  - id: power-platform.dlp-activity-logging
+    feature: power-platform/dlp-activity-logging
+    name: "Data loss prevention activity logging"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Data loss prevention activity logging | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-platform.app-insights-export
+    feature: power-platform/app-insights-export
+    name: "Export Diagnostics & Performance Data to App Insights"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Export Diagnostics & Performance Data to App Insights | Available | Available | Not Available"
+    confidence: high
+
+  - id: power-platform.tenant-isolation
+    feature: power-platform/tenant-isolation
+    name: "Tenant Isolation"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Tenant Isolation | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.security-hub
+    feature: power-platform/security-hub
+    name: "Security Hub in PPAC"
+    by: tenant
+    status: {gcc: limited, gcchigh: limited, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Security Hub in PPAC | Limited | Limited | Not Available"
+    confidence: high
+
+  - id: power-platform.vnet-support
+    feature: power-platform/vnet-support
+    name: "Virtual Network (vNet) support for Power Platform"
+    by: tenant
+    status: {gcc: no-plans, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Virtual Network (vNet) support for Power Platform | No plans | Available | Available"
+    confidence: high
+
+  - id: power-platform.github-actions
+    feature: power-platform/github-actions
+    name: "GitHub Actions CI/CD CLI Tool Integration"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "GitHub Actions CI/CD CLI Tool Integration | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.inventory-usage-data
+    feature: power-platform/inventory-usage-data
+    name: "Power Platform inventory and usage data"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Platform inventory and usage data | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-platform.managed-environments
+    feature: power-platform/managed-environments
+    name: "Managed Environments"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Managed Environments | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.me-admin-digest
+    feature: power-platform/me-admin-digest
+    name: "Managed Environments admin digest (usage insights)"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "ME Admin Digest (Usage insights) | Available | Available | Not Available"
+    confidence: high
+
+  - id: power-platform.me-data-policies
+    feature: power-platform/me-data-policies
+    name: "Managed Environments data policies"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "ME Data Policies | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.me-limit-sharing
+    feature: power-platform/me-limit-sharing
+    name: "Managed Environments limit sharing"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "ME Limit Sharing | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.me-maker-onboarding
+    feature: power-platform/me-maker-onboarding
+    name: "Managed Environments maker onboarding"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "ME Maker Onboarding | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-platform.pipelines
+    feature: power-platform/pipelines
+    name: "Pipelines in Power Platform"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "ME Set up pipelines in Power Platform | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.solution-checker
+    feature: power-platform/solution-checker
+    name: "Solution Checker"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Solution Checker | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.custom-connectors
+    feature: power-platform/custom-connectors
+    name: "Custom Connectors"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Custom Connectors | Available | Available | Available"
+    confidence: high
+
+  - id: power-platform.custom-code-connectors
+    feature: power-platform/custom-code-connectors
+    name: "Custom Code Connectors"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Custom Code Connectors | Available | Available | Available"
+    confidence: high
+
+  - id: power-apps.cards
+    feature: power-apps/cards
+    name: "Cards for Power Apps"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Cards for PowerApps | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.model-driven-coauthoring
+    feature: power-apps/model-driven-coauthoring
+    name: "Coauthoring in model-driven apps (preview)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Coauthoring in model-driven apps (preview) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.code-apps
+    feature: power-apps/code-apps
+    name: "Code Apps"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Code Apps | Available | Available | Available"
+    confidence: high
+
+  - id: power-apps.custom-pages
+    feature: power-apps/custom-pages
+    name: "Custom pages in model-driven apps"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Custom Pages in MDAs | Available | Available | Available"
+    confidence: high
+
+  - id: power-apps.dataflows
+    feature: power-apps/dataflows
+    name: "Dataflows in Power Apps"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Dataflows in Power Apps | Available | Available | Available"
+    confidence: high
+
+  - id: dataverse.for-teams
+    feature: dataverse/for-teams
+    name: "Dataverse for Teams"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Dataverse for Teams | Available | Available | Available"
+    confidence: high
+
+  - id: dataverse.for-teams-edit-in-excel
+    feature: dataverse/for-teams-edit-in-excel
+    name: "Dataverse for Teams Edit in Excel"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Dataverse for Teams Edit in Excel | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.canvas-teams-personal-app
+    feature: power-apps/canvas-teams-personal-app
+    name: "Embed a canvas app as personal app in Teams"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Embed a canvas app as personal app in Teams | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.canvas-teams-tab
+    feature: power-apps/canvas-teams-tab
+    name: "Embed a canvas app as tab app in Teams"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Embed a canvas app as tab app in Teams | Available | Available | Available"
+    confidence: high
+
+  - id: power-apps.model-driven-teams-personal-app
+    feature: power-apps/model-driven-teams-personal-app
+    name: "Embed a model-driven app as personal app in Teams"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Embed a model-driven app as personal app in Teams | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.model-driven-teams-tab
+    feature: power-apps/model-driven-teams-tab
+    name: "Embed a model-driven app as tab app in Teams"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Embed a model-driven app as tab app in Teams | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.stream-embed
+    feature: power-apps/stream-embed
+    name: "Embed Stream in Canvas App"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Embed Stream in Canvas App | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.geospatial-components
+    feature: power-apps/geospatial-components
+    name: "Geospatial Components"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Geospatial Components | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.wrap
+    feature: power-apps/wrap
+    name: "Native Power Apps (Wrap Service)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Native Power Apps (Wrap Service) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.b2b-byol-cross-cloud
+    feature: power-apps/b2b-byol-cross-cloud
+    name: "Power Apps B2B Bring your Own License (Cross Cloud) - Per User"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Apps B2B Bring your Own License (Cross Cloud) - Per User | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.push-notifications-android
+    feature: power-apps/push-notifications-android
+    name: "Push Notifications - Android"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Push Notifications - Android | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.push-notifications-ios
+    feature: power-apps/push-notifications-ios
+    name: "Push Notifications - iOS"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Push Notifications - IOS | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.test-studio
+    feature: power-apps/test-studio
+    name: "Test Studio"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Test Studio | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.git-integration
+    feature: power-apps/git-integration
+    name: "Power Apps / Dataverse native integration with Git (ALM)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Apps / Dataverse native integration with Git (ALM) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.plan-designer
+    feature: power-apps/plan-designer
+    name: "Plan Designer"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: no-plans}
+    source: bap
+    anchor: ""
+    row: "Plan Designer | Available | Available | No Plans"
+    confidence: high
+
+  - id: power-apps.azure-maps
+    feature: power-apps/azure-maps
+    name: "Azure Maps in Canvas Apps"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Azure Maps in Canvas Apps | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-apps.monitor
+    feature: power-apps/monitor
+    name: "Power Apps Monitor"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Power Apps Monitor | Available | Available | Available"
+    confidence: high
+
+  - id: power-apps.intune-mam
+    feature: power-apps/intune-mam
+    name: "Intune MAM"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Intune MAM | Available | Available | Available"
+    confidence: high
+
+  - id: power-automate.actionable-approval-emails
+    feature: power-automate/actionable-approval-emails
+    name: "Actionable approval emails (Adaptive Cards in Outlook)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Actionable Approval Emails (.e.g. \"Adaptive Cards\") | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-automate.excel-app
+    feature: power-automate/excel-app
+    name: "Power Automate Excel app"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Excel App | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-automate.guest-approvals
+    feature: power-automate/guest-approvals
+    name: "Guest User Participation in Approval Workflows"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Guest User Participation in Approval Workflows | Available | Available | Available"
+    confidence: high
+
+  - id: power-automate.mobile-ios
+    feature: power-automate/mobile-ios
+    name: "Power Automate mobile app for iOS"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Mobile App - iOS | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-automate.mobile-android
+    feature: power-automate/mobile-android
+    name: "Power Automate mobile app for Android"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Mobile App - Android | Available | Available | Available"
+    confidence: high
+
+  - id: power-automate.analytics-per-flow
+    feature: power-automate/analytics-per-flow
+    name: "Power Automate Analytics (Per Flow)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Automate Analytics (Per Flow) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-automate.analytics-tenant
+    feature: power-automate/analytics-tenant
+    name: "Power Automate Analytics (Tenant)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Automate Analytics (Tenant) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-automate.desktop-flows
+    feature: power-automate/desktop-flows
+    name: "Power Automate Desktop"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Power Automate Desktop | Available | Available | Available"
+    confidence: high
+
+  - id: power-automate.teams-app
+    feature: power-automate/teams-app
+    name: "Power Automate Teams App"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Automate Teams App | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-automate.process-advisor
+    feature: power-automate/process-advisor
+    name: "Process Advisor"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Process Advisor | Available | Available | Not Available"
+    confidence: high
+
+  - id: power-automate.teams-flow-bot
+    feature: power-automate/teams-flow-bot
+    name: "Send a message in Teams using Power Automate (Teams Flow Bot)"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Send a message in Teams using Power Automate (Teams Flow Bot) | Available | Available | Available"
+    confidence: high
+
+  - id: power-automate.power-bi-visual
+    feature: power-automate/power-bi-visual
+    name: "Create a Power Automate visual for Power BI (Preview)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Create a Power Automate visual for Power BI (Preview) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: power-pages.sites
+    feature: power-pages/sites
+    name: "Power Pages"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Power Pages | Available | Available | Available"
+    confidence: high
+
+  - id: power-pages.waf
+    feature: power-pages/waf
+    name: "Power Pages Web Application Firewall"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: ga}
+    source: bap
+    anchor: ""
+    row: "Web Application Firewall (WAF) | Available | Available | Available"
+    confidence: high
+
+  - id: ai-builder.service
+    feature: ai-builder/service
+    name: "AI Builder"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Power Platform AI Builder | Available | Available | Not Available"
+    confidence: high
+
+  - id: ai-builder.document-processing-unstructured
+    feature: ai-builder/document-processing-unstructured
+    name: "AI Builder custom document processing (unstructured)"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Custom Document Processing (Unstructured Documents) | Available | Available | Not Available"
+    confidence: high
+
+  - id: ai-builder.prebuilt-category-classification
+    feature: ai-builder/prebuilt-category-classification
+    name: "AI Builder prebuilt category classification"
+    by: tenant
+    status: {gcc: preview, gcchigh: preview, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Prebuilt Category Classification | Public Preview | Public Preview | Not Available"
+    confidence: high
+
+  - id: ai-builder.custom-image-classification
+    feature: ai-builder/custom-image-classification
+    name: "AI Builder custom image classification (Lobe)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Custom Image Classification (Lobe) | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: ai-builder.document-automation-toolkit
+    feature: ai-builder/document-automation-toolkit
+    name: "Document Automation Toolkit"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Document Automation Toolkit | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: copilot-studio.service
+    feature: copilot-studio/service
+    name: "Copilot Studio"
+    by: tenant
+    status: {gcc: ga, gcchigh: ga, dod: "planned:CY2026-Q3"}
+    source: bap
+    anchor: ""
+    row: "Copilot Studio | Available | Available | CY2026-Q3"
+    confidence: high
+
+  - id: copilot-studio.teams-app
+    feature: copilot-studio/teams-app
+    name: "Copilot Studio Microsoft Teams app experience"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Copilot Studio Microsoft Teams app experience | Not Available | Not Available | Not Available"
+    confidence: high
+
+  - id: copilot-studio.teams-channel
+    feature: copilot-studio/teams-channel
+    name: "Teams channel in the Copilot Studio web app"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Teams channel in the Copilot Studio web app | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: copilot-studio.transfer-to-agents
+    feature: copilot-studio/transfer-to-agents
+    name: "Copilot Studio transfer to agents"
+    by: tenant
+    status: {gcc: ga, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "Transfer to agents | Available | Not Available | Not Available"
+    confidence: high
+
+  - id: copilot-studio.telephony
+    feature: copilot-studio/telephony
+    name: "Copilot Studio telephony (standalone IVR)"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: bap
+    anchor: ""
+    row: "PVA Telephony(Standalone IVR) | Not Available | Not Available | Not Available"
+    confidence: high

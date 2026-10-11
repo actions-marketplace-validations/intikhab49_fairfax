@@ -1,0 +1,441 @@
+# Commercial to US Government host map used by `govgap scan`.
+endpoints:
+  - id: endpoint.botframework-com
+    service: "Azure Bot Service"
+    plane: azure
+    hosts: {commercial: botframework.com, government: botframework.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "AI + machine learning | Azure Bot Service | botframework.com | botframework.azure.us"
+
+  - id: endpoint.cognitiveservices-azure-com
+    service: "Azure AI services (Language, Vision, Document Intelligence and others)"
+    plane: azure
+    hosts: {commercial: cognitiveservices.azure.com, government: cognitiveservices.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Document Intelligence in Foundry Tools | cognitiveservices.azure.com | cognitiveservices.azure.us"
+
+  - id: endpoint.openai-azure-com
+    service: "Azure OpenAI"
+    plane: azure
+    hosts: {commercial: openai.azure.com, government: openai.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure OpenAI Service | openai.azure.com | openai.azure.us"
+
+  - id: endpoint.azurehdinsight-net
+    service: "Azure HDInsight"
+    plane: azure
+    hosts: {commercial: azurehdinsight.net, government: azurehdinsight.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Analytics | Azure HDInsight | azurehdinsight.net | azurehdinsight.us"
+
+  - id: endpoint.servicebus-windows-net
+    service: "Service Bus, Event Hubs and Notification Hubs"
+    plane: azure
+    hosts: {commercial: servicebus.windows.net, government: servicebus.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Event Hubs | servicebus.windows.net | servicebus.usgovcloudapi.net"
+
+  - id: endpoint.batch-azure-com
+    service: "Azure Batch"
+    plane: azure
+    hosts: {commercial: batch.azure.com, government: batch.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Compute | Batch | batch.azure.com | batch.usgovcloudapi.net"
+
+  - id: endpoint.cloudapp-net
+    service: "Cloud Services"
+    plane: azure
+    hosts: {commercial: cloudapp.net, government: usgovcloudapp.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Cloud Services | cloudapp.net | usgovcloudapp.net"
+
+  - id: endpoint.cloudapp-azure-com
+    service: "Azure Service Fabric and VM DNS names"
+    plane: azure
+    hosts: {commercial: cloudapp.azure.com, government: cloudapp.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Containers | Azure Service Fabric | cloudapp.azure.com | cloudapp.usgovcloudapi.net"
+
+  - id: endpoint.azurecr-io
+    service: "Azure Container Registry"
+    plane: azure
+    hosts: {commercial: azurecr.io, government: azurecr.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Container Registry | azurecr.io | azurecr.us"
+
+  - id: endpoint.redis-cache-windows-net
+    service: "Azure Cache for Redis"
+    plane: azure
+    hosts: {commercial: redis.cache.windows.net, government: redis.cache.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Databases | Azure Cache for Redis | redis.cache.windows.net | redis.cache.usgovcloudapi.net | See How to connect to other clouds"
+
+  - id: endpoint.documents-azure-com
+    service: "Azure Cosmos DB"
+    plane: azure
+    hosts: {commercial: documents.azure.com, government: documents.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Cosmos DB | documents.azure.com | documents.azure.us"
+
+  - id: endpoint.mariadb-database-azure-com
+    service: "Azure Database for MariaDB"
+    plane: azure
+    hosts: {commercial: mariadb.database.azure.com, government: mariadb.database.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Database for MariaDB | mariadb.database.azure.com | mariadb.database.usgovcloudapi.net"
+
+  - id: endpoint.mysql-database-azure-com
+    service: "Azure Database for MySQL"
+    plane: azure
+    hosts: {commercial: mysql.database.azure.com, government: mysql.database.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Database for MySQL | mysql.database.azure.com | mysql.database.usgovcloudapi.net"
+
+  - id: endpoint.postgres-database-azure-com
+    service: "Azure Database for PostgreSQL"
+    plane: azure
+    hosts: {commercial: postgres.database.azure.com, government: postgres.database.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Database for PostgreSQL | postgres.database.azure.com | postgres.database.usgovcloudapi.net"
+
+  - id: endpoint.database-windows-net
+    service: "Azure SQL Database"
+    plane: azure
+    hosts: {commercial: database.windows.net, government: database.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure SQL Database | database.windows.net | database.usgovcloudapi.net"
+
+  - id: endpoint.login-microsoftonline-com
+    service: "Microsoft Entra ID sign-in"
+    plane: identity
+    hosts: {commercial: login.microsoftonline.com, government: login.microsoftonline.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Identity | Microsoft Entra ID | login.microsoftonline.com | login.microsoftonline.us"
+
+  - id: endpoint.certauth-login-microsoftonline-com
+    service: "Microsoft Entra ID certificate sign-in"
+    plane: identity
+    hosts: {commercial: certauth.login.microsoftonline.com, government: certauth.login.microsoftonline.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "certauth.login.microsoftonline.com | certauth.login.microsoftonline.us"
+
+  - id: endpoint.passwordreset-microsoftonline-com
+    service: "Microsoft Entra ID password reset"
+    plane: identity
+    hosts: {commercial: passwordreset.microsoftonline.com, government: passwordreset.microsoftonline.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "passwordreset.microsoftonline.com | passwordreset.microsoftonline.us"
+
+  - id: endpoint.azure-devices-net
+    service: "Azure IoT Hub"
+    plane: azure
+    hosts: {commercial: azure-devices.net, government: azure-devices.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Internet of Things | Azure IoT Hub | azure-devices.net | azure-devices.us"
+
+  - id: endpoint.atlas-microsoft-com
+    service: "Azure Maps"
+    plane: azure
+    hosts: {commercial: atlas.microsoft.com, government: atlas.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Maps | atlas.microsoft.com | atlas.azure.us"
+
+  - id: endpoint.azure-automation-net
+    service: "Azure Automation"
+    plane: azure
+    hosts: {commercial: azure-automation.net, government: azure-automation.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Management and governance | Azure Automation | azure-automation.net | azure-automation.us"
+
+  - id: endpoint.in-applicationinsights-azure-com
+    service: "Application Insights ingestion"
+    plane: azure
+    hosts: {commercial: in.applicationinsights.azure.com, government: in.applicationinsights.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Monitor / Application Insights | {region}.in.applicationinsights.azure.com | {region}.in.applicationinsights.azure.us | Additional endpoints"
+
+  - id: endpoint.mms-microsoft-com
+    service: "Log Analytics workspace portal"
+    plane: azure
+    hosts: {commercial: mms.microsoft.com, government: oms.microsoft.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Monitor / Log Analytics | mms.microsoft.com | oms.microsoft.us | Log Analytics workspace portal"
+
+  - id: endpoint.ods-opinsights-azure-com
+    service: "Log Analytics data collector API"
+    plane: azure
+    hosts: {commercial: ods.opinsights.azure.com, government: ods.opinsights.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "ods.opinsights.azure.com | ods.opinsights.azure.us | Data collector API"
+
+  - id: endpoint.oms-opinsights-azure-com
+    service: "Log Analytics agent endpoint"
+    plane: azure
+    hosts: {commercial: oms.opinsights.azure.com, government: oms.opinsights.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "oms.opinsights.azure.com | oms.opinsights.azure.us"
+
+  - id: endpoint.portal-loganalytics-io
+    service: "Log Analytics portal"
+    plane: azure
+    hosts: {commercial: portal.loganalytics.io, government: portal.loganalytics.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "portal.loganalytics.io | portal.loganalytics.us"
+
+  - id: endpoint.api-loganalytics-io
+    service: "Log Analytics query API"
+    plane: azure
+    hosts: {commercial: api.loganalytics.io, government: api.loganalytics.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "api.loganalytics.io | api.loganalytics.us"
+
+  - id: endpoint.adx-monitor-azure-com
+    service: "Azure Monitor Data Explorer queries"
+    plane: azure
+    hosts: {commercial: adx.monitor.azure.com, government: adx.monitor.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "adx.monitor.azure.com | adx.monitor.azure.us | Data Explorer queries"
+
+  - id: endpoint.management-azure-com
+    service: "Azure Resource Manager"
+    plane: azure
+    hosts: {commercial: management.azure.com, government: management.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure Resource Manager | management.azure.com | management.usgovcloudapi.net"
+
+  - id: endpoint.gallery-azure-com
+    service: "Azure gallery"
+    plane: azure
+    hosts: {commercial: gallery.azure.com, government: gallery.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Gallery URL | gallery.azure.com | gallery.azure.us"
+
+  - id: endpoint.portal-azure-com
+    service: "Azure portal"
+    plane: identity
+    hosts: {commercial: portal.azure.com, government: portal.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Microsoft Azure portal | portal.azure.com | portal.azure.us"
+
+  - id: endpoint.hypervrecoverymanager-windowsazure-com
+    service: "Azure Site Recovery"
+    plane: azure
+    hosts: {commercial: hypervrecoverymanager.windowsazure.com, government: hypervrecoverymanager.windowsazure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Migration | Azure Site Recovery | hypervrecoverymanager.windowsazure.com | hypervrecoverymanager.windowsazure.us | Site Recovery service"
+
+  - id: endpoint.backup-windowsazure-com
+    service: "Azure Backup"
+    plane: azure
+    hosts: {commercial: backup.windowsazure.com, government: backup.windowsazure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "backup.windowsazure.com | backup.windowsazure.us | Protection service"
+
+  - id: endpoint.blob-core-windows-net
+    service: "Azure Blob Storage"
+    plane: azure
+    hosts: {commercial: blob.core.windows.net, government: blob.core.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "blob.core.windows.net | blob.core.usgovcloudapi.net | Storing VM snapshots"
+
+  - id: endpoint.queue-core-windows-net
+    service: "Azure Queue Storage"
+    plane: azure
+    hosts: {commercial: queue.core.windows.net, government: queue.core.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Queue | queue.core.windows.net | queue.core.usgovcloudapi.net"
+
+  - id: endpoint.table-core-windows-net
+    service: "Azure Table Storage"
+    plane: azure
+    hosts: {commercial: table.core.windows.net, government: table.core.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Table | table.core.windows.net | table.core.usgovcloudapi.net"
+
+  - id: endpoint.file-core-windows-net
+    service: "Azure Files"
+    plane: azure
+    hosts: {commercial: file.core.windows.net, government: file.core.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "File | file.core.windows.net | file.core.usgovcloudapi.net"
+
+  - id: endpoint.trafficmanager-net
+    service: "Traffic Manager"
+    plane: azure
+    hosts: {commercial: trafficmanager.net, government: usgovtrafficmanager.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Networking | Traffic Manager | trafficmanager.net | usgovtrafficmanager.net"
+
+  - id: endpoint.vault-azure-net
+    service: "Azure Key Vault"
+    plane: azure
+    hosts: {commercial: vault.azure.net, government: vault.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Security | Key Vault | vault.azure.net | vault.usgovcloudapi.net"
+
+  - id: endpoint.managedhsm-azure-net
+    service: "Azure Key Vault Managed HSM"
+    plane: azure
+    hosts: {commercial: managedhsm.azure.net, government: managedhsm.usgovcloudapi.net}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Managed HSM | managedhsm.azure.net | managedhsm.usgovcloudapi.net"
+
+  - id: endpoint.azure-api-net
+    service: "API Management gateway"
+    plane: azure
+    hosts: {commercial: azure-api.net, government: azure-api.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "API Management Gateway | azure-api.net | azure-api.us"
+
+  - id: endpoint.management-azure-api-net
+    service: "API Management management endpoint"
+    plane: azure
+    hosts: {commercial: management.azure-api.net, government: management.azure-api.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "API Management management | management.azure-api.net | management.azure-api.us"
+
+  - id: endpoint.portal-azure-api-net
+    service: "API Management developer portal"
+    plane: azure
+    hosts: {commercial: portal.azure-api.net, government: portal.azure-api.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "API Management Portal | portal.azure-api.net | portal.azure-api.us"
+
+  - id: endpoint.azconfig-io
+    service: "Azure App Configuration"
+    plane: azure
+    hosts: {commercial: azconfig.io, government: azconfig.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "App Configuration | azconfig.io | azconfig.azure.us"
+
+  - id: endpoint.azurewebsites-net
+    service: "App Service and Azure Functions"
+    plane: azure
+    hosts: {commercial: azurewebsites.net, government: azurewebsites.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "App Service | azurewebsites.net | azurewebsites.us"
+
+  - id: endpoint.search-windows-net
+    service: "Azure AI Search"
+    plane: azure
+    hosts: {commercial: search.windows.net, government: search.azure.us}
+    source: azgov-compare
+    anchor: guidance-for-developers
+    row: "Azure AI Search | search.windows.net | search.azure.us"
+
+  - id: endpoint.microsoft-graph
+    service: "Microsoft Graph"
+    plane: m365
+    hosts: {commercial: graph.microsoft.com, gcc: graph.microsoft.com, gcchigh: graph.microsoft.us, dod: dod-graph.microsoft.us}
+    source: graph-deployments
+    anchor: microsoft-graph-and-graph-explorer-service-root-endpoints
+    row: "Microsoft Graph global service | https://graph.microsoft.com ; Microsoft Graph for US Government L4 (GCC High) | https://graph.microsoft.us ; Microsoft Graph for US Government L5 (DOD) | https://dod-graph.microsoft.us"
+
+  - id: endpoint.power-apps-maker
+    service: "Power Apps maker portal"
+    plane: m365
+    hosts: {commercial: make.powerapps.com, gcc: make.gov.powerapps.us, gcchigh: make.high.powerapps.us, dod: make.apps.appsplatform.us}
+    source: pa-usgov
+    anchor: power-apps-us-government-service-urls
+    row: "https://make.powerapps.com | https://make.gov.powerapps.us (GCC) / https://make.high.powerapps.us (GCC High) / https://make.apps.appsplatform.us (DoD)"
+
+  - id: endpoint.power-automate-maker
+    service: "Power Automate maker portal"
+    plane: m365
+    hosts: {commercial: make.powerautomate.com, gcc: make.gov.powerautomate.us, gcchigh: make.high.powerautomate.us, dod: make.powerautomate.appsplatform.us}
+    source: pauto-usgov
+    anchor: power-automate-us-government-service-urls
+    row: "https://make.powerautomate.com | https://make.gov.powerautomate.us (GCC), https://make.high.powerautomate.us (GCC High), and https://make.powerautomate.appsplatform.us (DoD)"
+
+  - id: endpoint.power-automate-flow
+    service: "Power Automate (classic portal)"
+    plane: m365
+    hosts: {commercial: flow.microsoft.com, gcc: gov.flow.microsoft.us, gcchigh: high.flow.microsoft.us, dod: flow.appsplatform.us}
+    source: pauto-usgov
+    anchor: power-automate-us-government-service-urls
+    row: "https://flow.microsoft.com | https://gov.flow.microsoft.us (GCC), https://high.flow.microsoft.us (GCC High), and https://flow.appsplatform.us (DoD)"
+
+  - id: endpoint.power-platform-admin
+    service: "Power Platform admin center"
+    plane: m365
+    hosts: {commercial: admin.powerplatform.microsoft.com, gcc: gcc.admin.powerplatform.microsoft.us, gcchigh: high.admin.powerplatform.microsoft.us, dod: admin.appsplatform.us}
+    source: pauto-usgov
+    anchor: power-automate-us-government-service-urls
+    row: "https://admin.powerplatform.microsoft.com/ | https://gcc.admin.powerplatform.microsoft.us/ (GCC), https://high.admin.powerplatform.microsoft.us/ (GCC High), and https://admin.appsplatform.us (DoD)"
+
+  - id: endpoint.dataverse
+    service: "Dataverse environment URL"
+    plane: m365
+    hosts: {commercial: [crm.dynamics.com, crm2.dynamics.com, crm3.dynamics.com, crm4.dynamics.com, crm5.dynamics.com, crm6.dynamics.com, crm7.dynamics.com, crm8.dynamics.com, crm11.dynamics.com, crm12.dynamics.com, crm14.dynamics.com, crm15.dynamics.com, crm16.dynamics.com, crm17.dynamics.com, crm19.dynamics.com, crm20.dynamics.com, crm22.dynamics.com, crm21.dynamics.com], gcc: crm9.dynamics.com, gcchigh: crm.microsoftdynamics.us, dod: crm.appsplatform.us}
+    source: dv-regions
+    anchor: ms--in-this-article
+    row: "NAM | crm.dynamics.com ; GCC | crm9.dynamics.com ; GCC High | crm.microsoftdynamics.us ; DoD: *.crm.appsplatform.us (Power Apps US Government network list)"
+
+  - id: endpoint.power-bi-app
+    service: "Power BI service"
+    plane: m365
+    hosts: {commercial: app.powerbi.com, gcc: app.powerbigov.us, gcchigh: app.high.powerbigov.us, dod: app.mil.powerbigov.us}
+    source: pbi-gov
+    anchor: sign-in-to-power-bi-for-us-government
+    row: "commercial: app.powerbi.com ; gcc: app.powerbigov.us ; gcchigh: app.high.powerbigov.us ; dod: app.mil.powerbigov.us"
+
+  - id: endpoint.power-bi-api
+    service: "Power BI back-end APIs (US Government tiers)"
+    plane: m365
+    hosts: {gcc: api.powerbigov.us, gcchigh: api.high.powerbigov.us, dod: api.mil.powerbigov.us}
+    source: pbi-gov
+    anchor: power-bi-urls-for-general-site-usage
+    row: "Back-end APIs | GCC: api.powerbigov.us / GCC High: api.high.powerbigov.us / DoD: api.mil.powerbigov.us"
+
+  - id: endpoint.security-compliance-powershell
+    service: "Security & Compliance PowerShell"
+    plane: m365
+    hosts: {commercial: ps.compliance.protection.outlook.com, gcc: ps.compliance.protection.outlook.com, gcchigh: ps.compliance.protection.office365.us, dod: l5.ps.compliance.protection.office365.us}
+    source: scc-ps
+    anchor: step-2-connect-and-authenticate
+    row: "Microsoft 365 or Microsoft 365 GCC: default ; GCC High and DoD ConnectionUri values"

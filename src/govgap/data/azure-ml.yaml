@@ -1,0 +1,233 @@
+# Generated from Microsoft's own tables, then reviewed. Each row is the source text the status came from.
+facts:
+  - id: azure-ml.automl
+    feature: azure-ml/automl
+    name: "Azure Machine Learning: Automated ML experiments in notebooks"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Create and run experiments in notebooks | GA | YES | YES"
+    confidence: high
+
+  - id: azure-ml.automl-databricks
+    feature: azure-ml/automl-databricks
+    name: "Azure Machine Learning: Automated ML: Azure Databricks integration"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Azure Databricks integration | GA | NO | NO"
+    confidence: high
+
+  - id: azure-ml.designer
+    feature: azure-ml/designer
+    name: "Azure Machine Learning: Designer pipelines"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Create, run, visualize, and publish pipelines in Azure Machine Learning designer | GA | YES | YES"
+    confidence: high
+
+  - id: azure-ml.pipeline-databricks
+    feature: azure-ml/pipeline-databricks
+    name: "Azure Machine Learning: Azure Databricks integration with ML pipelines"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Azure Databricks Integration with ML Pipeline | GA | NO | NO"
+    confidence: high
+
+  - id: azure-ml.compute-instance
+    feature: azure-ml/compute-instance
+    name: "Azure Machine Learning: Managed compute instances for notebooks"
+    by: azure
+    status: {commercial: ga, government: ga}
+    note: "For Azure Machine Learning compute instances, the ability to refresh a token lasting more than 24 hours isn't available in Azure Government."
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Managed compute Instances for integrated Notebooks | GA | YES | YES"
+    confidence: high
+
+  - id: azure-ml.spark-pools
+    feature: azure-ml/spark-pools
+    name: "Azure Machine Learning: Apache Spark pools for data wrangling"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Configure Apache Spark pools to perform data wrangling | Public Preview | No | No"
+    confidence: high
+
+  - id: azure-ml.python-sdk
+    feature: azure-ml/python-sdk
+    name: "Azure Machine Learning: Python SDK"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Python SDK support | GA | YES | YES"
+    confidence: high
+
+  - id: azure-ml.managed-vnet
+    feature: azure-ml/managed-vnet
+    name: "Azure Machine Learning: Managed virtual network"
+    by: azure
+    status: {commercial: preview, government: preview}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Managed virtual network support | Preview | Preview | Preview"
+    confidence: high
+
+  - id: azure-ml.workspace-private-endpoint
+    feature: azure-ml/workspace-private-endpoint
+    name: "Azure Machine Learning: Workspace private endpoint"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Workplace private endpoint | GA | GA | GA"
+    confidence: high
+
+  - id: azure-ml.aci-behind-vnet
+    feature: azure-ml/aci-behind-vnet
+    name: "Azure Machine Learning: Azure Container Instances behind a VNet"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "ACI behind VNet | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.aks-private-ip
+    feature: azure-ml/aks-private-ip
+    name: "Azure Machine Learning: Private IP for an AKS cluster"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Private IP of AKS cluster | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.managed-endpoint-network-isolation
+    feature: azure-ml/managed-endpoint-network-isolation
+    name: "Azure Machine Learning: Network isolation for managed online endpoints"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Network isolation for managed online endpoints | GA | NO | NO"
+    confidence: high
+
+  - id: azure-ml.kubernetes-compute
+    feature: azure-ml/kubernetes-compute
+    name: "Azure Machine Learning: Kubernetes compute"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Kubernetes compute | GA | NO | NO"
+    confidence: high
+
+  - id: azure-ml.model-profiling
+    feature: azure-ml/model-profiling
+    name: "Azure Machine Learning: Model profiling (SDK/CLI v1)"
+    by: azure
+    status: {commercial: ga, government: limited}
+    note: "US Gov Virginia: YES, US Gov Arizona: PARTIAL. Model Profiling doesn't support 4 CPUs in the US-Arizona region."
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Model profiling (SDK/CLI v1) | GA | YES | PARTIAL"
+    confidence: high
+
+  - id: azure-ml.vscode-integration
+    feature: azure-ml/vscode-integration
+    name: "Azure Machine Learning: Visual Studio Code integration"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Visual Studio Code integration | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.event-grid
+    feature: azure-ml/event-grid
+    name: "Azure Machine Learning: Event Grid integration"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Event Grid integration | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.stream-analytics
+    feature: azure-ml/stream-analytics
+    name: "Azure Machine Learning: Azure Stream Analytics integration"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Integrate Azure Stream Analytics with Azure Machine Learning | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.data-labeling
+    feature: azure-ml/data-labeling
+    name: "Azure Machine Learning: Data labeling projects"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Labeling Project Management Portal | GA | YES | YES"
+    confidence: high
+
+  - id: azure-ml.explainability-ui
+    feature: azure-ml/explainability-ui
+    name: "Azure Machine Learning: Explainability in the studio UI"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Explainability in UI | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.fairness
+    feature: azure-ml/fairness
+    name: "Azure Machine Learning: Fairness integration"
+    by: azure
+    status: {commercial: preview, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Fairness Azure Machine Learning Integration | Public Preview | NO | NO"
+    confidence: high
+
+  - id: azure-ml.datasheet-tags
+    feature: azure-ml/datasheet-tags
+    name: "Azure Machine Learning: Custom tags for datasheets"
+    by: azure
+    status: {commercial: ga, government: not-available}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Custom tags in Azure Machine Learning to implement datasheets | GA | NO | NO"
+    confidence: high
+
+  - id: azure-ml.managed-online-endpoints
+    feature: azure-ml/managed-online-endpoints
+    name: "Azure Machine Learning: Managed online endpoints"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Managed online endpoints | GA | YES | YES"
+    confidence: high
+
+  - id: azure-ml.batch-inference
+    feature: azure-ml/batch-inference
+    name: "Azure Machine Learning: Batch inference"
+    by: azure
+    status: {commercial: ga, government: ga}
+    source: aml-parity
+    anchor: azure-machine-learning-features
+    row: "Batch inferencing | GA | YES | YES"
+    confidence: high
