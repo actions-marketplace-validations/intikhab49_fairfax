@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="docs/header.svg" alt="fairfax: check a GCC, GCC High or Azure Government plan before you build it. Every finding cites the Microsoft row it came from. The example plan shows 4 blocked features and 6 that are fine." width="100%">
+<img src="https://raw.githubusercontent.com/intikhab49/fairfax/main/docs/header.svg" alt="fairfax: check a GCC, GCC High or Azure Government plan before you build it. Every finding cites the Microsoft row it came from. The example plan shows 4 blocked features and 6 that are fine." width="100%">
 
 # fairfax — check a Microsoft gov-cloud plan before you build it
 
 **Give it your tenant type (GCC, GCC High or DoD), your Azure cloud and the features you plan to use. It tells you what Microsoft doesn't offer there, what can't cross between the clouds and what is retiring, and quotes the Microsoft row behind each answer.**
 
-[![License](https://img.shields.io/badge/license-MIT-2a78d6?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-2a78d6?style=for-the-badge)](https://github.com/intikhab49/fairfax/blob/main/LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-2a78d6?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Facts](https://img.shields.io/badge/facts-187-1baf7a?style=for-the-badge)](#the-dataset)
 [![Endpoints](https://img.shields.io/badge/endpoint%20mappings-55-1baf7a?style=for-the-badge)](#scanning-code-for-wrong-cloud-endpoints)
@@ -173,7 +173,7 @@ flowchart LR
 
 ## The dataset
 
-<img src="docs/charts/gaps.png" alt="Two bar charts. Left: of the same 70 Power Platform features, 28 are not available today in GCC, 34 in GCC High and 45 in DoD. Right: tracked features not available in Azure Government: 13 of 23 for Azure Machine Learning, 14 of 41 for Microsoft Sentinel, 7 of 24 for Defender for Cloud, 3 of 5 for Azure AI Language. Counts are of the features fairfax tracks, not a share of each product." width="100%">
+<img src="https://raw.githubusercontent.com/intikhab49/fairfax/main/docs/charts/gaps.png" alt="Two bar charts. Left: of the same 70 Power Platform features, 28 are not available today in GCC, 34 in GCC High and 45 in DoD. Right: tracked features not available in Azure Government: 13 of 23 for Azure Machine Learning, 14 of 41 for Microsoft Sentinel, 7 of 24 for Defender for Cloud, 3 of 5 for Azure AI Language. Counts are of the features fairfax tracks, not a share of each product." width="100%">
 
 Every entry stores:
 
@@ -182,7 +182,7 @@ Every entry stores:
 - the page's own updated date and the date fairfax last checked it
 - a confidence level
 
-The statuses were parsed from those rows, not retyped by hand ([`tools/build_facts.py`](tools/build_facts.py) is the script that did it). A test re-parses the rows on every run, so an edit that changes a status without its row (or the other way round) fails.
+The statuses were parsed from those rows, not retyped by hand ([`tools/build_facts.py`](https://github.com/intikhab49/fairfax/blob/main/tools/build_facts.py) is the script that did it). A test re-parses the rows on every run, so an edit that changes a status without its row (or the other way round) fails.
 
 | Source | What fairfax takes from it | Page updated | Entries |
 |---|---|---|---|
@@ -217,7 +217,7 @@ Every entry is first-party Microsoft text except one rule marked **unverified**:
 
 ## Adding a fact
 
-Add an entry to the matching file in [`src/fairfax/data/`](src/fairfax/data):
+Add an entry to the matching file in [`src/fairfax/data/`](https://github.com/intikhab49/fairfax/tree/main/src/fairfax/data):
 
 ```yaml
   - id: defender-for-cloud.ai-services
