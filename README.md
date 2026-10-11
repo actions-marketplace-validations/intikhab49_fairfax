@@ -6,6 +6,7 @@
 
 **Give it your tenant type (GCC, GCC High or DoD), your Azure cloud and the features you plan to use. It tells you what Microsoft doesn't offer there, what can't cross between the clouds and what is retiring, and quotes the Microsoft row behind each answer.**
 
+[![PyPI](https://img.shields.io/pypi/v/fairfax?style=for-the-badge&color=2a78d6)](https://pypi.org/project/fairfax/)
 [![License](https://img.shields.io/badge/license-MIT-2a78d6?style=for-the-badge)](https://github.com/intikhab49/fairfax/blob/main/LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-2a78d6?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Facts](https://img.shields.io/badge/facts-187-1baf7a?style=for-the-badge)](#the-dataset)
@@ -97,7 +98,7 @@ examples/field-inspections/app/settings.py
 ## Quick start
 
 ```bash
-pip install git+https://github.com/intikhab49/fairfax
+pip install fairfax
 
 fairfax facts --grep sentinel                      # find feature keys and their status per cloud
 fairfax check plan.yaml                            # text report
