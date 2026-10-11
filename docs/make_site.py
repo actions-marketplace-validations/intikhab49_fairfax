@@ -30,6 +30,7 @@ RAW = "https://raw.githubusercontent.com/intikhab49/fairfax/main/src/fairfax/dat
 AUTHOR = {"@type": "Person", "@id": "https://github.com/intikhab49", "name": "Intikhab Azam",
           "url": "https://github.com/intikhab49"}
 TODAY = dt.date.today()
+BING_VERIFY = '<meta name="msvalidate.01" content="8696AEC33B172905558B45B0DB631DAD">\n'  # Bing Webmaster Tools, keep
 
 TENANT = {"gcc": "GCC", "gcchigh": "GCC High", "dod": "DoD"}
 CLOUD = {"commercial": "Commercial Azure", "government": "Azure Government"}
@@ -196,7 +197,7 @@ def page(path: str, title: str, desc: str, body: str, graph: list, crumbs: list 
 <title>{escape(title)}</title>
 <meta name="description" content="{escape(desc)}">
 <link rel="canonical" href="{url}">
-<link rel="icon" href="{SITE}favicon.svg" type="image/svg+xml">
+{BING_VERIFY if not path else ""}<link rel="icon" href="{SITE}favicon.svg" type="image/svg+xml">
 <meta name="author" content="Intikhab Azam">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="fairfax">
