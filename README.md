@@ -182,7 +182,7 @@ Every entry stores:
 - the page's own updated date and the date govgap last checked it
 - a confidence level
 
-The statuses were parsed from those rows, not retyped by hand. A test re-parses the rows on every run, so an edit that changes a status without its row (or the other way round) fails.
+The statuses were parsed from those rows, not retyped by hand ([`tools/build_facts.py`](tools/build_facts.py) is the script that did it). A test re-parses the rows on every run, so an edit that changes a status without its row (or the other way round) fails.
 
 | Source | What govgap takes from it | Page updated | Entries |
 |---|---|---|---|
