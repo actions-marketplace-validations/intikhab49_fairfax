@@ -169,7 +169,7 @@ Python 3.10 or newer. The only dependency is PyYAML.
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: intikhab49/fairfax@v0.2.0
+- uses: intikhab49/fairfax@v0.2.1
   with:
     plan: plan.yaml        # optional: check the plan's features
     scan: src              # paths to scan; the clouds come from the plan, or set tenant and azure

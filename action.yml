@@ -1,7 +1,6 @@
 name: fairfax gov-cloud check
-description: >-
-  Check a Microsoft gov-cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own
-  availability tables, and catch endpoints from the wrong cloud in your code. Every finding is cited.
+# The Marketplace needs fewer than 125 characters here.
+description: Check a gov-cloud plan (GCC, GCC High, DoD, Azure Government) and scan code for wrong-cloud endpoints. Every finding cited.
 author: intikhab49
 branding:
   icon: cloud
