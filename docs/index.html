@@ -313,7 +313,8 @@ AADSTS900439  USGClientNotSupportedOnPublicEndpoint
     login.microsoftonline.us  for a GCC High tenant</code></pre>
 
 <h2>In CI, and for AI coding tools</h2>
-<p>The GitHub Action runs <code>check</code> and <code>scan</code>, writes the report to the job summary, marks each
+<p>The <a href="https://github.com/marketplace/actions/fairfax-gov-cloud-check">GitHub Action</a>, listed on the
+GitHub Marketplace, runs <code>check</code> and <code>scan</code>, writes the report to the job summary, marks each
 finding on its line in the pull request, and can upload SARIF to code scanning:</p>
 <pre><code>- uses: intikhab49/fairfax@v0.2.1
   with:

@@ -9,7 +9,7 @@
 - `fairfax facts --grep <text>`: feature keys and their status per cloud. `--format json` for data.
 - `fairfax verify`: re-reads every cited Microsoft page and confirms each cited row is still there.
 - `fairfax mcp`: Model Context Protocol server (stdio) with find_features, check_plan, scan_code and explain_error tools. `claude mcp add fairfax -- fairfax mcp`.
-- GitHub Action: `uses: intikhab49/fairfax@v0.2.1` with `plan` and `scan` inputs; job summary, line annotations, optional SARIF upload to code scanning.
+- GitHub Action: `uses: intikhab49/fairfax@v0.2.1` with `plan` and `scan` inputs; job summary, line annotations, optional SARIF upload to code scanning. Marketplace listing: https://github.com/marketplace/actions/fairfax-gov-cloud-check
 - It works offline (except verify). It never connects to a tenant or subscription, and it is not compliance advice.
 - Independent project by Intikhab Azam, not affiliated with Microsoft.
 

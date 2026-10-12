@@ -12,6 +12,7 @@
 [![Features](https://img.shields.io/badge/features-633-1baf7a?style=for-the-badge)](#the-dataset)
 [![Endpoints](https://img.shields.io/badge/endpoint%20mappings-57-1baf7a?style=for-the-badge)](#scanning-code-for-wrong-cloud-endpoints)
 [![Cited rows](https://img.shields.io/github/actions/workflow/status/intikhab49/fairfax/watch.yml?branch=main&label=cited%20rows%20vs%20Microsoft&style=for-the-badge)](https://github.com/intikhab49/fairfax/actions/workflows/watch.yml)
+[![GitHub Marketplace](https://img.shields.io/badge/GitHub%20Action-Marketplace-2a78d6?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/marketplace/actions/fairfax-gov-cloud-check)
 
 [Website](https://intikhab49.github.io/fairfax/) · [What it catches](#what-it-catches) · [Microsoft 365](#microsoft-365-and-the-roadmap) · [Sign-in errors](#sign-in-errors-decoded) · [Quick start](#quick-start) · [GitHub Action](#in-ci-the-github-action) · [MCP server](#for-coding-agents-the-mcp-server) · [The dataset](#the-dataset) · [FAQ](#faq)
 
@@ -166,6 +167,8 @@ fairfax mcp                                        # MCP server for coding agent
 Python 3.10 or newer. The only dependency is PyYAML.
 
 ## In CI: the GitHub Action
+
+Listed on the GitHub Marketplace as [fairfax gov-cloud check](https://github.com/marketplace/actions/fairfax-gov-cloud-check).
 
 ```yaml
 - uses: actions/checkout@v4

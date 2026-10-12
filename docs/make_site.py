@@ -796,7 +796,8 @@ the cause and the right host for your clouds. The <a href="{SITE}errors/">sign-i
 <pre><code>{explain_example(ds)}</code></pre>
 
 <h2>In CI, and for AI coding tools</h2>
-<p>The GitHub Action runs <code>check</code> and <code>scan</code>, writes the report to the job summary, marks each
+<p>The <a href="https://github.com/marketplace/actions/fairfax-gov-cloud-check">GitHub Action</a>, listed on the
+GitHub Marketplace, runs <code>check</code> and <code>scan</code>, writes the report to the job summary, marks each
 finding on its line in the pull request, and can upload SARIF to code scanning:</p>
 <pre><code>- uses: intikhab49/fairfax@v{__version__}
   with:
@@ -890,7 +891,8 @@ def llms(ds, pages) -> tuple[str, str]:
              "- `fairfax mcp`: Model Context Protocol server (stdio) with find_features, check_plan, scan_code and "
              "explain_error tools. `claude mcp add fairfax -- fairfax mcp`.",
              "- GitHub Action: `uses: intikhab49/fairfax@v" + __version__ + "` with `plan` and `scan` inputs; job "
-             "summary, line annotations, optional SARIF upload to code scanning.",
+             "summary, line annotations, optional SARIF upload to code scanning. Marketplace listing: "
+             "https://github.com/marketplace/actions/fairfax-gov-cloud-check",
              "- It works offline (except verify). It never connects to a tenant or subscription, and it is not "
              "compliance advice.",
              "- Independent project by Intikhab Azam, not affiliated with Microsoft.", "",
