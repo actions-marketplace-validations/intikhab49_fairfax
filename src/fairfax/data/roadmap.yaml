@@ -6,6 +6,7 @@ sources:
     url: "https://www.microsoft.com/releasecommunications/api/v2/m365"
     page_updated: 2026-09-11
     checked: 2026-10-12
+    archived: "https://web.archive.org/web/20261012143807/https://www.microsoft.com/releasecommunications/api/v2/m365"
 roadmap:
   - id: 501438
     features: [intune/windows-backup-for-organizations]

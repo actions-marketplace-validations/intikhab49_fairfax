@@ -105,13 +105,13 @@ facts:
 
   - id: teams.events
     feature: teams/events
-    name: "Microsoft Teams: Teams Events"
+    name: "Microsoft Teams: Teams events"
     by: tenant
     status: {gcc: available, gcchigh: available, dod: available}
     note: "Teams events has replaced Teams live events. Existing Teams live events that are already scheduled will continue to run through February 28, 2027. Available in Business Standard and Business Premium."
     source: teams-sd
     anchor: feature-availability
-    row: "Teams Events<sup7,8 | Yes | Yes | Yes | Yes | Yes | Yes"
+    row: "Teams events7,8 | Yes | Yes | Yes | Yes | Yes | Yes"
     confidence: high
 
   - id: teams.town-halls
@@ -126,12 +126,12 @@ facts:
 
   - id: teams.webinars
     feature: teams/webinars
-    name: "Microsoft Teams: Webinars (Team events)"
+    name: "Microsoft Teams: Webinars (Teams events)"
     by: tenant
     status: {gcc: available, gcchigh: available, dod: not-available}
     source: teams-sd
     anchor: feature-availability
-    row: "Webinars (Team events) | Yes | Yes | Yes | Yes | No | Yes5"
+    row: "Webinars (Teams events) | Yes | Yes | Yes | Yes | No | Yes5"
     confidence: high
 
   - id: teams.voip-calling

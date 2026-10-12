@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import urllib.error
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 
@@ -28,7 +29,7 @@ class Citation:
 @dataclass
 class PageResult:
     source: Source
-    state: str  # "ok", "changed" or "unreachable"
+    state: str  # "ok", "changed", "gone" (404/410, or no archived copy) or "unreachable" (may be temporary)
     citations: list = field(default_factory=list)
     page_updated: str = ""
     error: str = ""
@@ -121,9 +122,18 @@ SUMMARIES = {"aoai-gov": _aoai_summary, "lang-regions": _no_gov_region}
 
 
 # ---------------------------------------------------------------- checking
-def check_page(source: Source, cites: list, fetch=None) -> PageResult:
+PDF_CHANGED = ("the file differs from the copy the dataset was built from: Microsoft published a new version. "
+               "Compare its table with the rows that cite it, update them, then set sha256 to the new file's hash")
+
+
+def check_page(source: Source, cites: list, fetch=None, url: str | None = None) -> PageResult:
     try:
-        body = (fetch or learn.fetch)(source.url)
+        body = (fetch or learn.fetch)(url or source.url)
+    except urllib.error.HTTPError as e:
+        if e.code not in (404, 410):
+            return PageResult(source, "unreachable", cites, error=f"HTTP {e.code} {e.reason}")
+        kept = f"; archived copy: {source.archived}" if source.archived and not url else ""
+        return PageResult(source, "gone", cites, error=f"HTTP {e.code}: the page is no longer there{kept}")
     except Exception as e:  # reported, not raised: one unreachable page shouldn't stop the run
         return PageResult(source, "unreachable", cites, error=f"{type(e).__name__}: {e}")
     if cites and all(c.kind == "roadmap" for c in cites):
@@ -136,8 +146,7 @@ def check_page(source: Source, cites: list, fetch=None) -> PageResult:
         same = hashlib.sha256(body).hexdigest() == source.sha256
         for c in cites:
             c.found = same
-        return PageResult(source, "ok" if same else "changed", cites,
-                          error="" if same else "the file differs from the copy the dataset was built from")
+        return PageResult(source, "ok" if same else "changed", cites, error="" if same else PDF_CHANGED)
     page = learn.parse(body.decode("utf-8", errors="replace"), source.url)
     for c in cites:
         if c.kind == "summary":
@@ -151,15 +160,26 @@ def check_page(source: Source, cites: list, fetch=None) -> PageResult:
     return PageResult(source, "ok" if all(c.found for c in cites) else "changed", cites, page.updated)
 
 
-def verify(ds: Dataset, keys: list | None = None, fetch=None, workers: int = 4) -> list:
+def check_archived(source: Source, cites: list, fetch=None) -> PageResult:
+    """The same checks, run against the source's Wayback Machine snapshot instead of the live page."""
+    if not source.archived_raw:
+        return PageResult(source, "gone", cites, error="no archived copy recorded (tools/mark_checked.py saves one)")
+    return check_page(source, cites, fetch, url=source.archived_raw)
+
+
+def verify(ds: Dataset, keys: list | None = None, fetch=None, workers: int | None = None, archived: bool = False) -> list:
+    """Check every cited page. The Wayback Machine refuses parallel downloads, so snapshots are read one at a time."""
+    workers = workers or (1 if archived else 4)
     cited = citations(ds)
     todo = [(ds.sources[k], cited.get(k, [])) for k in sorted(ds.sources) if not keys or k in keys]
+    one = check_archived if archived else check_page
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        return list(pool.map(lambda t: check_page(t[0], t[1], fetch), todo))
+        return list(pool.map(lambda t: one(t[0], t[1], fetch), todo))
 
 
 def exit_code(results: list) -> int:
-    if any(r.state == "changed" for r in results):
+    """1 when a cited row changed or its page is gone for good, 2 when a page couldn't be fetched this time."""
+    if any(r.state in ("changed", "gone") for r in results):
         return 1
     if any(r.state == "unreachable" for r in results):
         return 2

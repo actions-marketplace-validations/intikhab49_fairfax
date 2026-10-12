@@ -47,9 +47,18 @@ class Source:
     page_updated: str
     checked: str
     sha256: str | None = None  # set for a PDF: `fairfax verify` compares bytes, since it can't read its rows
+    archived: str | None = None  # Wayback Machine snapshot whose cited rows matched, so a citation outlives its page
 
     def link(self, anchor: str = "") -> str:
         return f"{self.url}#{anchor}" if anchor else self.url
+
+    @property
+    def archived_raw(self) -> str | None:
+        """The snapshot exactly as captured, without the Wayback Machine's toolbar."""
+        return ARCHIVED.sub(r"\1id_/", self.archived, count=1) if self.archived else None
+
+
+ARCHIVED = re.compile(r"^(https://web\.archive\.org/web/\d{14})/(?=https?://)")
 
 
 @dataclass(frozen=True)
@@ -217,8 +226,11 @@ def load(path: str | Path | None = None) -> Dataset:
             sha = s.get("sha256")
             if sha is not None and not (isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha)):
                 raise DatasetError(f"{where}: sha256 must be 64 lowercase hex characters")
+            archived = s.get("archived")
+            if archived is not None and not (isinstance(archived, str) and ARCHIVED.match(archived)):
+                raise DatasetError(f"{where}: archived must be a https://web.archive.org/web/<14-digit time>/<url> link")
             sources[key] = Source(key, s["title"], s["url"], _date(s["page_updated"], where),
-                                  _date(s["checked"], where), sha)
+                                  _date(s["checked"], where), sha, archived)
 
     def source(key, where):
         if key not in sources:

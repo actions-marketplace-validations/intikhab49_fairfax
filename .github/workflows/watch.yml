@@ -1,8 +1,9 @@
 name: watch Microsoft's pages
 
 # Every Monday, re-read every Microsoft page fairfax cites. If a cited row or quote has changed,
-# open (or update) one issue that shows the cited text next to what the page says now, and fail
-# the run. When every row matches again, the issue is closed. A second job fails when a page in
+# or a page is gone (404/410), open (or update) one issue that shows the cited text next to what
+# the page says now, or the archived copy of a page that's gone, and fail the run. When every row
+# matches again, the issue is closed. A page that only times out is a warning, not an issue. A second job fails when a page in
 # the dataset hasn't been re-confirmed for 90 days (tools/mark_checked.py does that after a clean run).
 on:
   schedule:
@@ -18,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-      TITLE: Microsoft changed rows that fairfax cites
+      TITLE: Microsoft changed or removed pages that fairfax cites
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +40,7 @@ jobs:
       - name: Open or update the issue
         if: steps.verify.outputs.code == '1'
         run: |
-          gh label create watch --color FBCA04 --description "Microsoft changed a page fairfax cites" 2>/dev/null || true
+          gh label create watch --color FBCA04 --description "Microsoft changed or removed a page fairfax cites" 2>/dev/null || true
           { cat verify.md; echo; echo "Found by the weekly watch: $RUN_URL"; } > body.md
           n=$(gh issue list --state open --label watch --json number --jq '.[0].number // empty')
           if [ -n "$n" ]; then

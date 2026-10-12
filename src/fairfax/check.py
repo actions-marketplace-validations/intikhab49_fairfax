@@ -74,6 +74,7 @@ class Finding:
     cite_kind: str = "row"
     id: str = ""
     roadmap: list = field(default_factory=list)
+    archived: str | None = None  # Wayback Machine copy of the source page
 
 
 @dataclass
@@ -161,7 +162,7 @@ def _finding(fact: Fact, group: str, says: str, **kw) -> Finding:
     return Finding(group=group, feature=fact.feature, title=fact.name, says=says, url=fact.url, cite=fact.row,
                    source_title=fact.source.title, page_updated=fact.source.page_updated,
                    checked=fact.source.checked, confidence=fact.confidence, note=fact.note, id=fact.id,
-                   cite_kind=fact.cite, **kw)
+                   cite_kind=fact.cite, archived=fact.source.archived, **kw)
 
 
 def evaluate(fact: Fact, plan: Plan, today: dt.date, merged: dict | None = None) -> list:
@@ -263,6 +264,7 @@ def check(ds: Dataset, plan: Plan, today: dt.date | None = None) -> Report:
             findings.append(Finding(
                 group=rule.group, feature=None, title=rule.title, says=rule.says, url=rule.url, cite=rule.quote,
                 source_title=rule.source.title, page_updated=rule.source.page_updated,
-                checked=rule.source.checked, confidence=rule.confidence, cite_kind="quote", id=rule.id))
+                checked=rule.source.checked, confidence=rule.confidence, cite_kind="quote", id=rule.id,
+                archived=rule.source.archived))
     findings.sort(key=lambda f: (GROUP_ORDER.index(f.group), f.feature is not None, f.feature or "", f.id))
     return Report(plan, findings, unknown, len(ds.facts), ds.checked, len(index))

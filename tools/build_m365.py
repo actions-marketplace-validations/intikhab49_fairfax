@@ -169,11 +169,11 @@ TEAMS = [
     ("Teams Apps", "apps"), ("Audio conferencing", "audio-conferencing"), ("Channels - Standard", "channels-standard"),
     ("Channels - Private", "channels-private"), ("Channels - Shared", "channels-shared"), ("Chat", "chat"),
     ("Meetings", "meetings"), ("Screen sharing PowerPoint Audio/Video Desktop", "screen-sharing"), ("Teams", "teams"),
-    ("PTSN calling enablement (via Teams Phone)6", "pstn-calling"), ("Teams Events<sup7,8", "events"),
-    ("Town halls (Teams events)", "town-halls"), ("Webinars (Team events)", "webinars"), ("VoIP calling", "voip-calling"),
+    ("PTSN calling enablement (via Teams Phone)6", "pstn-calling"), ("Teams events7,8", "events"),
+    ("Town halls (Teams events)", "town-halls"), ("Webinars (Teams events)", "webinars"), ("VoIP calling", "voip-calling"),
     ("Loop Integrations", "loop"),
 ]
-TEAMS_NAMES = {"Teams Events<sup7,8": ("Teams Events", ["7", "8"]), "PTSN calling enablement (via Teams Phone)6":
+TEAMS_NAMES = {"Teams events7,8": ("Teams events", ["7", "8"]), "PTSN calling enablement (via Teams Phone)6":
                ("PSTN calling (via Teams Phone)", ["6"])}
 TEAMS_APPS = [
     ("Apps built by Microsoft", "microsoft-apps"), ("Third-party apps", "third-party-apps"),

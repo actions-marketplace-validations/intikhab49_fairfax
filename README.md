@@ -161,6 +161,7 @@ fairfax check plan.yaml --format md -o report.md   # or --format json, or --form
 fairfax scan src/ --tenant gcchigh --azure government
 fairfax explain "AADSTS900439: ..."                # decode a cross-cloud sign-in error
 fairfax verify                                     # re-read Microsoft's pages, confirm every cited row
+fairfax verify --archived                          # same check against the Wayback Machine copies
 fairfax mcp                                        # MCP server for coding agents
 ```
 
@@ -172,7 +173,7 @@ Listed on the GitHub Marketplace as [fairfax gov-cloud check](https://github.com
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: intikhab49/fairfax@v0.2.1
+- uses: intikhab49/fairfax@v0.2.2
   with:
     plan: plan.yaml        # optional: check the plan's features
     scan: src              # paths to scan; the clouds come from the plan, or set tenant and azure
@@ -272,7 +273,11 @@ ok          Plan for Microsoft Purview compliance and risk management solutions 
 33 of 33 pages match.
 ```
 
-When a row has changed, it prints the cited text next to the closest row on the page now, and exits 1. The Power Platform PDF is compared by its SHA-256, and the roadmap items against Microsoft's public roadmap API. A [workflow](https://github.com/intikhab49/fairfax/actions/workflows/watch.yml) in this repo runs it every Monday and opens an issue when Microsoft changes a page; the badge at the top shows its last result. After a clean run, `tools/mark_checked.py` moves each page's checked date forward.
+When a row has changed, it prints the cited text next to the closest row on the page now, and exits 1. A page that returns 404 or 410 is reported as `GONE` and also exits 1; a page that only times out is `UNREACHABLE` and exits 2, since that is usually temporary. The Power Platform PDF is compared by its SHA-256, and the roadmap items against Microsoft's public roadmap API. A [workflow](https://github.com/intikhab49/fairfax/actions/workflows/watch.yml) in this repo runs it every Monday and opens an issue when Microsoft changes or removes a page; the badge at the top shows its last result.
+
+**When a page disappears.** The rows themselves ship inside the package, so `fairfax check` keeps working and keeps showing what Microsoft wrote and when. For the link, every cited page also has a Wayback Machine snapshot (`archived` in [`sources.yaml`](https://github.com/intikhab49/fairfax/blob/main/src/fairfax/data/sources.yaml)). A snapshot is only recorded after the same checks pass against it, so it is known to hold the rows it backs. Findings in `--format md` and `json` link to it, and `fairfax verify --archived` re-checks every cited row against the snapshots instead of the live pages.
+
+After a clean run, `tools/mark_checked.py` moves each page's checked date forward and saves a new snapshot of any page Microsoft has updated since its last one.
 
 ## How it works
 
@@ -402,6 +407,9 @@ Yes. `fairfax mcp` is an MCP server with tools to find features, check a plan, s
 
 **How do I know the data is still right?**
 Run `fairfax verify`. It re-reads every page fairfax cites and confirms every cited row is still there. The weekly workflow does the same and opens an issue when Microsoft changes something.
+
+**What if Microsoft deletes or moves a page fairfax cites?**
+fairfax keeps working, because the rows are stored word for word inside the package with their page and dates. Each cited page also has a Wayback Machine snapshot that was checked to hold the same rows, and findings link to it. A page that returns 404 or 410 fails the weekly check and opens an issue pointing at the snapshot. `fairfax verify --archived` re-checks every cited row against the snapshots.
 
 **Does fairfax connect to my tenant or Azure subscription?**
 No. It reads a plan file and your code on your own machine. The data ships inside the package. Only `fairfax verify` goes online, and only to fetch Microsoft's public pages.

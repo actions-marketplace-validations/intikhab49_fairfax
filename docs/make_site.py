@@ -463,8 +463,13 @@ def overview_page(ds) -> tuple[str, str]:
     for item in [*ds.facts, *ds.rules, *ds.endpoints, *ds.errors, *ds.roadmap]:
         count[item.source.key] = count.get(item.source.key, 0) + 1
     features = len(ds.features())
+
+    def snapshot(s):
+        return f'<a href="{escape(s.archived)}">snapshot</a>' if s.archived else ""
+
     src_rows = "".join(f'<tr><td><a href="{escape(s.url)}">{escape(s.title)}</a></td><td>{s.page_updated}</td>'
-                       f"<td>{s.checked}</td><td>{count.get(s.key, 0)}</td></tr>" for s in sources)
+                       f"<td>{s.checked}</td><td>{count.get(s.key, 0)}</td><td>{snapshot(s)}</td></tr>"
+                       for s in sources)
     files = sorted(p.name for p in (ROOT / "src" / "fairfax" / "data").glob("*.yaml"))
     title = "GCC, GCC High, DoD & Azure Government feature availability tables"
     desc = (f"Feature availability tables for Microsoft's US government clouds, built from Microsoft's own pages: "
@@ -480,11 +485,15 @@ when Microsoft last updated the page and when fairfax last checked it.</p>
 <p>* For Sentinel, the Microsoft 365 data connectors with the workspace in the tenant's own cloud.
 Commercial-cloud hosts and their government equivalents are on the <a href="{SITE}endpoints/">endpoints page</a>.</p>
 <h2>Sources</h2>
-<div class="t"><table><thead><tr><th>Microsoft page</th><th>Page updated</th><th>Checked</th><th>Entries</th></tr></thead>
+<div class="t"><table><thead><tr><th>Microsoft page</th><th>Page updated</th><th>Checked</th><th>Entries</th>
+<th>Archived copy</th></tr></thead>
 <tbody>{src_rows}</tbody></table></div>
 <p>Every Monday a workflow runs <code>fairfax verify</code>, which re-reads each of these pages and confirms that every
 row and quote fairfax cites is still there, word for word. If Microsoft changes one, the workflow opens an issue that
-shows the cited text next to what the page says now. You can run the same check yourself.</p>
+shows the cited text next to what the page says now; if a page is gone, the issue says so too. Each page also has a
+Wayback Machine snapshot that was checked to hold the same rows, so a citation can still be checked after Microsoft moves
+or deletes the page. You can run the same checks yourself: <code>fairfax verify</code> and
+<code>fairfax verify --archived</code>.</p>
 <h2>Download the data</h2>
 <p>The dataset is plain YAML in the repository, MIT licensed: {", ".join(f'<a href="{RAW + n}">{n}</a>' for n in files)}.
 Or from the command line: <code>fairfax facts --format json</code>.</p>"""
@@ -710,6 +719,12 @@ def faq(ds) -> list[tuple[str, str]]:
          f"{len(ds.sources)} cited pages were checked {when}. Every week `fairfax verify` re-reads each page and "
          "confirms that every cited row is still there word for word; when Microsoft changes one, an issue opens "
          "with the old and new text."),
+        ("What if Microsoft deletes or moves a page fairfax cites?",
+         "fairfax keeps working: every row is stored word for word inside the package, with its page and dates. "
+         f"{sum(1 for s in ds.sources.values() if s.archived)} of the {len(ds.sources)} cited pages also have a "
+         "Wayback Machine snapshot that was checked to contain the same rows, and every finding links to it. If a "
+         "page returns 404 or 410, the weekly `fairfax verify` fails and opens an issue that points to the snapshot. "
+         "`fairfax verify --archived` re-checks every cited row against the snapshots."),
         ("Can AI coding assistants use fairfax?",
          "Yes. `fairfax mcp` runs a Model Context Protocol server with four read-only tools: find feature keys, "
          "check a plan, scan code for wrong-cloud hosts and explain sign-in errors. Add it to Claude Code with "
@@ -820,6 +835,7 @@ fairfax check plan.yaml                            # text report; --format md, j
 fairfax scan src/ --tenant gcchigh --azure government
 fairfax explain AADSTS900439 --tenant gcchigh      # decode a cross-cloud sign-in error
 fairfax verify                                     # re-read Microsoft's pages, confirm every cited row
+fairfax verify --archived                          # same check against the Wayback Machine copies
 fairfax mcp                                        # MCP server for coding agents</code></pre>
 <p>Python 3.10 or newer, MIT licensed, one dependency (PyYAML). A plan is a short YAML file:</p>
 <pre><code>name: Field inspection app
@@ -835,7 +851,9 @@ features:
 <li>Statuses were parsed from those rows by a script, not retyped, and the tests re-parse them on every run.</li>
 <li>Each entry carries the page's own updated date and the date fairfax last checked it.</li>
 <li><code>fairfax verify</code> re-reads all {len(ds.sources)} pages and confirms every cited row is still there; a
-weekly workflow runs it and opens an issue when Microsoft changes one.</li>
+weekly workflow runs it and opens an issue when Microsoft changes or removes one.</li>
+<li>Each cited page has a Wayback Machine snapshot that was checked to hold the cited rows, so a citation outlives its
+page.</li>
 <li>Where Microsoft's tables don't answer a question, fairfax says so instead of guessing.</li></ul>
 
 <h2>FAQ</h2>
@@ -887,7 +905,8 @@ def llms(ds, pages) -> tuple[str, str]:
              "- `fairfax explain AADSTS900439 --tenant gcchigh`: decodes a cross-cloud sign-in error from the code or "
              "the whole message: Microsoft's wording, the cause and the right sign-in host.",
              "- `fairfax facts --grep <text>`: feature keys and their status per cloud. `--format json` for data.",
-             "- `fairfax verify`: re-reads every cited Microsoft page and confirms each cited row is still there.",
+             "- `fairfax verify`: re-reads every cited Microsoft page and confirms each cited row is still there. "
+             "`--archived` runs the same check against the Wayback Machine snapshot recorded for each page.",
              "- `fairfax mcp`: Model Context Protocol server (stdio) with find_features, check_plan, scan_code and "
              "explain_error tools. `claude mcp add fairfax -- fairfax mcp`.",
              "- GitHub Action: `uses: intikhab49/fairfax@v" + __version__ + "` with `plan` and `scan` inputs; job "

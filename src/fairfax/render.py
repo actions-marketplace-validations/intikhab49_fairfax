@@ -85,7 +85,8 @@ def check_md(r: Report) -> str:
             out += [f"Roadmap: [{item['id']}]({item['url']}): {item['says'].split(': ', 1)[1]}" for item in f.roadmap]
             out += ([""] if f.roadmap else []) + [
                     f"Microsoft's {f.cite_kind}: `{f.cite}`", "",
-                    f"Source: [{f.source_title}]({f.url}), page updated {f.page_updated}, checked {f.checked}", ""]
+                    f"Source: [{f.source_title}]({f.url}), page updated {f.page_updated}, checked {f.checked}"
+                    + (f" ([archived copy]({f.archived}))" if f.archived else ""), ""]
     return "\n".join(out).rstrip() + "\n"
 
 
@@ -174,7 +175,8 @@ def facts_text(facts, ds) -> str:
 
 def facts_json(facts) -> str:
     return json.dumps([{"feature": f.feature, "name": f.name, "by": f.by, "status": f.status, "url": f.url,
-                        "row": f.row, "checked": f.source.checked, "confidence": f.confidence} for f in facts],
+                        "row": f.row, "checked": f.source.checked, "archived": f.source.archived,
+                        "confidence": f.confidence} for f in facts],
                       indent=2, ensure_ascii=False) + "\n"
 
 
@@ -184,6 +186,7 @@ def stale_text(stale, days) -> str:
     out = [f"{len(stale)} cited page{'s' if len(stale) != 1 else ''} last checked more than {days} days ago:"]
     for s, n in stale:
         out += ["", f"  {s.title}", f"    {s.url}", f"    checked {s.checked}, cited by {n} entries"]
+        out += [f"    archived copy: {s.archived}"] if s.archived else []
     return "\n".join(out) + "\n"
 
 
@@ -229,7 +232,8 @@ def explain_md(result, ds) -> str:
         out += [f"## {e.code} {e.name}{flag}", "", e.says, "", f"**Fix:** {e.fix}", ""]
         out += [f"- `{h}` for {who}" for h, who in x.hosts] + ([""] if x.hosts else [])
         out += [f"Microsoft: `{e.row}`", "", f"Source: [{e.source.title}]({e.url}), page updated "
-                f"{e.source.page_updated}, checked {e.source.checked}", ""]
+                f"{e.source.page_updated}, checked {e.source.checked}"
+                + (f" ([archived copy]({e.source.archived}))" if e.source.archived else ""), ""]
         out += [f"- [{q.source.title}]({q.url}): `{q.quote}`" for q in e.also] + ([""] if e.also else [])
     for code in result.unknown:
         out += [f"**{code}:** fairfax doesn't decode this one. Microsoft's full list: {_errors_page(ds)}", ""]
@@ -242,7 +246,7 @@ def explain_json(result, ds) -> str:
         return {"code": e.code, "name": e.name, "says": e.says, "fix": e.fix, "confidence": e.confidence,
                 "hosts": [{"host": h, "for": who} for h, who in x.hosts],
                 "source": {"title": e.source.title, "url": e.url, "page_updated": e.source.page_updated,
-                           "checked": e.source.checked},
+                           "checked": e.source.checked, "archived": e.source.archived},
                 "row": e.row, "also": [{"quote": q.quote, "url": q.url, "title": q.source.title} for q in e.also]}
     return json.dumps({"matches": [one(x) for x in result.matches], "unknown": result.unknown},
                       indent=2, ensure_ascii=False) + "\n"
@@ -256,17 +260,20 @@ def errors_list(ds) -> str:
 
 
 # ---------------------------------------------------------------- verify
-STATE_LABEL = {"ok": "ok", "changed": "CHANGED", "unreachable": "UNREACHABLE"}
+STATE_LABEL = {"ok": "ok", "changed": "CHANGED", "gone": "GONE", "unreachable": "UNREACHABLE"}
 
 
 def _verify_summary(results) -> str:
     changed = [r for r in results if r.state == "changed"]
     lost = sum(len(r.missing) for r in changed)
+    gone = sum(r.state == "gone" for r in results)
     down = sum(r.state == "unreachable" for r in results)
     ok = sum(r.state == "ok" for r in results)
     parts = [f"{ok} of {len(results)} page{'s match' if len(results) != 1 else ' matches'}"]
     if changed:
         parts.append(f"{len(changed)} changed ({lost} cited item{'s' if lost != 1 else ''} no longer found)")
+    if gone:
+        parts.append(f"{gone} gone")
     if down:
         parts.append(f"{down} couldn't be fetched")
     return "; ".join(parts) + "."
@@ -283,8 +290,9 @@ def verify_text(results) -> str:
         if r.page_updated and r.page_updated != r.source.page_updated:
             line += f"  (page updated {r.page_updated}, fairfax has {r.source.page_updated})"
         out.append(line)
-        if r.state == "unreachable":
+        if r.state in ("gone", "unreachable"):
             out.append(f"{'':12}{r.error}")
+            continue
         for c in r.missing:
             out.append(f"{'':12}{c.id}  #{c.anchor}" if c.anchor else f"{'':12}{c.id}")
             out.append(textwrap.fill(f"{'cited:':<9}{c.text}", width=110, initial_indent=" " * 14,
@@ -306,7 +314,9 @@ def verify_md(results) -> str:
     for r in results:
         if r.state == "ok":
             continue
-        out += ["", f"## {r.source.title}", "", r.error] if r.state == "unreachable" else ["", f"## {r.source.title}", ""]
+        out += ["", f"## {r.source.title}", "", r.error] if r.state in ("gone", "unreachable") else ["", f"## {r.source.title}", ""]
+        if r.state == "gone":
+            continue
         for c in r.missing:
             out += [f"- `{c.id}` under `#{c.anchor}`", f"  - cited: `{c.text}`"]
             if c.nearest:
@@ -315,7 +325,8 @@ def verify_md(results) -> str:
 
 
 def verify_json(results) -> str:
-    return json.dumps([{"source": r.source.key, "title": r.source.title, "url": r.source.url, "state": r.state,
+    return json.dumps([{"source": r.source.key, "title": r.source.title, "url": r.source.url,
+                        "archived": r.source.archived, "state": r.state,
                         "page_updated": r.page_updated, "fairfax_page_updated": r.source.page_updated,
                         "cited": len(r.citations), "error": r.error,
                         "missing": [{"id": c.id, "anchor": c.anchor, "text": c.text, "nearest": c.nearest}

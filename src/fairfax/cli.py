@@ -107,7 +107,7 @@ def cmd_verify(a) -> int:
     if unknown:
         print(f"fairfax: unknown source {', '.join(unknown)}. Sources: {', '.join(sorted(ds.sources))}", file=sys.stderr)
         return 2
-    results = verify_mod.verify(ds, a.source)
+    results = verify_mod.verify(ds, a.source, archived=a.archived)
     fmt = {"text": render.verify_text, "md": render.verify_md, "json": render.verify_json}[a.format]
     _emit(fmt(results), a.output)
     return verify_mod.exit_code(results)
@@ -183,6 +183,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     v = sub.add_parser("verify", help="re-read Microsoft's pages and confirm every cited row is still there")
     v.add_argument("--source", action="append", metavar="KEY", help="only check this source (repeatable)")
+    v.add_argument("--archived", action="store_true",
+                   help="check the Wayback Machine copies the dataset records instead of the live pages")
     v.add_argument("--format", choices=["text", "md", "json"], default="text")
     v.add_argument("-o", "--output", help="write the report to this file instead of stdout")
     v.set_defaults(func=cmd_verify)
