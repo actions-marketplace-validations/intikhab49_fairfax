@@ -29,3 +29,9 @@ jobs:
           set +e
           fairfax check examples/field-inspections/plan.yaml > /dev/null
           test $? -eq 1
+      - name: Microsoft 365 example plan is blocked (exit 1), not broken (exit 2)
+        shell: bash
+        run: |
+          set +e
+          fairfax check examples/m365-rollout/plan.yaml > /dev/null
+          test $? -eq 1

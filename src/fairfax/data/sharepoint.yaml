@@ -1,0 +1,132 @@
+# Generated from Microsoft's own tables by tools/build_m365.py. Each row is the source text the status came from.
+# These pages list differences as sentences; each row is the sentence itself.
+facts:
+  - id: sharepoint.change-site-address
+    feature: sharepoint/change-site-address
+    name: "SharePoint: Changing a site address"
+    by: tenant
+    status: {gcchigh: not-available}
+    source: spo-gov
+    anchor: it-admin-features
+    row: "Changing a site address isn't available for GCC High customers."
+    confidence: high
+
+  - id: sharepoint.mover-io
+    feature: sharepoint/mover-io
+    name: "SharePoint: Mover.io migrations"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: it-admin-features
+    row: "Mover.io isn't yet supported."
+    confidence: high
+
+  - id: sharepoint.multi-geo
+    feature: sharepoint/multi-geo
+    name: "SharePoint: Multi-geo"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: it-admin-features
+    row: "Multi-geo isn't available for government cloud customers."
+    confidence: high
+
+  - id: sharepoint.admin-center-usage-cards
+    feature: sharepoint/admin-center-usage-cards
+    name: "SharePoint: Usage and activity cards on the SharePoint admin center home page"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: it-admin-features
+    row: "The following cards aren't available on the home page of the SharePoint admin center for GCC High and DoD customers:"
+    confidence: high
+
+  - id: sharepoint.tracked-view-cards
+    feature: sharepoint/tracked-view-cards
+    name: "SharePoint: Tracked view cards in the SharePoint admin center"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: it-admin-features
+    row: "Tracked view cards aren't available in the SharePoint admin center for all government cloud customers."
+    confidence: high
+
+  - id: sharepoint.organization-assets-library
+    feature: sharepoint/organization-assets-library
+    name: "SharePoint: Organization assets library"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: sites-and-content
+    row: "Organization assets library isn't available"
+    confidence: high
+
+  - id: sharepoint.graph-functionality
+    feature: sharepoint/graph-functionality
+    name: "SharePoint: Microsoft Graph functionality within SharePoint Online"
+    by: tenant
+    status: {gcchigh: not-available}
+    source: spo-gov
+    anchor: sites-and-content
+    row: "Graph functionality within SharePoint Online for GCC High is currently disabled."
+    confidence: high
+
+  - id: sharepoint.activity-notifications
+    feature: sharepoint/activity-notifications
+    name: "SharePoint: Notifications for file and site activity"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: sites-and-content
+    row: "Notifications for file and site activity aren't available"
+    confidence: high
+
+  - id: sharepoint.news-rollups
+    feature: sharepoint/news-rollups
+    name: "SharePoint: News from selected sites and hub news rollups"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    source: spo-gov
+    anchor: sites-and-content
+    row: "News from selected sites or hub news rollups from associated sites isn't available for GCC High and DoD customers"
+    confidence: high
+
+  - id: onedrive.file-cards
+    feature: onedrive/file-cards
+    name: "OneDrive: File cards"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    source: odb-gov
+    anchor: web-features
+    row: "File cards are not available in the GCC High and DoD environments"
+    confidence: high
+
+  - id: onedrive.shared-libraries
+    feature: onedrive/shared-libraries
+    name: "OneDrive: SharePoint library access (\"Shared libraries\")"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    source: odb-gov
+    anchor: web-features
+    row: "SharePoint library access (\"Shared libraries\" in the navigation pane) is not available in the GCC High and DoD environments"
+    confidence: high
+
+  - id: onedrive.windows-10-device-app
+    feature: onedrive/windows-10-device-app
+    name: "OneDrive: OneDrive Windows 10 app for Xbox One, HoloLens, Surface Hub and tablets"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: odb-gov
+    anchor: mobile-features
+    row: "The Windows 10 app for XBox One, HoloLens, Surface Hub, and tablets is not available for the government environments (GCC, GCC High, and DoD)."
+    confidence: high
+
+  - id: sharepoint.internet-web-parts
+    feature: sharepoint/internet-web-parts
+    name: "SharePoint: Web parts that rely on Internet services (Bing Maps, YouTube and others)"
+    by: tenant
+    status: {gcc: limited, gcchigh: limited, dod: limited}
+    source: spo-gov
+    anchor: sites-and-content
+    row: "Web parts that rely on connections to Internet services, such as the Amazon Kindle, Bing Maps, Twitter, and YouTube web parts, won't work as expected"
+    confidence: high

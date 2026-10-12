@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from fairfax import __version__, dataset  # noqa: E402
 from fairfax.check import PERIOD_END, check, load_plan  # noqa: E402
-from fairfax.render import check_text  # noqa: E402
+from fairfax.render import by_feature, check_text  # noqa: E402
 
 DOCS = ROOT / "docs"
 SITE = "https://intikhab49.github.io/fairfax/"
@@ -37,9 +37,11 @@ CLOUD = {"commercial": "Commercial Azure", "government": "Azure Government"}
 PAIRING = {f"{t}+{c}": f"{TENANT[t]} tenant, {where}" for t in TENANT
            for c, where in (("commercial", "commercial Azure"), ("government", "Azure Government"))}
 LABEL = {"ga": "GA", "available": "Available", "preview": "Preview", "private-preview": "Private preview",
-         "limited": "Limited", "not-available": "Not available", "no-plans": "No plans",
+         "limited": "Limited", "rolling-out": "Rolling out", "planned": "Planned", "in-development": "In development",
+         "backlog": "On engineering backlog", "not-available": "Not available", "no-plans": "No plans",
          "not-possible": "Not possible"}
 KIND = {"ga": "ok", "available": "ok", "preview": "note", "private-preview": "note", "limited": "note",
+        "rolling-out": "note", "planned": "no", "in-development": "no", "backlog": "no",
         "not-available": "no", "no-plans": "no", "not-possible": "no"}
 
 SERVICES = [
@@ -79,10 +81,52 @@ SERVICES = [
      "h1": "Power Platform in GCC, GCC High and DoD",
      "desc": "Which Power Apps, Power Automate, Copilot Studio, Power Pages, AI Builder and Dataverse "
              "features work in GCC, GCC High and DoD. {n} features, each cited."},
+    # Microsoft 365, added in 0.2.0. "group": "name" puts each product or area under its own heading.
+    {"slug": "microsoft-365-copilot", "name": "Microsoft 365 Copilot", "prefixes": ("m365-copilot",),
+     "grep": "m365-copilot", "group": "name",
+     "title": "Microsoft 365 Copilot in GCC, GCC High & DoD: availability",
+     "h1": "Microsoft 365 Copilot in GCC, GCC High and DoD",
+     "desc": "Which Microsoft 365 Copilot features work in GCC, GCC High and DoD: Researcher, Create, agents, "
+             "Copilot in Teams and more. {n} features, each cited."},
+    {"slug": "teams", "name": "Microsoft Teams", "prefixes": ("teams",), "grep": "teams/", "group": "name",
+     "title": "Microsoft Teams in GCC, GCC High & DoD: features and apps",
+     "h1": "Microsoft Teams in GCC, GCC High and DoD",
+     "desc": "Which Teams features and app capabilities work in GCC, GCC High and DoD: shared channels, "
+             "webinars, third-party apps, workflows. {n} features, each cited."},
+    {"slug": "exchange-online", "name": "Exchange Online", "prefixes": ("exchange",), "grep": "exchange",
+     "group": "name",
+     "title": "Exchange Online in GCC, GCC High & DoD: feature availability",
+     "h1": "Exchange Online in GCC, GCC High and DoD",
+     "desc": "Which Exchange Online features work in GCC, GCC High and DoD, with Microsoft's key "
+             "considerations for each. {n} features, each cited."},
+    {"slug": "sharepoint-onedrive", "name": "SharePoint and OneDrive", "prefixes": ("sharepoint", "onedrive"),
+     "grep": "sharepoint", "group": "name",
+     "title": "SharePoint & OneDrive in GCC High and DoD: what's missing",
+     "h1": "SharePoint and OneDrive in GCC, GCC High and DoD",
+     "desc": "SharePoint and OneDrive features Microsoft says are missing or limited in GCC, GCC High and DoD, "
+             "quoted sentence by sentence. {n} features, each cited."},
+    {"slug": "purview", "name": "Microsoft Purview", "prefixes": ("purview",), "grep": "purview", "group": "name",
+     "title": "Microsoft Purview in GCC, GCC High & DoD: feature status",
+     "h1": "Microsoft Purview in GCC, GCC High and DoD",
+     "desc": "Status of Microsoft Purview features in GCC, GCC High and DoD (available, in development, on the "
+             "engineering backlog) from Microsoft's three planning pages. {n} features."},
+    {"slug": "intune", "name": "Microsoft Intune", "prefixes": ("intune",), "grep": "intune", "group": "name",
+     "title": "Intune in GCC High and DoD: supported, planned, not available",
+     "h1": "Microsoft Intune in GCC High and DoD",
+     "desc": "Which Intune features Microsoft lists as not available or planned for GCC High and DoD, such as "
+             "Windows Autopilot and Remediations. {n} features, each cited."},
+    {"slug": "defender", "name": "Microsoft Defender",
+     "prefixes": ("defender-endpoint", "defender-xdr", "defender-vulnerability-management"),
+     "grep": "defender-", "group": "name",
+     "title": "Defender for Endpoint & Defender XDR in GCC, GCC High, DoD",
+     "h1": "Defender for Endpoint and Defender XDR in GCC, GCC High and DoD",
+     "desc": "Feature parity of Defender for Endpoint, Defender XDR and Defender Vulnerability Management in GCC, "
+             "GCC High and DoD, from Microsoft's tables. {n} features, each cited."},
 ]
 PRODUCT = {"power-apps": "Power Apps", "power-automate": "Power Automate", "copilot-studio": "Copilot Studio",
            "power-pages": "Power Pages", "ai-builder": "AI Builder", "dataverse": "Dataverse",
            "power-platform": "Platform, admin and governance"}
+CLOUD_PAGE = {"purview-gcc": "GCC", "purview-gcchigh": "GCC High", "purview-dod": "DoD"}
 
 CSS = """
 :root{--ink:#16202c;--muted:#5a6675;--blue:#2a78d6;--green:#1baf7a;--bg:#fbfcfd;--code:#0f1722;--line:#e3e8ee}
@@ -218,7 +262,7 @@ def page(path: str, title: str, desc: str, body: str, graph: list, crumbs: list 
 <body>
 <header class="top"><div><a class="brand" href="{SITE}">fairfax</a>
 <a href="{SITE}availability/">Availability tables</a><a href="{SITE}endpoints/">Endpoints</a>
-<a href="{REPO}">GitHub</a><a href="{PYPI}">PyPI</a></div></header>
+<a href="{SITE}errors/">Sign-in errors</a><a href="{REPO}">GitHub</a><a href="{PYPI}">PyPI</a></div></header>
 <main>
 {trail}
 {body}
@@ -238,25 +282,31 @@ project, not affiliated with Microsoft, and not compliance advice.
 def fact_table(facts, cols) -> str:
     head = "".join(f"<th>{escape(h)}</th>" for _, h in cols)
     rows = []
-    for f in facts:
+    for key, (items, merged) in by_feature(facts).items():
+        f = items[0]
         cells = []
-        for key, _ in cols:
-            if key in f.status:
-                text, kind = status(f.status[key])
+        for k, _ in cols:
+            if k in merged:
+                text, kind = status(merged[k])
                 cells.append(f'<td class="s {kind}">{escape(text)}</td>')
             else:
                 cells.append('<td class="s">not listed</td>')
-        extra = [f'<span class="q">Microsoft: “{escape(f.row)}”</span>']
-        if f.note:
-            extra.append(f'<span class="n">{escape(f.note)}</span>')
+        if len(items) == 1:
+            extra = [f'<span class="q">Microsoft: “{escape(f.row)}”</span>']
+            source_cell = cite(f.source, f.url)
+        else:  # one row on each cloud's own page: the statuses in the cells are Microsoft's words from each page
+            extra = []
+            source_cell = '<a href="#per-cloud-pages">' + " · ".join(
+                escape(CLOUD_PAGE.get(i.source.key, i.source.key)) for i in items) + " pages</a>"
+        for note in dict.fromkeys(i.note for i in items if i.note):
+            extra.append(f'<span class="n">{escape(note)}</span>')
         if f.retires:
             extra.append(f'<span class="n">Retires {f.retires}. {escape(f.retires_quote or "")}</span>')
         if f.instead:
             extra.append(f'<span class="n">{escape(f.instead)}</span>')
-        s = f.source
-        rows.append(f'<tr id="{anchor(f.feature)}"><td><strong>{escape(f.name)}</strong><br>'
-                    f'<code>{escape(f.feature)}</code>{"".join(extra)}</td>{"".join(cells)}'
-                    f'<td class="src">{cite(s, f.url)}</td></tr>')
+        rows.append(f'<tr id="{anchor(key)}"><td><strong>{escape(f.name)}</strong><br>'
+                    f'<code>{escape(key)}</code>{"".join(extra)}</td>{"".join(cells)}'
+                    f'<td class="src">{source_cell}</td></tr>')
     return (f'<div class="t"><table><thead><tr><th>Feature and feature key</th>{head}<th>Source</th></tr></thead>'
             f'<tbody>{"".join(rows)}</tbody></table></div>')
 
@@ -284,7 +334,7 @@ def service_page(ds, svc) -> tuple[str, str]:
     by_azure = [f for f in facts if f.by == "azure"]
     by_tenant = [f for f in facts if f.by == "tenant"]
     by_both = [f for f in facts if f.by == "tenant+azure"]
-    n, name = len(facts), svc["name"]
+    n, name = len({f.feature for f in facts}), svc["name"]
     path = f"availability/{svc['slug']}/"
 
     lead = []
@@ -300,9 +350,11 @@ def service_page(ds, svc) -> tuple[str, str]:
                         f"{no}</span> not available, {note} in preview or available with limits, and "
                         f"{len(by_azure) - no - note} available.")
     if by_tenant:
-        lead.append(f"Of the {len(by_tenant)} features fairfax tracks, these are not available today: "
-                    + ", ".join(f'<span class="stat">{unavailable(by_tenant, t)}</span> in {TENANT[t]}' for t in TENANT)
-                    + ". Planned dates count as not available until Microsoft ships.")
+        covered = [t for t in TENANT if any(t in f.status for f in by_tenant)]
+        lead.append(f"Of the {len({f.feature for f in by_tenant})} features fairfax tracks, these are not available "
+                    "today: " + ", ".join(f'<span class="stat">{unavailable(by_tenant, t)}</span> in {TENANT[t]}'
+                                          for t in covered)
+                    + ". Planned and in-development features count as not available until Microsoft ships them.")
     if by_both:
         lead.append(f"For the {len(by_both)} Microsoft 365 data connectors, the answer depends on where your tenant "
                     "lives and where your Sentinel workspace lives.")
@@ -327,19 +379,47 @@ def service_page(ds, svc) -> tuple[str, str]:
         body += ["<h2>Microsoft 365 data connectors by tenant and workspace cloud</h2>", note,
                  fact_table(by_both, cols)]
     if by_tenant:
-        for prefix in svc["prefixes"]:
-            group = [f for f in by_tenant if f.feature.startswith(prefix + "/")]
-            if group:
-                body += [f"<h2>{escape(PRODUCT[prefix])} in GCC, GCC High and DoD</h2>",
-                         fact_table(group, tenant_cols())]
+        per_cloud = [s for k, s in ((k, ds.sources.get(k)) for k in CLOUD_PAGE) if s and any(
+            f.source.key == k for f in by_tenant)]
+        if per_cloud:
+            links = "".join(f'<li id="{"per-cloud-pages" if i == 0 else ""}"><a href="{escape(s.url)}">'
+                            f'{escape(s.title)}</a>: page updated {s.page_updated}, checked {s.checked}</li>'
+                            for i, s in enumerate(per_cloud))
+            body += ["<p>Microsoft publishes one planning page per cloud, each with a status per feature. Every status "
+                     "below is Microsoft's own word from that cloud's page:</p>", f"<ul>{links}</ul>"]
+        if svc.get("group") == "name":  # one table per product or area, from the name before the colon
+            groups: dict[str, list] = {}
+            for f in by_tenant:
+                groups.setdefault(f.name.split(":", 1)[0], []).append(f)
+            for label, group in groups.items():
+                cols = [(k, TENANT[k]) for k in TENANT if any(k in f.status for f in group)]
+                clouds = " and ".join(", ".join(h for _, h in cols).rsplit(", ", 1))
+                body += [f"<h2>{escape(label)} in {escape(clouds)}</h2>", fact_table(group, cols)]
+        else:
+            for prefix in svc["prefixes"]:
+                group = [f for f in by_tenant if f.feature.startswith(prefix + "/")]
+                if group:
+                    body += [f"<h2>{escape(PRODUCT[prefix])} in GCC, GCC High and DoD</h2>",
+                             fact_table(group, tenant_cols())]
+    roadmap = [r for r in ds.roadmap if any(r_f.split("/")[0] in svc["prefixes"] for r_f in r.features)]
+    if roadmap:
+        items = "".join(
+            f'<li><code>{escape(", ".join(r.features))}</code>: <a href="{escape(r.url)}">roadmap {r.id}</a>, '
+            f"“{escape(r.title)}”, {escape(r.status)} for {escape(', '.join(r.clouds))}, target {r.ga}"
+            f"{' (that month has passed)' if r.ga < TODAY.strftime('%Y-%m') and r.status != 'Launched' else ''}.</li>"
+            for r in roadmap)
+        body += ["<h2>On Microsoft's 365 roadmap</h2>",
+                 "<p>Roadmap items linked by hand to features above that are missing in a cloud. "
+                 "<code>fairfax check</code> shows them on blocked findings.</p>", f"<ul>{items}</ul>"]
     body += ["<h2>How to read these tables</h2>",
              "<ul><li><strong>GA</strong> and <strong>Available</strong>: Microsoft lists it as available.</li>"
-             "<li><strong>Preview</strong>, <strong>Private preview</strong>, <strong>Limited</strong>: available "
-             "with conditions.</li><li><strong>Not available</strong>, <strong>No plans</strong>, "
-             "<strong>Planned</strong>: you can't use it there today. A planned date that has passed is marked, "
-             "so you re-check it.</li><li><strong>Not possible</strong>: Microsoft says that pairing of clouds "
-             "can't work.</li><li><strong>not listed</strong>: Microsoft's page doesn't give a status for that "
-             "cloud.</li></ul>",
+             "<li><strong>Preview</strong>, <strong>Private preview</strong>, <strong>Limited</strong>, "
+             "<strong>Rolling out</strong>: available with conditions, or on its way.</li>"
+             "<li><strong>Not available</strong>, <strong>No plans</strong>, <strong>Planned</strong>, "
+             "<strong>In development</strong>, <strong>On engineering backlog</strong>: you can't use it there "
+             "today. These are Microsoft's own words. A planned date that has passed is marked, so you re-check "
+             "it.</li><li><strong>Not possible</strong>: Microsoft says that pairing of clouds can't work.</li>"
+             "<li><strong>not listed</strong>: Microsoft's page doesn't give a status for that cloud.</li></ul>",
              "<p>A feature missing from this page tells you nothing about whether it works. fairfax only knows "
              "what is in its dataset.</p>",
              "<h2>Check your own plan</h2>",
@@ -370,29 +450,30 @@ def overview_page(ds) -> tuple[str, str]:
         both = [f for f in facts if f.by == "tenant+azure"]
         gov = str(unavailable(az, "government")) if az else "–"
         if ten:
-            per = " · ".join(str(unavailable(ten, t)) for t in TENANT)
+            per = " · ".join(str(unavailable(ten, t)) if any(t in f.status for f in ten) else "–" for t in TENANT)
         elif both:
             per = " · ".join(str(unavailable(both, k)) for k in ("gcc+commercial", "gcchigh+government",
                                                                  "dod+government")) + "*"
         else:
             per = "–"
         rows.append(f'<tr><td><a href="{SITE}availability/{svc["slug"]}/">{escape(svc["name"])}</a></td>'
-                    f"<td>{len(facts)}</td><td>{gov}</td><td>{per}</td></tr>")
+                    f"<td>{len({f.feature for f in facts})}</td><td>{gov}</td><td>{per}</td></tr>")
     sources = sorted(ds.sources.values(), key=lambda s: s.title.lower())
     count = {}
-    for item in [*ds.facts, *ds.rules, *ds.endpoints]:
+    for item in [*ds.facts, *ds.rules, *ds.endpoints, *ds.errors, *ds.roadmap]:
         count[item.source.key] = count.get(item.source.key, 0) + 1
+    features = len(ds.features())
     src_rows = "".join(f'<tr><td><a href="{escape(s.url)}">{escape(s.title)}</a></td><td>{s.page_updated}</td>'
                        f"<td>{s.checked}</td><td>{count.get(s.key, 0)}</td></tr>" for s in sources)
     files = sorted(p.name for p in (ROOT / "src" / "fairfax" / "data").glob("*.yaml"))
     title = "GCC, GCC High, DoD & Azure Government feature availability tables"
     desc = (f"Feature availability tables for Microsoft's US government clouds, built from Microsoft's own pages: "
-            f"{len(ds.facts)} features, {len(ds.sources)} sources, every row cited and dated.")
+            f"{features} features, {len(ds.sources)} sources, every row cited and dated.")
     body = f"""<h1>Microsoft government cloud feature availability</h1>
 <p class="lead">One table per service for GCC, GCC High, DoD and Azure Government, built from Microsoft's own
-availability pages: {len(ds.facts)} features, {len(ds.rules)} cross-cloud rules and {len(ds.endpoints)} endpoint
-mappings. Every row quotes Microsoft, links to the page and carries two dates: when Microsoft last updated the page
-and when fairfax last checked it.</p>
+availability pages: {features} features across Azure, Power Platform and Microsoft 365, {len(ds.rules)} cross-cloud
+rules and {len(ds.endpoints)} endpoint mappings. Every row quotes Microsoft, links to the page and carries two dates:
+when Microsoft last updated the page and when fairfax last checked it.</p>
 <h2>Services</h2>
 <div class="t"><table><thead><tr><th>Service</th><th>Features tracked</th><th>Not available in Azure Government</th>
 <th>Not available in GCC · GCC High · DoD</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>
@@ -401,29 +482,34 @@ Commercial-cloud hosts and their government equivalents are on the <a href="{SIT
 <h2>Sources</h2>
 <div class="t"><table><thead><tr><th>Microsoft page</th><th>Page updated</th><th>Checked</th><th>Entries</th></tr></thead>
 <tbody>{src_rows}</tbody></table></div>
-<p>A scheduled workflow runs <code>fairfax facts --stale 90</code> every week and lists the pages due for another check.</p>
+<p>Every Monday a workflow runs <code>fairfax verify</code>, which re-reads each of these pages and confirms that every
+row and quote fairfax cites is still there, word for word. If Microsoft changes one, the workflow opens an issue that
+shows the cited text next to what the page says now. You can run the same check yourself.</p>
 <h2>Download the data</h2>
 <p>The dataset is plain YAML in the repository, MIT licensed: {", ".join(f'<a href="{RAW + n}">{n}</a>' for n in files)}.
 Or from the command line: <code>fairfax facts --format json</code>.</p>"""
     dataset_ld = {
         "@type": "Dataset", "@id": SITE + path + "#dataset", "url": SITE + path,
         "name": "Microsoft US government cloud feature availability (GCC, GCC High, DoD, Azure Government)",
-        "description": (f"{len(ds.facts)} feature availability facts for Microsoft 365 GCC, GCC High and DoD and "
-                        f"for Azure Government, {len(ds.rules)} cross-cloud rules and {len(ds.endpoints)} "
-                        "commercial-to-government endpoint mappings. Each entry quotes the row from Microsoft's "
-                        "own documentation, links to the page and section, and records the page's updated date "
-                        "and the date it was last checked."),
+        "description": (f"Availability of {features} features in Microsoft 365 GCC, GCC High and DoD and in Azure "
+                        f"Government, {len(ds.rules)} cross-cloud rules, {len(ds.endpoints)} commercial-to-government "
+                        f"endpoint mappings and {len(ds.errors)} cross-cloud sign-in errors. Each entry quotes the row "
+                        "from Microsoft's own documentation, links to the page and section, and records the page's "
+                        "updated date and the date it was last checked."),
         "keywords": ["GCC", "GCC High", "DoD", "Azure Government", "Microsoft 365", "feature availability",
-                     "cloud parity", "Microsoft Sentinel", "Defender for Cloud", "Power Platform", "Azure OpenAI"],
+                     "cloud parity", "Microsoft 365 Copilot", "Microsoft Teams", "Exchange Online", "Microsoft Purview",
+                     "Microsoft Intune", "Microsoft Defender", "Microsoft Sentinel", "Defender for Cloud",
+                     "Power Platform", "Azure OpenAI"],
         "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": True,
         "creator": AUTHOR, "dateModified": max(s.checked for s in ds.sources.values()),
         "isBasedOn": [s.url for s in sources],
         "distribution": [{"@type": "DataDownload", "encodingFormat": "application/yaml", "contentUrl": RAW + n}
                          for n in files],
         "measurementTechnique": "Rows copied from Microsoft's availability tables, parsed into statuses by "
-                                "tools/build_facts.py and re-parsed by the test suite.",
-        "variableMeasured": "Availability status per cloud: GA, available, preview, limited, not available, "
-                            "no plans, planned, not possible"}
+                                "tools/build_facts.py and tools/build_m365.py, re-parsed by the test suite, and "
+                                "compared with the live pages every week by fairfax verify.",
+        "variableMeasured": "Availability status per cloud: GA, available, preview, limited, rolling out, planned, "
+                            "in development, on engineering backlog, not available, no plans, not possible"}
     graph = [{"@type": "WebPage", "@id": SITE + path, "url": SITE + path, "name": title, "description": desc,
               "isPartOf": {"@id": SITE + "#website"}, "mainEntity": {"@id": SITE + path + "#dataset"}}, dataset_ld]
     return path, page(path, title, desc, body, graph, [("fairfax", ""), ("Availability tables", path)])
@@ -483,9 +569,94 @@ line.</p>"""
     return path, page(path, title, desc, body, graph, [("fairfax", ""), ("Endpoints", path)])
 
 
+# ---------------------------------------------------------------- sign-in error pages
+def _title(*options: str) -> str:
+    return next((t for t in options if len(t) <= 65), options[-1])
+
+
+def _short(text: str, limit: int = 155) -> str:
+    return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0].rstrip(",:;") + "…"
+
+
+def sign_in_table(ds) -> str:
+    e = next(x for x in ds.endpoints if x.id == "endpoint.login-microsoftonline-com")
+    return (f'<div class="t"><table><thead><tr><th>Your tenant or subscription</th><th>Sign-in host</th></tr></thead>'
+            f'<tbody><tr><td>Commercial Microsoft 365 and Azure, and GCC tenants</td>'
+            f'<td><code>{e.hosts["commercial"][0]}</code></td></tr>'
+            f'<tr><td>GCC High and DoD tenants, and Azure Government</td><td><code>{e.hosts["government"][0]}</code>'
+            f'</td></tr></tbody></table></div>')
+
+
+def error_pages(ds) -> list:
+    errors = sorted(ds.errors, key=lambda e: int(e.code[6:]))
+    out = []
+    for e in errors:
+        path = f"errors/{e.code.lower()}/"
+        title = _title(f"{e.code} {e.name}: cause and fix", f"{e.code}: {e.name}",
+                       f"{e.code}: cross-cloud sign-in error, cause and fix")
+        also = "".join(f'<li>“{escape(q.quote)}” (<a href="{escape(q.url)}">{escape(q.source.title)}</a>)</li>'
+                       for q in e.also)
+        caveat = ("" if e.confidence == "high" else
+                  "<p><strong>Note:</strong> Microsoft's row for this code doesn't mention clouds. The cause above is "
+                  "the common one in US government setups, so check it against yours.</p>")
+        others = "".join(f'<li><a href="{SITE}errors/{x.code.lower()}/">{x.code}</a>: {escape(x.name)}</li>'
+                         for x in errors if x is not e)
+        body = f"""<h1>{escape(e.code)}: {escape(e.name)}</h1>
+<p class="lead">{escape(e.says)}</p>
+<h2>How to fix it</h2>
+<p>{escape(e.fix)}</p>
+{sign_in_table(ds)}
+{caveat}
+<h2>What Microsoft says</h2>
+<p>“{escape(e.row)}”</p>
+<p class="dates">Source: <a href="{escape(e.url)}">{escape(e.source.title)}</a>, page updated {e.source.page_updated},
+checked {e.source.checked}.</p>
+{f"<ul>{also}</ul>" if also else ""}
+<h2>Decode it from the command line</h2>
+<pre><code>pip install fairfax
+fairfax explain {e.code} --tenant gcchigh      # or paste the whole error message</code></pre>
+<p>To find the commercial sign-in host in your code before it fails, run
+<code>fairfax scan src/ --tenant gcchigh --azure government</code>.</p>
+<h2>Other cross-cloud sign-in errors</h2>
+<ul>{others}</ul>"""
+        graph = [{"@type": "TechArticle", "@id": SITE + path, "url": SITE + path, "headline": title,
+                  "description": _short(e.says), "inLanguage": "en", "author": AUTHOR,
+                  "dateModified": e.source.checked, "isPartOf": {"@id": SITE + "#website"},
+                  "about": {"@type": "Thing", "name": f"{e.code} {e.name}"},
+                  "citation": [{"@type": "CreativeWork", "name": s.title, "url": s.url}
+                               for s in {e.source.key: e.source, **{q.source.key: q.source for q in e.also}}.values()]}]
+        crumbs = [("fairfax", ""), ("Sign-in errors", "errors/"), (e.code, path)]
+        out.append((path, page(path, title, _short(e.says), body, graph, crumbs)))
+
+    path = "errors/"
+    rows = "".join(f'<tr><td><a href="{SITE}errors/{e.code.lower()}/">{e.code}</a></td><td>{escape(e.name)}</td>'
+                   f"<td>{escape(e.says.split('. ')[0].rstrip('.'))}.</td></tr>" for e in errors)
+    title = "AADSTS sign-in errors from mixing Microsoft clouds: fixes"
+    desc = (f"{len(errors)} Microsoft Entra sign-in errors that GCC High, DoD and Azure Government apps hit when they "
+            "mix clouds, such as AADSTS900439, with Microsoft's wording and the fix.")
+    body = f"""<h1>Sign-in errors from mixing Microsoft clouds</h1>
+<p class="lead">An app built for commercial Microsoft 365 or Azure signs users in through
+<code>login.microsoftonline.com</code>. GCC High, DoD and Azure Government tenants sign in through
+<code>login.microsoftonline.us</code>, and the clouds don't federate, so a mixed-up host or app registration fails
+with one of these errors. Each page quotes Microsoft and says what to change.</p>
+<div class="t"><table><thead><tr><th>Code</th><th>Name</th><th>What it means</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+{sign_in_table(ds)}
+<pre><code>fairfax explain "AADSTS900439: ..."   # paste the whole message; add --tenant gcchigh for the right host</code></pre>"""
+    graph = [{"@type": "CollectionPage", "@id": SITE + path, "url": SITE + path, "name": title, "description": desc,
+              "isPartOf": {"@id": SITE + "#website"}, "author": AUTHOR,
+              "hasPart": [{"@id": SITE + f"errors/{e.code.lower()}/"} for e in errors]}]
+    out.insert(0, (path, page(path, title, desc, body, graph, [("fairfax", ""), ("Sign-in errors", path)])))
+    return out
+
+
 # ---------------------------------------------------------------- landing page
 def faq(ds) -> list[tuple[str, str]]:
-    power = [f for f in ds.facts if f.by == "tenant"]
+    power = [f for f in ds.facts if f.source.key == "bap"]
+    copilot = [f for f in ds.facts if f.feature.startswith("m365-copilot/")]
+    missing = {t: [f.name.split(": ", 1)[1] for f in copilot if status(f.status.get(t, "available"))[1] == "no"]
+               for t in ("gcchigh", "dod")}
+    e439 = next(e for e in ds.errors if e.code == "AADSTS900439")
     conn = [f for f in ds.facts if f.by == "tenant+azure"]
     blocked_gcc_gov = sum(1 for f in conn if f.status.get("gcc+government") == "not-possible")
     models = [f.feature.split("/", 1)[1] for f in ds.facts
@@ -499,10 +670,17 @@ def faq(ds) -> list[tuple[str, str]]:
     in_all = "all" if blocked_gcc_gov == len(conn) else f"{blocked_gcc_gov} of the"
     return [
         ("How do I check whether a Microsoft feature is available in GCC High or Azure Government?",
-         f"Microsoft publishes availability per cloud across many pages: fairfax cites {learn} Microsoft Learn pages "
-         f"and a PDF, and collects {len(ds.facts)} feature rows from them. Run `pip install fairfax`, then "
-         "`fairfax facts --grep <name>` to see a feature's status in each cloud, or browse the availability tables "
-         "on this site. Each row links to the Microsoft page it came from."),
+         f"Microsoft publishes availability per cloud across many pages: fairfax cites {learn} Microsoft Learn pages, "
+         f"a PDF and the Microsoft 365 roadmap, and collects {len(ds.features())} features from them. Run "
+         "`pip install fairfax`, then `fairfax facts --grep <name>` to see a feature's status in each cloud, or "
+         "browse the availability tables on this site. Each row links to the Microsoft page it came from."),
+        ("Is Microsoft 365 Copilot available in GCC High and DoD?",
+         f"Yes, with gaps. Microsoft's Copilot service description lists {len(copilot)} features by cloud. Not "
+         f"available today in GCC High: {', '.join(missing['gcchigh'])}. Not available in DoD: "
+         f"{', '.join(missing['dod'])}. The Microsoft 365 Copilot table on this site quotes each row."),
+        ("What does AADSTS900439 USGClientNotSupportedOnPublicEndpoint mean?",
+         f"{e439.says} {e439.fix} `fairfax explain` decodes it and {len(ds.errors) - 1} other cross-cloud sign-in "
+         "errors from the code or the whole message."),
         ("What is the difference between GCC, GCC High and DoD?",
          "They are separate US government clouds for Microsoft 365, and they differ in where users sign in and in "
          f"which features exist. GCC signs users in through commercial Entra ID (`{entra['commercial'][0]}`), while "
@@ -529,8 +707,13 @@ def faq(ds) -> list[tuple[str, str]]:
          "Azure. The data ships inside the package."),
         ("How current is the data?",
          "Every entry stores the Microsoft page's own updated date and the date fairfax last checked it. All "
-         f"{len(ds.sources)} cited pages were checked {when}. A weekly workflow lists pages that have gone more than "
-         "90 days without a check."),
+         f"{len(ds.sources)} cited pages were checked {when}. Every week `fairfax verify` re-reads each page and "
+         "confirms that every cited row is still there word for word; when Microsoft changes one, an issue opens "
+         "with the old and new text."),
+        ("Can AI coding assistants use fairfax?",
+         "Yes. `fairfax mcp` runs a Model Context Protocol server with four read-only tools: find feature keys, "
+         "check a plan, scan code for wrong-cloud hosts and explain sign-in errors. Add it to Claude Code with "
+         "`claude mcp add fairfax -- fairfax mcp`, or to any MCP client as the command `fairfax mcp`."),
         ("Is fairfax made by Microsoft, and is it compliance advice?",
          "No to both. fairfax is an independent open source project under the MIT license. It tells you whether "
          "Microsoft offers a feature in a cloud, quoting Microsoft's own rows. It doesn't tell you whether your use of "
@@ -549,20 +732,39 @@ def example(ds) -> str:
     return escape("\n".join(lines))
 
 
+def m365_example(ds) -> str:
+    """The Microsoft 365 example, run for real: the summary line and one blocked finding with its roadmap note."""
+    report = check(ds, load_plan(ROOT / "examples" / "m365-rollout" / "plan.yaml"), TODAY)
+    blocks = check_text(report).rstrip("\n").split("\n\n")
+    with_roadmap = next(b for b in blocks if "Microsoft 365 roadmap" in b and b.startswith("  "))
+    lines = ["$ fairfax check examples/m365-rollout/plan.yaml", blocks[0], "", blocks[1], "", with_roadmap,
+             "  ...", "", blocks[-1].splitlines()[-1]]
+    return escape("\n".join(lines))
+
+
+def explain_example(ds) -> str:
+    from fairfax import explain as explain_mod
+    from fairfax.render import explain_text
+    text = explain_text(explain_mod.explain(ds, "AADSTS900439", "gcchigh", None), ds)
+    head = text.split("\n    source:")[0].rstrip()
+    return escape("$ fairfax explain AADSTS900439 --tenant gcchigh\n" + head)
+
+
 def landing_page(ds) -> tuple[str, str]:
     questions = faq(ds)
+    features = len(ds.features())
     services = "".join(
         f'<li><a href="{SITE}availability/{s["slug"]}/">{escape(s["h1"])}</a>: '
-        f'{len(facts_for(ds, s["prefixes"]))} entries</li>' for s in SERVICES)
+        f'{len({f.feature for f in facts_for(ds, s["prefixes"])})} features</li>' for s in SERVICES)
     title = "GCC High & Azure Government feature availability checker · fairfax"
     desc = ("Open source checker: is a feature available in GCC, GCC High, DoD or Azure Government? "
-            f"{len(ds.facts)} features from Microsoft's own tables, every finding cited.")
+            f"{features} features from Microsoft's own tables, every finding cited.")
     body = f"""<img src="header.svg" alt="fairfax: check a GCC, GCC High or Azure Government plan before you build it. Every finding cites the Microsoft row it came from." width="980" height="278">
 <h1>Check a Microsoft gov-cloud plan before you build it</h1>
 <p class="lead">fairfax is an open source command-line tool and dataset for Microsoft's US government clouds. Give it
-your tenant type (GCC, GCC High or DoD), your Azure cloud and the features you plan to use. It tells you what
-Microsoft doesn't offer there, what can't cross between the clouds and what is retiring, and quotes the Microsoft row
-behind each answer.</p>
+your tenant type (GCC, GCC High or DoD), your Azure cloud and the features you plan to use, from Azure and Power
+Platform to Microsoft 365 Copilot, Teams, Purview and Intune. It tells you what Microsoft doesn't offer there, what
+can't cross between the clouds and what is retiring, and quotes the Microsoft row behind each answer.</p>
 <a class="cta" href="{REPO}">View on GitHub</a>
 <a class="cta alt" href="{SITE}availability/">Browse the availability tables</a>
 <a class="cta alt" href="{PYPI}">pip install fairfax</a>
@@ -580,6 +782,30 @@ error.</p>
 <p><code>fairfax check</code> exits 1 when anything is blocked and <code>fairfax scan</code> exits 1 on a wrong-cloud
 endpoint, so both work as CI gates.</p>
 
+<h2>Microsoft 365, with Microsoft's roadmap</h2>
+<p>Microsoft 365 Copilot, Teams, Exchange Online, SharePoint, OneDrive, Purview, Intune and Defender are covered
+too. When a feature is missing and Microsoft's public roadmap has an item for it, the finding shows the item and its
+target month, and says so when that month has passed.</p>
+<pre><code>{m365_example(ds)}</code></pre>
+
+<h2>Sign-in errors, decoded</h2>
+<p>When a commercial sign-in host meets a GCC High or Azure Government tenant, the error is a code like
+AADSTS900439. <code>fairfax explain</code> takes the code or the whole message and answers with Microsoft's wording,
+the cause and the right host for your clouds. The <a href="{SITE}errors/">sign-in errors pages</a> cover all
+{len(ds.errors)}.</p>
+<pre><code>{explain_example(ds)}</code></pre>
+
+<h2>In CI, and for AI coding tools</h2>
+<p>The GitHub Action runs <code>check</code> and <code>scan</code>, writes the report to the job summary, marks each
+finding on its line in the pull request, and can upload SARIF to code scanning:</p>
+<pre><code>- uses: intikhab49/fairfax@v{__version__}
+  with:
+    plan: plan.yaml        # optional
+    scan: src</code></pre>
+<p><code>fairfax mcp</code> runs a Model Context Protocol server, so Claude Code, VS Code, Cursor and other agents
+can check a plan, scan code and decode errors with citations instead of guessing:</p>
+<pre><code>claude mcp add fairfax -- fairfax mcp</code></pre>
+
 <h2>Availability tables</h2>
 <p>The same dataset, as tables with Microsoft's row, the page link and the dates for every entry:</p>
 <ul>{services}
@@ -588,10 +814,12 @@ endpoint, so both work as CI gates.</p>
 <h2>Quick start</h2>
 <pre><code>pip install fairfax
 
-fairfax facts --grep sentinel                      # feature keys and their status per cloud
-fairfax check plan.yaml                            # text report; --format md or json
+fairfax facts --grep copilot                       # feature keys and their status per cloud
+fairfax check plan.yaml                            # text report; --format md, json or sarif
 fairfax scan src/ --tenant gcchigh --azure government
-fairfax facts --stale 90                           # cited pages due for another check</code></pre>
+fairfax explain AADSTS900439 --tenant gcchigh      # decode a cross-cloud sign-in error
+fairfax verify                                     # re-read Microsoft's pages, confirm every cited row
+fairfax mcp                                        # MCP server for coding agents</code></pre>
 <p>Python 3.10 or newer, MIT licensed, one dependency (PyYAML). A plan is a short YAML file:</p>
 <pre><code>name: Field inspection app
 tenant: gcchigh        # gcc | gcchigh | dod
@@ -605,6 +833,8 @@ features:
 <ul><li>Every entry stores the Microsoft page, the section anchor and the row exactly as Microsoft wrote it.</li>
 <li>Statuses were parsed from those rows by a script, not retyped, and the tests re-parse them on every run.</li>
 <li>Each entry carries the page's own updated date and the date fairfax last checked it.</li>
+<li><code>fairfax verify</code> re-reads all {len(ds.sources)} pages and confirms every cited row is still there; a
+weekly workflow runs it and opens an issue when Microsoft changes one.</li>
 <li>Where Microsoft's tables don't answer a question, fairfax says so instead of guessing.</li></ul>
 
 <h2>FAQ</h2>
@@ -615,15 +845,18 @@ features:
         {"@type": "SoftwareApplication", "@id": SITE + "#app", "name": "fairfax",
          "description": ("Open source command-line checker for Microsoft's US government clouds. Checks a planned "
                          "stack (GCC, GCC High or DoD tenant, commercial or Azure Government subscription, a list "
-                         "of features) against Microsoft's own availability tables and cites the row behind each "
-                         "finding. Also scans code for commercial endpoints that belong to the wrong cloud."),
+                         "of Azure, Power Platform and Microsoft 365 features) against Microsoft's own availability "
+                         "tables and cites the row behind each finding. Also scans code for endpoints from the "
+                         "wrong cloud, decodes cross-cloud AADSTS sign-in errors, runs as a GitHub Action with SARIF "
+                         "and as an MCP server for coding agents."),
          "applicationCategory": "DeveloperApplication", "applicationSubCategory": "Cloud compliance checker",
          "operatingSystem": "Windows, macOS, Linux (Python 3.10+)", "softwareVersion": __version__,
          "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": True,
          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
          "url": SITE, "downloadUrl": PYPI, "installUrl": PYPI, "sameAs": [REPO, PYPI],
          "keywords": "GCC High, GCC, DoD, Azure Government, Microsoft 365 government, feature availability, "
-                     "cloud parity, Microsoft Sentinel, Defender for Cloud, Power Platform, Azure OpenAI",
+                     "cloud parity, Microsoft 365 Copilot, Teams, Purview, Intune, Microsoft Sentinel, "
+                     "Defender for Cloud, Power Platform, Azure OpenAI, AADSTS900439, MCP server, GitHub Action",
          "author": AUTHOR},
         {"@type": "SoftwareSourceCode", "@id": REPO, "name": "fairfax", "codeRepository": REPO,
          "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT",
@@ -639,23 +872,38 @@ features:
 def llms(ds, pages) -> tuple[str, str]:
     lines = ["# fairfax", "",
              f"> Open source CLI and cited dataset that checks a Microsoft US government cloud plan (GCC, GCC High, "
-             f"DoD, Azure Government) against Microsoft's own feature availability tables. {len(ds.facts)} features, "
-             f"{len(ds.rules)} cross-cloud rules and {len(ds.endpoints)} endpoint mappings; every entry quotes the "
-             f"Microsoft row it came from and carries the page's updated date and the date it was last checked.", "",
+             f"DoD, Azure Government) against Microsoft's own feature availability tables. {len(ds.features())} "
+             f"features across Azure, Power Platform and Microsoft 365, {len(ds.rules)} cross-cloud rules, "
+             f"{len(ds.endpoints)} endpoint mappings and {len(ds.errors)} cross-cloud sign-in errors; every entry quotes "
+             "the Microsoft row it came from and carries the page's updated date and the date it was last checked.", "",
              f"- Install: `pip install fairfax` (Python 3.10+, MIT, one dependency: PyYAML). Version {__version__}.",
-             "- `fairfax check plan.yaml`: findings grouped as blocked, cross-cloud, retiring, notes and ok; exits 1 "
-             "when anything is blocked. Output as text, Markdown or JSON.",
+             "- `fairfax check plan.yaml`: findings grouped as blocked, cross-cloud, retiring, notes and ok, with "
+             "Microsoft 365 roadmap items on blocked features; exits 1 when anything is blocked. Text, Markdown, JSON "
+             "or SARIF.",
              "- `fairfax scan <path> --tenant gcchigh --azure government`: finds commercial hosts in code "
-             "(login.microsoftonline.com, graph.microsoft.com, *.vault.azure.net) and names the government host.",
+             "(login.microsoftonline.com, graph.microsoft.com, *.vault.azure.net, api.security.microsoft.com) and "
+             "names the government host.",
+             "- `fairfax explain AADSTS900439 --tenant gcchigh`: decodes a cross-cloud sign-in error from the code or "
+             "the whole message: Microsoft's wording, the cause and the right sign-in host.",
              "- `fairfax facts --grep <text>`: feature keys and their status per cloud. `--format json` for data.",
-             "- It works offline. It never connects to a tenant or subscription, and it is not compliance advice.",
+             "- `fairfax verify`: re-reads every cited Microsoft page and confirms each cited row is still there.",
+             "- `fairfax mcp`: Model Context Protocol server (stdio) with find_features, check_plan, scan_code and "
+             "explain_error tools. `claude mcp add fairfax -- fairfax mcp`.",
+             "- GitHub Action: `uses: intikhab49/fairfax@v" + __version__ + "` with `plan` and `scan` inputs; job "
+             "summary, line annotations, optional SARIF upload to code scanning.",
+             "- It works offline (except verify). It never connects to a tenant or subscription, and it is not "
+             "compliance advice.",
              "- Independent project by Intikhab Azam, not affiliated with Microsoft.", "",
              "## Availability tables", ""]
     for svc in SERVICES:
         lines.append(f"- [{svc['h1']}]({SITE}availability/{svc['slug']}/): "
-                     f"{svc['desc'].format(n=len(facts_for(ds, svc['prefixes'])))}")
+                     f"{svc['desc'].format(n=len({f.feature for f in facts_for(ds, svc['prefixes'])}))}")
     lines += [f"- [Overview and sources]({SITE}availability/): every service, every cited Microsoft page, download links",
               f"- [Endpoints]({SITE}endpoints/): {len(ds.endpoints)} commercial-to-government host mappings", "",
+              "## Sign-in errors", ""]
+    lines += [f"- [{e.code} {e.name}]({SITE}errors/{e.code.lower()}/): {_short(e.says, 140)}"
+              for e in sorted(ds.errors, key=lambda e: int(e.code[6:]))]
+    lines += ["",
               "## Docs", "",
               f"- [README]({REPO}#readme): usage, plan format, how the dataset is built, limits, roadmap",
               f"- [PyPI]({PYPI}): package page",
@@ -668,12 +916,18 @@ def llms(ds, pages) -> tuple[str, str]:
             f"# Full dataset (pages checked {min(s.checked for s in ds.sources.values())})", ""]
     for svc in SERVICES:
         full += [f"## {svc['h1']}", ""]
-        for f in facts_for(ds, svc["prefixes"]):
+        for key, (items, merged) in by_feature(facts_for(ds, svc["prefixes"])).items():
+            f = items[0]
             states = "; ".join(f"{(TENANT.get(k) or CLOUD.get(k) or PAIRING.get(k))}: {status(v)[0]}"
-                               for k, v in f.status.items())
-            extra = "".join(f" {x}" for x in (f.note, f"Retires {f.retires}." if f.retires else None, f.instead) if x)
-            full.append(f"- {f.name} (`{f.feature}`). {states}.{extra} Source: {f.source.title}, page updated "
-                        f"{f.source.page_updated}: {f.url} . Microsoft's row: {f.row}")
+                               for k, v in merged.items())
+            notes = list(dict.fromkeys(i.note for i in items if i.note))
+            extra = "".join(f" {x}" for x in (*notes, f"Retires {f.retires}." if f.retires else None, f.instead) if x)
+            if len(items) == 1:
+                cites = (f"Source: {f.source.title}, page updated {f.source.page_updated}: {f.url} . "
+                         f"Microsoft's row: {f.row}")
+            else:  # one row per cloud page; the pages are listed under Sources at the end
+                cites = "Microsoft's rows: " + "; ".join(f"{i.row} [{i.source.key}]" for i in items)
+            full.append(f"- {f.name} (`{key}`). {states}.{extra} {cites}")
         full.append("")
     full += ["## Cross-cloud rules", ""]
     full += [f"- {r.title}: {r.says} Source: {r.url} ({r.confidence})" for r in ds.rules]
@@ -681,6 +935,17 @@ def llms(ds, pages) -> tuple[str, str]:
     for e in ds.endpoints:
         hosts = "; ".join(f"{TENANT.get(k) or CLOUD.get(k) or k}: {', '.join(v)}" for k, v in e.hosts.items())
         full.append(f"- {e.service}: {hosts}. Source: {e.url}")
+    full += ["", "## Cross-cloud sign-in errors", ""]
+    for e in sorted(ds.errors, key=lambda e: int(e.code[6:])):
+        full.append(f"- {e.code} {e.name}: {e.says} Fix: {e.fix} Microsoft: \"{e.row}\" Source: {e.url} "
+                    f"({e.confidence})")
+    full += ["", "## Microsoft 365 roadmap items linked to missing features", ""]
+    for r in ds.roadmap:
+        full.append(f"- {', '.join(r.features)}: roadmap {r.id} \"{r.title}\", {r.status} for {', '.join(r.clouds)}, "
+                    f"target {r.ga}. {r.url}")
+    full += ["", "## Sources", ""]
+    full += [f"- [{s.key}] {s.title}: {s.url} (page updated {s.page_updated}, checked {s.checked})"
+             for s in sorted(ds.sources.values(), key=lambda s: s.key)]
     return short_txt, "\n".join(full) + "\n"
 
 
@@ -692,7 +957,8 @@ def sitemap(paths) -> str:
 
 def main() -> None:
     ds = dataset.load()
-    pages = [landing_page(ds), overview_page(ds), *(service_page(ds, s) for s in SERVICES), endpoints_page(ds)]
+    pages = [landing_page(ds), overview_page(ds), *(service_page(ds, s) for s in SERVICES), endpoints_page(ds),
+             *error_pages(ds)]
     for path, html in pages:
         out = DOCS / path / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)

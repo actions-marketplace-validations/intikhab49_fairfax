@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AADSTS sign-in errors from mixing Microsoft clouds: fixes</title>
+<meta name="description" content="9 Microsoft Entra sign-in errors that GCC High, DoD and Azure Government apps hit when they mix clouds, such as AADSTS900439, with Microsoft&#x27;s wording and the fix.">
+<link rel="canonical" href="https://intikhab49.github.io/fairfax/errors/">
+<link rel="icon" href="https://intikhab49.github.io/fairfax/favicon.svg" type="image/svg+xml">
+<meta name="author" content="Intikhab Azam">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="fairfax">
+<meta property="og:title" content="AADSTS sign-in errors from mixing Microsoft clouds: fixes">
+<meta property="og:description" content="9 Microsoft Entra sign-in errors that GCC High, DoD and Azure Government apps hit when they mix clouds, such as AADSTS900439, with Microsoft&#x27;s wording and the fix.">
+<meta property="og:url" content="https://intikhab49.github.io/fairfax/errors/">
+<meta property="og:image" content="https://intikhab49.github.io/fairfax/social.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="fairfax: check a GCC, GCC High or Azure Government plan before you build it">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="text/plain" href="https://intikhab49.github.io/fairfax/llms.txt" title="llms.txt">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "CollectionPage",
+   "@id": "https://intikhab49.github.io/fairfax/errors/",
+   "url": "https://intikhab49.github.io/fairfax/errors/",
+   "name": "AADSTS sign-in errors from mixing Microsoft clouds: fixes",
+   "description": "9 Microsoft Entra sign-in errors that GCC High, DoD and Azure Government apps hit when they mix clouds, such as AADSTS900439, with Microsoft's wording and the fix.",
+   "isPartOf": {
+    "@id": "https://intikhab49.github.io/fairfax/#website"
+   },
+   "author": {
+    "@type": "Person",
+    "@id": "https://github.com/intikhab49",
+    "name": "Intikhab Azam",
+    "url": "https://github.com/intikhab49"
+   },
+   "hasPart": [
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts50049/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts90002/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts90038/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts90051/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts700016/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts900382/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts900432/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts900439/"
+    },
+    {
+     "@id": "https://intikhab49.github.io/fairfax/errors/aadsts1000104/"
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "fairfax",
+     "item": "https://intikhab49.github.io/fairfax/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Sign-in errors",
+     "item": "https://intikhab49.github.io/fairfax/errors/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+:root{--ink:#16202c;--muted:#5a6675;--blue:#2a78d6;--green:#1baf7a;--bg:#fbfcfd;--code:#0f1722;--line:#e3e8ee}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+.top{border-bottom:1px solid var(--line);background:#fff}
+.top div{max-width:980px;margin:0 auto;padding:12px 22px;display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+.top a{color:var(--ink);text-decoration:none;font-size:.95rem}
+.top a.brand{font-family:Georgia,serif;font-weight:700;font-size:1.2rem;margin-right:auto}
+main{max-width:980px;margin:0 auto;padding:28px 22px 64px}
+img{max-width:100%;height:auto}
+h1{font-size:2rem;line-height:1.2;margin:22px 0 12px}
+h2{font-size:1.35rem;margin:44px 0 10px}
+h3{font-size:1.02rem;margin:22px 0 4px}
+p.lead{font-size:1.12rem;color:var(--muted)}
+a{color:var(--blue)}
+.crumbs{font-size:.88rem;color:var(--muted)}
+.crumbs a{color:var(--muted)}
+.cta{display:inline-block;margin:8px 10px 0 0;padding:11px 18px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600}
+.cta.alt{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+pre{background:var(--code);color:#dfe7ef;padding:16px 18px;border-radius:8px;overflow-x:auto;font-size:.86rem;line-height:1.5}
+code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace}
+p code,li code,td code{background:#eef2f6;padding:1px 5px;border-radius:4px;font-size:.84em}
+.t{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;background:#fff}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f3f6f9;font-weight:600}
+td.s{white-space:nowrap;font-weight:600}
+td.ok{color:#0f7a55;background:#effaf5}
+td.note{color:#8a5a00;background:#fff8e8}
+td.no{color:#b3261e;background:#fdf0ef}
+td .q,td .n{display:block;color:var(--muted);font-size:.84rem;margin-top:3px}
+td .n{color:#8a5a00}
+td.src{font-size:.84rem;min-width:128px;white-space:nowrap}
+.dates{color:var(--muted)}
+.stat{color:var(--green);font-weight:700}
+ul{padding-left:22px}
+footer{max-width:980px;margin:0 auto;padding:18px 22px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<header class="top"><div><a class="brand" href="https://intikhab49.github.io/fairfax/">fairfax</a>
+<a href="https://intikhab49.github.io/fairfax/availability/">Availability tables</a><a href="https://intikhab49.github.io/fairfax/endpoints/">Endpoints</a>
+<a href="https://intikhab49.github.io/fairfax/errors/">Sign-in errors</a><a href="https://github.com/intikhab49/fairfax">GitHub</a><a href="https://pypi.org/project/fairfax/">PyPI</a></div></header>
+<main>
+<p class="crumbs"><a href="https://intikhab49.github.io/fairfax/">fairfax</a> / Sign-in errors</p>
+<h1>Sign-in errors from mixing Microsoft clouds</h1>
+<p class="lead">An app built for commercial Microsoft 365 or Azure signs users in through
+<code>login.microsoftonline.com</code>. GCC High, DoD and Azure Government tenants sign in through
+<code>login.microsoftonline.us</code>, and the clouds don't federate, so a mixed-up host or app registration fails
+with one of these errors. Each page quotes Microsoft and says what to change.</p>
+<div class="t"><table><thead><tr><th>Code</th><th>Name</th><th>What it means</th></tr></thead>
+<tbody><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts50049/">AADSTS50049</a></td><td>NoSuchInstanceForDiscovery</td><td>The authority your app was given isn&#x27;t a known Microsoft Entra instance, often a typo in the sign-in host or a host from the wrong cloud.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts90002/">AADSTS90002</a></td><td>InvalidTenantName</td><td>Microsoft Entra ID can&#x27;t find the tenant on the host you asked.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts90038/">AADSTS90038</a></td><td>NationalCloudTenantRedirection</td><td>The tenant you&#x27;re signing in to belongs to a different national cloud from the sign-in host you used, and the two clouds don&#x27;t federate.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts90051/">AADSTS90051</a></td><td>InvalidNationalCloudId</td><td>The national cloud identifier in the request isn&#x27;t valid, for example a misspelled or mixed-up cloud name in your authentication library&#x27;s settings.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts700016/">AADSTS700016</a></td><td>UnauthorizedClient_DoesNotMatchRequest</td><td>The app wasn&#x27;t found in the tenant.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts900382/">AADSTS900382</a></td><td>Confidential Client isn&#x27;t supported in Cross Cloud request</td><td>Same message as AADSTS900432: a confidential client (an app with a secret or certificate) asked for a token across clouds, and Microsoft doesn&#x27;t support that.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts900432/">AADSTS900432</a></td><td>Confidential Client isn&#x27;t supported in Cross Cloud request</td><td>An app that signs in with a secret or certificate (a confidential client) asked for a token across clouds, for example an app registered in commercial Entra ID calling into a GCC High tenant.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts900439/">AADSTS900439</a></td><td>USGClientNotSupportedOnPublicEndpoint</td><td>Your app signed in a GCC High, DoD or Azure Government user through the commercial sign-in host, login.microsoftonline.com.</td></tr><tr><td><a href="https://intikhab49.github.io/fairfax/errors/aadsts1000104/">AADSTS1000104</a></td><td>XCB2BResourceCloudNotAllowedOnIdentityTenant</td><td>A user from one cloud tried to reach a resource in another cloud (cross-cloud B2B), and the tenant&#x27;s settings don&#x27;t allow that pairing of clouds.</td></tr></tbody></table></div>
+<div class="t"><table><thead><tr><th>Your tenant or subscription</th><th>Sign-in host</th></tr></thead><tbody><tr><td>Commercial Microsoft 365 and Azure, and GCC tenants</td><td><code>login.microsoftonline.com</code></td></tr><tr><td>GCC High and DoD tenants, and Azure Government</td><td><code>login.microsoftonline.us</code></td></tr></tbody></table></div>
+<pre><code>fairfax explain "AADSTS900439: ..."   # paste the whole message; add --tenant gcchigh for the right host</code></pre>
+</main>
+<footer>
+fairfax 0.2.0 · MIT · by <a href="https://github.com/intikhab49">Intikhab Azam</a> ·
+<a href="https://github.com/intikhab49/fairfax">Source</a> · <a href="https://intikhab49.github.io/fairfax/llms.txt">llms.txt</a><br>
+Statuses are quoted from Microsoft's own documentation and link to it. fairfax is an independent open source
+project, not affiliated with Microsoft, and not compliance advice.
+</footer>
+</body>
+</html>

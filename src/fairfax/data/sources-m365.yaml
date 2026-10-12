@@ -1,0 +1,87 @@
+# Pages added in 0.2.0, written by tools/build_m365.py. Same fields as sources.yaml.
+sources:
+  copilot-sd:
+    title: "Microsoft Copilot service description"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot"
+    page_updated: 2026-08-21
+    checked: 2026-10-12
+  teams-sd:
+    title: "Microsoft Teams service description"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description"
+    page_updated: 2026-07-08
+    checked: 2026-10-12
+  teams-apps:
+    title: "Teams for Government Clouds"
+    url: "https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/cloud-overview"
+    page_updated: 2026-05-29
+    checked: 2026-10-12
+  exo-gov:
+    title: "Exchange Online for US government environments"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments"
+    page_updated: 2025-12-02
+    checked: 2026-10-12
+  spo-gov:
+    title: "SharePoint for US government environments"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/sharepoint"
+    page_updated: 2024-03-11
+    checked: 2026-10-12
+  odb-gov:
+    title: "OneDrive for US government environments"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/onedrive"
+    page_updated: 2023-06-14
+    checked: 2026-10-12
+  purview-gcc:
+    title: "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments"
+    page_updated: 2026-08-25
+    checked: 2026-10-12
+  purview-gcchigh:
+    title: "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments"
+    page_updated: 2025-12-02
+    checked: 2026-10-12
+  purview-dod:
+    title: "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments"
+    url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments"
+    page_updated: 2025-12-02
+    checked: 2026-10-12
+  intune-gov:
+    title: "Microsoft Intune for US Government GCC High and DoD service description"
+    url: "https://learn.microsoft.com/en-us/intune/fundamentals/government-service"
+    page_updated: 2026-10-08
+    checked: 2026-10-12
+  mde-gov:
+    title: "Microsoft Defender for Endpoint for US Government customers"
+    url: "https://learn.microsoft.com/en-us/defender-endpoint/gov"
+    page_updated: 2026-09-17
+    checked: 2026-10-12
+  xdr-gov:
+    title: "Microsoft Defender for US Government"
+    url: "https://learn.microsoft.com/en-us/defender-xdr/usgov"
+    page_updated: 2026-06-26
+    checked: 2026-10-12
+  xdr-apis:
+    title: "Supported Microsoft Defender XDR APIs"
+    url: "https://learn.microsoft.com/en-us/defender-xdr/api-supported"
+    page_updated: 2026-04-13
+    checked: 2026-10-12
+  mde-apis:
+    title: "Supported Microsoft Defender for Endpoint APIs"
+    url: "https://learn.microsoft.com/en-us/defender-endpoint/api/exposed-apis-list"
+    page_updated: 2026-04-13
+    checked: 2026-10-12
+  entra-errors:
+    title: "Microsoft Entra authentication and authorization error codes"
+    url: "https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes"
+    page_updated: 2026-06-15
+    checked: 2026-10-12
+  entra-breaking:
+    title: "What's new for authentication?"
+    url: "https://learn.microsoft.com/en-us/entra/identity-platform/reference-breaking-changes"
+    page_updated: 2026-08-26
+    checked: 2026-10-12
+  entra-national:
+    title: "National clouds"
+    url: "https://learn.microsoft.com/en-us/entra/identity-platform/authentication-national-cloud"
+    page_updated: 2026-06-15
+    checked: 2026-10-12

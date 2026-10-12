@@ -1,0 +1,16 @@
+# A made-up rollout: a state agency moving its staff collaboration to Microsoft 365 GCC High.
+# Check it with: fairfax check examples/m365-rollout/plan.yaml
+name: Staff collaboration rollout (synthetic example)
+tenant: gcchigh
+features:
+  - m365-copilot/researcher
+  - m365-copilot/copilot-analytics
+  - m365-copilot/edit-in-office-apps
+  - teams/channels-shared
+  - teams/webinars
+  - teams/apps/third-party-apps
+  - exchange/connected-accounts
+  - purview/ediscovery/hold-reports
+  - purview/data-loss-prevention/endpoint-data-loss-prevention
+  - intune/windows-autopilot
+  - defender-endpoint/secure-score

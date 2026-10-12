@@ -1,0 +1,42 @@
+# Defender API hosts added in 0.2.0 for `fairfax scan`.
+endpoints:
+  - id: endpoint.defender-xdr-api
+    service: "Microsoft Defender XDR API"
+    plane: m365
+    hosts: {commercial: [api.security.microsoft.com, us.api.security.microsoft.com, eu.api.security.microsoft.com, uk.api.security.microsoft.com, au.api.security.microsoft.com, swa.api.security.microsoft.com, ina.api.security.microsoft.com, aea.api.security.microsoft.com], gcc: api-gcc.security.microsoft.us, gcchigh: api-gov.security.microsoft.us, dod: api-gov.security.microsoft.us}
+    source: xdr-gov
+    anchor: api
+    row: "Microsoft Defender XDR API | https://api-gcc.security.microsoft.us | https://api-gov.security.microsoft.us"
+    also:
+      - source: xdr-apis
+        anchor: endpoint-uris
+        quote: "The base URI for both of the main APIs is: https://api.security.microsoft.com."
+      - source: mde-apis
+        anchor: versioning
+        quote: us.api.security.microsoft.com
+      - source: mde-apis
+        anchor: versioning
+        quote: eu.api.security.microsoft.com
+      - source: mde-apis
+        anchor: versioning
+        quote: uk.api.security.microsoft.com
+      - source: mde-apis
+        anchor: versioning
+        quote: au.api.security.microsoft.com
+      - source: mde-apis
+        anchor: versioning
+        quote: swa.api.security.microsoft.com
+      - source: mde-apis
+        anchor: versioning
+        quote: ina.api.security.microsoft.com
+      - source: mde-apis
+        anchor: versioning
+        quote: aea.api.security.microsoft.com
+
+  - id: endpoint.defender-endpoint-api-gov
+    service: "Microsoft Defender for Endpoint API (US Government)"
+    plane: m365
+    hosts: {gcc: api-gcc.securitycenter.microsoft.us, gcchigh: api-gov.securitycenter.microsoft.us, dod: api-gov.securitycenter.microsoft.us}
+    source: mde-gov
+    anchor: api
+    row: "Defender for Endpoint API | https://api-gcc.securitycenter.microsoft.us | https://api-gov.securitycenter.microsoft.us"

@@ -1,0 +1,183 @@
+# Generated from Microsoft's own tables by tools/build_m365.py. Each row is the source text the status came from.
+# Microsoft marks these cells with tick and cross images, written here as [check-yes] and [check-no].
+facts:
+  - id: defender-endpoint.secure-score
+    feature: defender-endpoint/secure-score
+    name: "Defender for Endpoint: Microsoft Secure Score"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "While Microsoft Secure Score is available for GCC, GCC High and DoD customers, there are some security recommendations that aren't available."
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Secure Score | [check-yes] / See note following this table | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.threat-experts
+    feature: defender-endpoint/threat-experts
+    name: "Defender for Endpoint: Microsoft Threat Experts"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Threat Experts | [check-no] | [check-no] | [check-no]"
+    confidence: high
+
+  - id: defender-endpoint.security-configuration-management
+    feature: defender-endpoint/security-configuration-management
+    name: "Defender for Endpoint: Security Configuration Management"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Defender for Endpoint Security Configuration Management | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.enterprise-iot-security
+    feature: defender-endpoint/enterprise-iot-security
+    name: "Defender for Endpoint: Defender for IoT enterprise IoT security"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Defender for IoT enterprise IoT security | [check-no] | [check-no] | [check-no]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.web-content-filtering-reports
+    feature: defender-endpoint/mobile/web-content-filtering-reports
+    name: "Defender for Endpoint: Mobile: web content filtering reports"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Reports: Web content filtering | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.device-health-reports
+    feature: defender-endpoint/mobile/device-health-reports
+    name: "Defender for Endpoint: Mobile: device health reports"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Reports: Device health | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.web-protection
+    feature: defender-endpoint/mobile/web-protection
+    name: "Defender for Endpoint: Mobile: web protection (anti-phishing and custom indicators)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Web Protection (Anti-Phishing and custom indicators) | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.malware-protection
+    feature: defender-endpoint/mobile/malware-protection
+    name: "Defender for Endpoint: Mobile: malware protection (Android)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Malware Protection (Android-Only) | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.jailbreak-detection
+    feature: defender-endpoint/mobile/jailbreak-detection
+    name: "Defender for Endpoint: Mobile: jailbreak detection (iOS)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Jailbreak Detection (iOS-Only) | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.conditional-access
+    feature: defender-endpoint/mobile/conditional-access
+    name: "Defender for Endpoint: Mobile: Conditional Access and Conditional Launch"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Conditional Access/Conditional Launch | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.mam
+    feature: defender-endpoint/mobile/mam
+    name: "Defender for Endpoint: Mobile: support for MAM"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Support for MAM | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-endpoint.mobile.privacy-controls
+    feature: defender-endpoint/mobile/privacy-controls
+    name: "Defender for Endpoint: Mobile: privacy controls"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Privacy Controls | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-vulnerability-management.core
+    feature: defender-vulnerability-management/core
+    name: "Defender Vulnerability Management: Defender Vulnerability Management core capabilities"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Defender Vulnerability Management core capabilities / (included in Defender for Endpoint Plan 2) / See note following this table | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-vulnerability-management.premium
+    feature: defender-vulnerability-management/premium
+    name: "Defender Vulnerability Management: Defender Vulnerability Management premium capabilities"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Defender Vulnerability Management premium capabilities / See note following this table | [check-yes] | [check-yes] | [check-yes]"
+    confidence: high
+
+  - id: defender-xdr.threat-experts
+    feature: defender-xdr/threat-experts
+    name: "Defender XDR: Microsoft Threat Experts"
+    by: tenant
+    status: {gcc: backlog, gcchigh: backlog, dod: backlog}
+    source: xdr-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Threat Experts | [check-no] On engineering backlog | [check-no] On engineering backlog | [check-no] On engineering backlog"
+    confidence: high
+
+  - id: defender-xdr.enterprise-iot-security
+    feature: defender-xdr/enterprise-iot-security
+    name: "Defender XDR: Defender for IoT enterprise IoT security"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: xdr-gov
+    anchor: feature-parity-with-commercial
+    row: "Microsoft Defender for IoT enterprise IoT security | [check-no] | [check-no] | [check-no]"
+    confidence: high
+
+  - id: defender-vulnerability-management.report-inaccuracy
+    feature: defender-vulnerability-management/report-inaccuracy
+    name: "Defender Vulnerability Management: Report inaccuracy"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "The following Defender Vulnerability Management functionality isn't available for GCC, GCC High, and DoD customers: ; Report inaccuracy"
+    confidence: high
+
+  - id: defender-vulnerability-management.request-cve-support
+    feature: defender-vulnerability-management/request-cve-support
+    name: "Defender Vulnerability Management: Request CVE support"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: mde-gov
+    anchor: feature-parity-with-commercial
+    row: "The following Defender Vulnerability Management functionality isn't available for GCC, GCC High, and DoD customers: ; Request CVE support"
+    confidence: high

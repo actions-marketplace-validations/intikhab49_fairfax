@@ -1,0 +1,138 @@
+# Sign-in errors decoded by `fairfax explain`. says and fix are fairfax's words; row and also are Microsoft's.
+errors:
+  - id: error.aadsts900439
+    code: "AADSTS900439"
+    name: "USGClientNotSupportedOnPublicEndpoint"
+    says: "Your app signed in a GCC High, DoD or Azure Government user through the commercial sign-in host, login.microsoftonline.com. Microsoft Entra ID has blocked that since 2020: users in US Government tenants must sign in through login.microsoftonline.us."
+    fix: "Point the app's authority at login.microsoftonline.us. If the app is registered in a commercial tenant and is meant to serve US Government users, Microsoft says it may need a new app registration in the US Government cloud."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-breaking
+    anchor: azure-government-endpoints-are-changing
+    row: "Impacted apps will begin seeing an error AADSTS900439 - USGClientNotSupportedOnPublicEndpoint. This error indicates that the app is attempting to sign in a US Government user on the public cloud endpoint."
+    confidence: high
+    also:
+      - source: entra-breaking
+        anchor: azure-government-endpoints-are-changing
+        quote: "If you own an application within a US Government tenant, you must update your application to sign users in on the .us endpoint."
+      - source: entra-breaking
+        anchor: azure-government-endpoints-are-changing
+        quote: "This may require creating a new app registration in the US Government cloud."
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts90038
+    code: "AADSTS90038"
+    name: "NationalCloudTenantRedirection"
+    says: "The tenant you're signing in to belongs to a different national cloud from the sign-in host you used, and the two clouds don't federate. Typical cause: a GCC High, DoD or Azure Government tenant reached through login.microsoftonline.com, or the other way round."
+    fix: "Send the request to the sign-in host of the tenant's own cloud."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS90038 | NationalCloudTenantRedirection - The specified tenant 'Y' belongs to the National Cloud 'X'. Current cloud instance 'Z' does not federate with X. A cloud redirect error is returned."
+    confidence: high
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts90002
+    code: "AADSTS90002"
+    name: "InvalidTenantName"
+    says: "Microsoft Entra ID can't find the tenant on the host you asked. Microsoft says this often happens because a cross-cloud app was used against the wrong cloud: a GCC High, DoD or Azure Government tenant doesn't exist on login.microsoftonline.com."
+    fix: "Check the tenant ID, then sign in through the host of the cloud that tenant lives in."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS90002 | InvalidTenantName - The tenant name wasn't found in the data store. Check to make sure you have the correct tenant ID. The application developer will receive this error if their app attempts to sign into a tenant that we cannot find. Often, this is because a cross-cloud app was used against the wrong cloud, or the developer attempted to sign in to a tenant derived from an email address, but the domain isn't registered."
+    confidence: high
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts900432
+    code: "AADSTS900432"
+    name: "Confidential Client isn't supported in Cross Cloud request"
+    says: "An app that signs in with a secret or certificate (a confidential client) asked for a token across clouds, for example an app registered in commercial Entra ID calling into a GCC High tenant. Microsoft doesn't support confidential clients in cross-cloud requests."
+    fix: "Register the app in the same cloud as the tenant it calls, and request tokens from that cloud's sign-in host."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS900432 | Confidential Client isn't supported in Cross Cloud request."
+    confidence: high
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts900382
+    code: "AADSTS900382"
+    name: "Confidential Client isn't supported in Cross Cloud request"
+    says: "Same message as AADSTS900432: a confidential client (an app with a secret or certificate) asked for a token across clouds, and Microsoft doesn't support that."
+    fix: "Register the app in the same cloud as the tenant it calls, and request tokens from that cloud's sign-in host."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS900382 | Confidential Client isn't supported in Cross Cloud request."
+    confidence: high
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts1000104
+    code: "AADSTS1000104"
+    name: "XCB2BResourceCloudNotAllowedOnIdentityTenant"
+    says: "A user from one cloud tried to reach a resource in another cloud (cross-cloud B2B), and the tenant's settings don't allow that pairing of clouds."
+    fix: "Either allow B2B collaboration with the other Microsoft cloud in the tenant's cross-tenant access settings, or use an account from the resource's own cloud."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS1000104 | XCB2BResourceCloudNotAllowedOnIdentityTenant - Resource cloud {resourceCloud} isn't allowed on identity tenant {identityTenant}. {resourceCloud} - cloud instance which owns the resource. {identityTenant} - is the tenant where signing-in identity is originated from."
+    confidence: medium
+
+  - id: error.aadsts700016
+    code: "AADSTS700016"
+    name: "UnauthorizedClient_DoesNotMatchRequest"
+    says: "The app wasn't found in the tenant. In US government setups a common cause is an app registered in one cloud (for example Azure Government) while the token request goes to the other cloud's sign-in host, where the app doesn't exist."
+    fix: "Check which cloud the app registration lives in and send the request to that cloud's sign-in host, with that tenant's ID."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS700016 | UnauthorizedClient_DoesNotMatchRequest - The application wasn't found in the directory/tenant. This can happen if the application has not been installed by the administrator of the tenant or consented to by any user in the tenant. You might have misconfigured the identifier value for the application or sent your authentication request to the wrong tenant."
+    confidence: medium
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts90051
+    code: "AADSTS90051"
+    name: "InvalidNationalCloudId"
+    says: "The national cloud identifier in the request isn't valid, for example a misspelled or mixed-up cloud name in your authentication library's settings."
+    fix: "Check the cloud or instance setting your library uses against the endpoint for your tenant's cloud."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS90051 | InvalidNationalCloudId - The national cloud identifier contains an invalid cloud identifier."
+    confidence: medium
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"
+
+  - id: error.aadsts50049
+    code: "AADSTS50049"
+    name: "NoSuchInstanceForDiscovery"
+    says: "The authority your app was given isn't a known Microsoft Entra instance, often a typo in the sign-in host or a host from the wrong cloud."
+    fix: "Use the sign-in host for your tenant's cloud exactly as Microsoft lists it."
+    endpoint: endpoint.login-microsoftonline-com
+    source: entra-errors
+    anchor: aadsts-error-codes
+    row: "AADSTS50049 | NoSuchInstanceForDiscovery - Unknown or invalid instance."
+    confidence: medium
+    also:
+      - source: entra-national
+        anchor: microsoft-entra-authentication-endpoints
+        quote: "Microsoft Entra ID for US Government | https://login.microsoftonline.us"

@@ -1,0 +1,267 @@
+# Generated from Microsoft's own tables by tools/build_m365.py. Each row is the source text the status came from.
+facts:
+  - id: m365-copilot.web-and-file-grounding
+    feature: m365-copilot/web-and-file-grounding
+    name: "Microsoft 365 Copilot: Web data, referenced files, uploaded files, referenced files, uploaded files"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Web grounding: Web grounding isn't enabled by default for government clouds. For more information on web grounding, see Data, privacy, and security for web queries in Copilot for Microsoft 365."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Web data, referenced files, uploaded files, referenced files, uploaded files | Yes | Yes1 | Yes1 | Yes1"
+    confidence: high
+
+  - id: m365-copilot.work-data-grounding
+    feature: m365-copilot/work-data-grounding
+    name: "Microsoft 365 Copilot: Work data and organizational context"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft 365 Copilot (Premium) features: A Microsoft 365 Copilot license is required to access this feature."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Work data and organizational context2 | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.chat
+    feature: m365-copilot/chat
+    name: "Microsoft 365 Copilot: Chat"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft Copilot Chat: Microsoft Copilot Chat isn't available in the Edge sidebar for GCC/GCCH/DoD cloud environments."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Chat | Yes | Yes4 | Yes4 | Yes4"
+    confidence: high
+
+  - id: m365-copilot.search
+    feature: m365-copilot/search
+    name: "Microsoft 365 Copilot: Copilot Search"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft Copilot App: AI-powered features in the Search and Create modules are only available with a Microsoft 365 Copilot license. The Microsoft Copilot app isn't available as a Mac desktop app for GCC/GCCH/DoD cloud environments."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot Search3 | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.notebooks
+    feature: m365-copilot/notebooks
+    name: "Microsoft 365 Copilot: Copilot Notebooks"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft 365 Copilot (Premium) features: A Microsoft 365 Copilot license is required to access this feature."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot Notebooks2 | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.pages
+    feature: m365-copilot/pages
+    name: "Microsoft 365 Copilot: Pages"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Pages | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.create
+    feature: m365-copilot/create
+    name: "Microsoft 365 Copilot: Create"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Microsoft Copilot App: AI-powered features in the Search and Create modules are only available with a Microsoft 365 Copilot license. The Microsoft Copilot app isn't available as a Mac desktop app for GCC/GCCH/DoD cloud environments."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Create3 | Yes | Yes | Yes | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.researcher
+    feature: m365-copilot/researcher
+    name: "Microsoft 365 Copilot: Researcher"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Microsoft 365 Copilot (Premium) features: A Microsoft 365 Copilot license is required to access this feature."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Researcher2 | Yes | Yes | Yes | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.analyst
+    feature: m365-copilot/analyst
+    name: "Microsoft 365 Copilot: Analyst"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft 365 Copilot (Premium) features: A Microsoft 365 Copilot license is required to access this feature."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Analyst2 | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.word-excel-powerpoint-agents
+    feature: m365-copilot/word-excel-powerpoint-agents
+    name: "Microsoft 365 Copilot: Word, Excel, and PowerPoint Agents"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Word, Excel, and PowerPoint Agents | Yes | Not currently available | Not currently available | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.prompt-gallery
+    feature: m365-copilot/prompt-gallery
+    name: "Microsoft 365 Copilot: Copilot Prompt Gallery"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot Prompt Gallery | Yes | Yes | Yes | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.scheduled-prompts
+    feature: m365-copilot/scheduled-prompts
+    name: "Microsoft 365 Copilot: Scheduled Prompts"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Scheduled Prompts | Yes | Not currently available | Not currently available | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.outlook
+    feature: m365-copilot/outlook
+    name: "Microsoft 365 Copilot: Copilot in Outlook"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Copilot in Outlook: Schedule with Copilot and Themes by Copilot scenarios are not yet available in GCC, GCCH, or DOD."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot in Outlook | Yes | Yes5 | Yes5 | Yes5"
+    confidence: high
+
+  - id: m365-copilot.chat-in-office-apps
+    feature: m365-copilot/chat-in-office-apps
+    name: "Microsoft 365 Copilot: Copilot Chat in Word, Excel, PowerPoint, and OneNote"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Copilot Chat in Word, Excel, PowerPoint, and OneNote: Available for M365 Copilot (Basic) and M365 Copilot (Premium) users. Copilot Chat is currently not available in Web apps for M365 Copilot (Basic) users in GCC, GCC-High and DoD. Copilot's ability to analyze structured Excel data is impacted until Edit with Copilot in Excel is released in GCC, GCC-High and DoD."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot Chat in Word, Excel, PowerPoint, and OneNote6 | Yes | Yes6 | Yes6 | Yes6"
+    confidence: high
+
+  - id: m365-copilot.edit-in-office-apps
+    feature: m365-copilot/edit-in-office-apps
+    name: "Microsoft 365 Copilot: Edit with Copilot in Word, Excel, PowerPoint, and OneNote"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    note: "Microsoft 365 Copilot (Premium) features: A Microsoft 365 Copilot license is required to access this feature."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Edit with Copilot in Word, Excel, PowerPoint, and OneNote2 | Yes | Not currently available | Not currently available | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.teams
+    feature: m365-copilot/teams
+    name: "Microsoft 365 Copilot: Copilot in Teams (Chat, Channel, Meetings)"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot in Teams (Chat, Channel, Meetings) | Yes | Yes | Not currently available | Yes"
+    confidence: high
+
+  - id: m365-copilot.sharepoint
+    feature: m365-copilot/sharepoint
+    name: "Microsoft 365 Copilot: Copilot in SharePoint"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot in SharePoint | Yes | Yes | Not currently available | Yes"
+    confidence: high
+
+  - id: m365-copilot.sharepoint-agents
+    feature: m365-copilot/sharepoint-agents
+    name: "Microsoft 365 Copilot: SharePoint agents"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "SharePoint agents | Yes | Yes | Not currently available | Yes"
+    confidence: high
+
+  - id: m365-copilot.declarative-agents
+    feature: m365-copilot/declarative-agents
+    name: "Microsoft 365 Copilot: Declarative agents"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Declarative agents: GCC-High currently only supports declarative agents created using Agent Builder and those published via admin controls."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Declarative agents | Yes | Yes | Yes8 | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.agent-builder
+    feature: m365-copilot/agent-builder
+    name: "Microsoft 365 Copilot: Agent Builder"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Agent Builder | Yes | Yes | Yes | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.copilot-connectors
+    feature: m365-copilot/copilot-connectors
+    name: "Microsoft 365 Copilot: Microsoft 365 Copilot Connectors"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft 365 Copilot Connectors: External connections and partner connectors aren't enabled by default for government clouds."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Microsoft 365 Copilot Connectors | Yes | Yes9 | Yes9 | Yes9"
+    confidence: high
+
+  - id: m365-copilot.power-platform-connectors
+    feature: m365-copilot/power-platform-connectors
+    name: "Microsoft 365 Copilot: Power Platform Connectors"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    note: "Power Platform Connectors: Power Platform licenses aren't included with Microsoft 365 Copilot. Learn more about Power Platform licensing."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Power Platform Connectors10 | Yes | Yes | Not currently available | Not currently available"
+    confidence: high
+
+  - id: m365-copilot.enterprise-data-protection
+    feature: m365-copilot/enterprise-data-protection
+    name: "Microsoft 365 Copilot: Enterprise Data Protection (EDP)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Enterprise Data Protection (EDP) | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.purview-controls
+    feature: m365-copilot/purview-controls
+    name: "Microsoft 365 Copilot: Microsoft Purview controls for Microsoft Copilot & Copilot chat"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Microsoft Purview controls: Requires license for Microsoft Purview, available as part of Microsoft 365 G3/G5 or as a standalone. Insider Risk Management isn't currently available for GCC-High."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Microsoft Purview controls for Microsoft Copilot & Copilot chat11 | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: m365-copilot.copilot-analytics
+    feature: m365-copilot/copilot-analytics
+    name: "Microsoft 365 Copilot: Copilot Analytics in Viva Insights"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    note: "Copilot Analytics in Viva Insights: A limited set of core metrics is currently available in GCC."
+    source: copilot-sd
+    anchor: feature-availability
+    row: "Copilot Analytics in Viva Insights | Yes | Yes12 | Not currently available | Not currently available"
+    confidence: high

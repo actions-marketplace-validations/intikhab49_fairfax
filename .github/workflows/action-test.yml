@@ -1,0 +1,56 @@
+name: action test
+
+on:
+  push:
+    branches: [main]
+    paths: [action.yml, .github/workflows/action-test.yml, src/**]
+  pull_request:
+    paths: [action.yml, .github/workflows/action-test.yml, src/**]
+  workflow_dispatch:
+
+jobs:
+  example:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run the action on the example (it should find problems)
+        id: fairfax
+        uses: ./
+        with:
+          plan: examples/field-inspections/plan.yaml
+          scan: examples/field-inspections
+          fail: "false"
+
+      - name: The action reported findings and wrote SARIF
+        shell: bash
+        run: |
+          test "${{ steps.fairfax.outputs.result }}" = "1"
+          python -c "
+          import json
+          log = json.load(open('${{ steps.fairfax.outputs.sarif }}', encoding='utf-8'))
+          results = [r for run in log['runs'] for r in run['results']]
+          assert len(log['runs']) == 2, len(log['runs'])
+          assert sum(r['level'] == 'error' for r in results) >= 10, results
+          print(len(results), 'results in', len(log['runs']), 'runs')
+          "
+
+      - name: Write code that already uses the GCC High hosts
+        shell: bash
+        run: printf 'GRAPH = "https://graph.microsoft.us"\nAUTH = "https://login.microsoftonline.us"\n' > clean_settings.py
+
+      - name: Clean code passes (fail is on)
+        id: clean
+        uses: ./
+        with:
+          scan: clean_settings.py
+          tenant: gcchigh
+          sarif: clean.sarif
+
+      - name: The clean run reported nothing
+        shell: bash
+        run: test "${{ steps.clean.outputs.result }}" = "0" && test -f clean.sarif

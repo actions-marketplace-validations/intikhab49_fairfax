@@ -40,7 +40,7 @@ def card(x0, y0):
         text = text if "&#" in text else escape(text)
         out.append(f'<text x="{x0 + 18}" y="{y0 + 30 + 22 * i}" font-family="{MONO}" font-size="12.5" '
                    f'fill="{colour}" font-weight="{weight}">{text}</text>')
-    return "\n    ".join(out), len(ds.facts), len(ds.endpoints), len(ds.sources)
+    return "\n    ".join(out), len(ds.features()), len(ds.endpoints), len(ds.sources)
 
 
 def pills(x0, y0, items):
@@ -59,7 +59,7 @@ def build():
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}"
      viewBox="0 0 {W} {H}" role="img"
      aria-label="fairfax: check a GCC, GCC High or Azure Government plan before you build it.
-     {n_facts} facts from Microsoft's own tables, every finding cited.">
+     {n_facts} features from Microsoft's own tables, every finding cited and re-checked every week.">
   <defs>
     <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="{AMBER}"/>
@@ -91,8 +91,8 @@ def build():
         row it came from.</text>
 
   <g font-family="{MONO}" font-size="12">
-    {pills(64, 262, [(f"{n_facts} FACTS", AMBER), (f"{n_endpoints} ENDPOINTS", LIME),
-                     (f"{n_sources} MICROSOFT SOURCES", BLUE), ("MIT", PINK)])}
+    {pills(64, 262, [(f"{n_facts} FEATURES", AMBER), (f"{n_endpoints} ENDPOINTS", LIME),
+                     (f"{n_sources} MICROSOFT PAGES", BLUE), ("VERIFIED WEEKLY", LIME), ("MIT", PINK)])}
   </g>
 
   <g>

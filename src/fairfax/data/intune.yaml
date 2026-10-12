@@ -1,0 +1,384 @@
+# Generated from Microsoft's own tables by tools/build_m365.py. Each row is the source text the status came from.
+# The Intune page covers GCC High and DoD only.
+facts:
+  - id: intune.windows-autopatch
+    feature: intune/windows-autopatch
+    name: "Intune: Windows Autopatch"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Autopatch and updates)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Autopatch and updates: Windows Autopatch"
+    confidence: high
+
+  - id: intune.feature-updates-for-windows-in-intune
+    feature: intune/feature-updates-for-windows-in-intune
+    name: "Intune: Feature updates for Windows in Intune"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Autopatch and updates)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Autopatch and updates: Feature updates for Windows in Intune"
+    confidence: high
+
+  - id: intune.quality-updates-for-windows-in-intune
+    feature: intune/quality-updates-for-windows-in-intune
+    name: "Intune: Quality updates for Windows in Intune"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Autopatch and updates)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Autopatch and updates: Quality updates for Windows in Intune"
+    confidence: high
+
+  - id: intune.expedite-updates-for-windows-in-intune
+    feature: intune/expedite-updates-for-windows-in-intune
+    name: "Intune: Expedite updates for Windows in Intune"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Autopatch and updates)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Autopatch and updates: Expedite updates for Windows in Intune"
+    confidence: high
+
+  - id: intune.driver-updates-for-windows-in-intune
+    feature: intune/driver-updates-for-windows-in-intune
+    name: "Intune: Driver updates for Windows in Intune"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Autopatch and updates)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Autopatch and updates: Driver updates for Windows in Intune"
+    confidence: high
+
+  - id: intune.delivery-optimization-for-win32-apps
+    feature: intune/delivery-optimization-for-win32-apps
+    name: "Intune: Delivery Optimization for Win32 Apps"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Autopatch and updates)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Autopatch and updates: Delivery Optimization for Win32 Apps"
+    confidence: high
+
+  - id: intune.bios-configuration-profiles-for-windows-in-intune
+    feature: intune/bios-configuration-profiles-for-windows-in-intune
+    name: "Intune: BIOS configuration profiles for Windows in Intune"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (BIOS and DFCI)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "BIOS and DFCI: BIOS configuration profiles for Windows in Intune"
+    confidence: high
+
+  - id: intune.device-firmware-configuration-interface-dfci-management
+    feature: intune/device-firmware-configuration-interface-dfci-management
+    name: "Intune: Device Firmware Configuration Interface (DFCI) Management"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (BIOS and DFCI)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "BIOS and DFCI: Device Firmware Configuration Interface (DFCI) Management"
+    confidence: high
+
+  - id: intune.security-copilot
+    feature: intune/security-copilot
+    name: "Intune: Security Copilot in Intune"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Security Copilot)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Security Copilot: What is Microsoft Security Copilot?"
+    confidence: high
+
+  - id: intune.device-health-attestation
+    feature: intune/device-health-attestation
+    name: "Intune: Device Health Attestation"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Windows Device Health Attestation (DHA))."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Windows Device Health Attestation (DHA): Device Health Attestation"
+    confidence: high
+
+  - id: intune.customize-out-of-box-experience-oobe-and-rename-devices
+    feature: intune/customize-out-of-box-experience-oobe-and-rename-devices
+    name: "Intune: Customize out-of-box experience (OOBE) and rename devices during provisioning based on organizational structure"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Windows Autopilot device preparation)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Windows Autopilot device preparation: Customize out-of-box experience (OOBE) and rename devices during provisioning based on organizational structure"
+    confidence: high
+
+  - id: intune.self-deploying-and-pre-provisioning-mode
+    feature: intune/self-deploying-and-pre-provisioning-mode
+    name: "Intune: Self-deploying and pre-provisioning mode"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Windows Autopilot device preparation)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Windows Autopilot device preparation: Self-deploying and pre-provisioning mode"
+    confidence: high
+
+  - id: intune.more-admin-specified-configurations-delivered-before
+    feature: intune/more-admin-specified-configurations-delivered-before
+    name: "Intune: More admin-specified configurations delivered before allowing desktop access"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Windows Autopilot device preparation)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Windows Autopilot device preparation: More admin-specified configurations delivered before allowing desktop access"
+    confidence: high
+
+  - id: intune.enhanced-optional-desktop-onboarding-experience-inside-the
+    feature: intune/enhanced-optional-desktop-onboarding-experience-inside-the
+    name: "Intune: Enhanced optional desktop onboarding experience inside the Windows Company Portal app"
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Windows Autopilot device preparation)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Windows Autopilot device preparation: Enhanced optional desktop onboarding experience inside the Windows Company Portal app"
+    confidence: high
+
+  - id: intune.the-ability-to-associate-a-device-with-a-tenant
+    feature: intune/the-ability-to-associate-a-device-with-a-tenant
+    name: "Intune: The ability to associate a device with a tenant. Provisioning modes which require Windows Autopilot registration are not supported."
+    by: tenant
+    status: {gcchigh: planned, dod: planned}
+    note: "Listed by Microsoft under \"Intune features planned for GCC High and DoD\" (Windows Autopilot device preparation)."
+    source: intune-gov
+    anchor: intune-features-planned-for-gcc-high-and-dod
+    row: "Windows Autopilot device preparation: The ability to associate a device with a tenant. Provisioning modes which require Windows Autopilot registration are not supported."
+    confidence: high
+
+  - id: intune.app-and-driver-compatibility-reports-for-windows-updates
+    feature: intune/app-and-driver-compatibility-reports-for-windows-updates
+    name: "Intune: App and driver compatibility reports for Windows updates"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "App and driver compatibility reports for Windows updates | n/a"
+    confidence: high
+
+  - id: intune.apple-managed-account-federation
+    feature: intune/apple-managed-account-federation
+    name: "Intune: Apple Managed account federation"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Apple Managed account federation | n/a"
+    confidence: high
+
+  - id: intune.chrome-enterprise-connector
+    feature: intune/chrome-enterprise-connector
+    name: "Intune: Chrome Enterprise Connector"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Chrome Enterprise Connector | n/a"
+    confidence: high
+
+  - id: intune.esim-cellular-support-on-windows
+    feature: intune/esim-cellular-support-on-windows
+    name: "Intune: eSIM cellular support on Windows"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "eSIM cellular support on Windows | n/a"
+    confidence: high
+
+  - id: intune.intune-powerbi-connector-for-dwh
+    feature: intune/intune-powerbi-connector-for-dwh
+    name: "Intune: Intune PowerBI connector for DWH"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Intune PowerBI connector for DWH | n/a"
+    confidence: high
+
+  - id: intune.microsoft-connected-cache-for-enterprise-and-education
+    feature: intune/microsoft-connected-cache-for-enterprise-and-education
+    name: "Intune: Microsoft Connected Cache for Enterprise and Education"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Microsoft Connected Cache for Enterprise and Education | n/a"
+    confidence: high
+
+  - id: intune.microsoft-store-for-business
+    feature: intune/microsoft-store-for-business
+    name: "Intune: Microsoft Store for Business"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Microsoft Store for Business | n/a"
+    confidence: high
+
+  - id: intune.on-premises-exchange-connector
+    feature: intune/on-premises-exchange-connector
+    name: "Intune: On-premises Exchange Connector"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "On-premises Exchange Connector | n/a"
+    confidence: high
+
+  - id: intune.remediations
+    feature: intune/remediations
+    name: "Intune: Remediations"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Remediations | n/a"
+    confidence: high
+
+  - id: intune.reports-for-feature-update-policies
+    feature: intune/reports-for-feature-update-policies
+    name: "Intune: Reports for feature update policies"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Reports for feature update policies | n/a"
+    confidence: high
+
+  - id: intune.servicenow-connector
+    feature: intune/servicenow-connector
+    name: "Intune: ServiceNow connector"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "ServiceNow connector | n/a"
+    confidence: high
+
+  - id: intune.teamviewer-connector-legacy-and-teamviewer-integration
+    feature: intune/teamviewer-connector-legacy-and-teamviewer-integration
+    name: "Intune: TeamViewer connector (legacy) and TeamViewer integration"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "TeamViewer connector (legacy) and TeamViewer integration | n/a"
+    confidence: high
+
+  - id: intune.windows-autopilot
+    feature: intune/windows-autopilot
+    name: "Intune: Windows Autopilot"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Windows Autopilot | n/a"
+    confidence: high
+
+  - id: intune.windows-backup-for-organizations
+    feature: intune/windows-backup-for-organizations
+    name: "Intune: Windows Backup for Organizations"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Windows Backup for Organizations | n/a"
+    confidence: high
+
+  - id: intune.windows-diagnostic-data-processor-configuration
+    feature: intune/windows-diagnostic-data-processor-configuration
+    name: "Intune: Windows Diagnostic Data processor configuration"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Windows Diagnostic Data processor configuration | n/a"
+    confidence: high
+
+  - id: intune.windows-enterprise-multi-session-remote-desktops-avd
+    feature: intune/windows-enterprise-multi-session-remote-desktops-avd
+    name: "Intune: Windows Enterprise multi-session remote desktops (AVD)"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Windows Enterprise multi-session remote desktops (AVD) | n/a"
+    confidence: high
+
+  - id: intune.windows-subscription-activation
+    feature: intune/windows-subscription-activation
+    name: "Intune: Windows Subscription Activation"
+    by: tenant
+    status: {gcchigh: not-available, dod: not-available}
+    note: "Listed by Microsoft under \"Intune features not available in GCC High and DoD\"."
+    source: intune-gov
+    anchor: intune-features-not-available-in-gcc-high-and-dod
+    row: "Windows Subscription Activation | n/a"
+    confidence: high
+
+  - id: intune.cloud-pki
+    feature: intune/cloud-pki
+    name: "Intune: Cloud PKI"
+    by: tenant
+    status: {gcchigh: available, dod: not-available}
+    source: intune-gov
+    anchor: supported-intune-features-in-gcc-high-and-dod
+    row: "The following Intune advanced capabilities support GCC High environments only and aren't supported in DoD: / / - Cloud PKI / - Remote Help"
+    confidence: high
+
+  - id: intune.remote-help
+    feature: intune/remote-help
+    name: "Intune: Remote Help"
+    by: tenant
+    status: {gcchigh: available, dod: not-available}
+    source: intune-gov
+    anchor: supported-intune-features-in-gcc-high-and-dod
+    row: "The following Intune advanced capabilities support GCC High environments only and aren't supported in DoD: / / - Cloud PKI / - Remote Help"
+    confidence: high
+
+  - id: intune.defender-security-settings-management
+    feature: intune/defender-security-settings-management
+    name: "Intune: Microsoft Defender for Endpoint security settings management"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: intune-gov
+    anchor: supported-intune-features-in-gcc-high-and-dod
+    row: "This support extends to the US Government Community Cloud (GCC), US Government Community High (GCC High), and Department of Defense (DoD) environments."
+    confidence: high

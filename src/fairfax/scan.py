@@ -127,6 +127,24 @@ def read_text(path: Path) -> str | None:
     return data.decode("utf-8", errors="replace")
 
 
+def scan_text(text: str, path: str, index: HostIndex, tenant: str | None, azure: str | None) -> list:
+    hits = []
+    for n, line in enumerate(text.splitlines(), 1):
+        if IGNORE_MARK in line:
+            continue
+        for m in TOKEN.finditer(line):
+            host = m.group(0).lower()
+            found = index.match(host)
+            if not found:
+                continue
+            verdict = judge(host, found[0], found[1], tenant, azure)
+            if verdict:
+                kind, fixes, why = verdict
+                e = found[1]
+                hits.append(Hit(path, n, m.start() + 1, host, kind, fixes, e.service, why, e.url, e.id))
+    return hits
+
+
 def scan(paths: list, ds: Dataset, tenant: str | None, azure: str | None, exclude: list = ()) -> tuple:
     index = HostIndex(ds.endpoints)
     hits, files = [], 0
@@ -135,17 +153,5 @@ def scan(paths: list, ds: Dataset, tenant: str | None, azure: str | None, exclud
         if text is None:
             continue
         files += 1
-        for n, line in enumerate(text.splitlines(), 1):
-            if IGNORE_MARK in line:
-                continue
-            for m in TOKEN.finditer(line):
-                host = m.group(0).lower()
-                found = index.match(host)
-                if not found:
-                    continue
-                verdict = judge(host, found[0], found[1], tenant, azure)
-                if verdict:
-                    kind, fixes, why = verdict
-                    e = found[1]
-                    hits.append(Hit(path.as_posix(), n, m.start() + 1, host, kind, fixes, e.service, why, e.url, e.id))
+        hits += scan_text(text, path.as_posix(), index, tenant, azure)
     return hits, files

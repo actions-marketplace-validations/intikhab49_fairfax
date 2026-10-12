@@ -8,6 +8,7 @@ facts:
     source: lang-regions
     anchor: conversational-language-understanding-and-orchestration-workflow
     row: "No USGovVirginia or USGovArizona row in the region table"
+    cite: summary
     confidence: high
 
   - id: ai-language.custom-ner
@@ -18,6 +19,7 @@ facts:
     source: lang-regions
     anchor: custom-named-entity-recognition
     row: "No USGovVirginia or USGovArizona row in the region table"
+    cite: summary
     confidence: high
 
   - id: ai-language.custom-text-classification
@@ -32,6 +34,7 @@ facts:
     source: lang-regions
     anchor: custom-text-classification
     row: "No USGovVirginia or USGovArizona row in the region table"
+    cite: summary
     confidence: high
 
   - id: ai-language.summarization
@@ -63,6 +66,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-4.1: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.gpt-4.1-mini
@@ -74,6 +78,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-4.1-mini: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.gpt-4o
@@ -85,6 +90,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-4o: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia); Standard (usgovarizona and usgovvirginia); Provisioned (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.gpt-5.1
@@ -96,6 +102,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-5.1: Data Zone Standard (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.gpt-5.6-luna
@@ -107,6 +114,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-5.6-luna: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.gpt-5.6-sol
@@ -118,6 +126,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-5.6-sol: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.gpt-5.6-terra
@@ -129,6 +138,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "gpt-5.6-terra: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.o3-mini
@@ -140,6 +150,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "o3-mini: Data Zone Standard (usgovarizona and usgovvirginia); Data Zone Provisioned (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.text-embedding-3-large
@@ -151,6 +162,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "text-embedding-3-large: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.text-embedding-3-small
@@ -162,6 +174,7 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "text-embedding-3-small: Data Zone Standard (usgovarizona and usgovvirginia); Standard (usgovarizona)"
+    cite: summary
     confidence: high
 
   - id: azure-openai.text-embedding-ada-002
@@ -173,4 +186,5 @@ facts:
     source: aoai-gov
     anchor: model-summary-table-and-region-availability
     row: "text-embedding-ada-002: Standard (usgovarizona and usgovvirginia)"
+    cite: summary
     confidence: high

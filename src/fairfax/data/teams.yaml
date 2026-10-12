@@ -1,0 +1,358 @@
+# Generated from Microsoft's own tables by tools/build_m365.py. Each row is the source text the status came from.
+facts:
+  - id: teams.apps
+    feature: teams/apps
+    name: "Microsoft Teams: Teams Apps"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Third-party applications and application publishing aren't available in these clouds at this time."
+    source: teams-sd
+    anchor: feature-availability
+    row: "Teams Apps | Yes | Yes | Yes | Yes1 | Yes1 | Yes"
+    confidence: high
+
+  - id: teams.audio-conferencing
+    feature: teams/audio-conferencing
+    name: "Microsoft Teams: Audio conferencing"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Direct routing must be configured for Teams voice and audio conferencing to work in GCCH and DoD."
+    source: teams-sd
+    anchor: feature-availability
+    row: "Audio conferencing | Yes | Yes | Yes | Yes2 | Yes2 | Yes"
+    confidence: high
+
+  - id: teams.channels-standard
+    feature: teams/channels-standard
+    name: "Microsoft Teams: Channels - Standard"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Channels - Standard | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.channels-private
+    feature: teams/channels-private
+    name: "Microsoft Teams: Channels - Private"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Channels - Private | Yes | Yes3 | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.channels-shared
+    feature: teams/channels-shared
+    name: "Microsoft Teams: Channels - Shared"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Channels - Shared | Yes | Yes | Yes | No | No | Yes4"
+    confidence: high
+
+  - id: teams.chat
+    feature: teams/chat
+    name: "Microsoft Teams: Chat"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Chat | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.meetings
+    feature: teams/meetings
+    name: "Microsoft Teams: Meetings"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Meetings | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.screen-sharing
+    feature: teams/screen-sharing
+    name: "Microsoft Teams: Screen sharing PowerPoint Audio/Video Desktop"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Screen sharing PowerPoint Audio/Video Desktop | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.teams
+    feature: teams/teams
+    name: "Microsoft Teams: Teams"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Teams | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.pstn-calling
+    feature: teams/pstn-calling
+    name: "Microsoft Teams: PSTN calling (via Teams Phone)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Requires Teams Phone license and a PSTN connection via Microsoft Calling Plans, Operator Connect, or Direct Routing. An appropriate “Teams Phone Resource Account license” is required to be assigned to all Teams Phone Resource Accounts. Direct routing must be configured for Teams voice and audio conferencing to work in GCCH and DoD."
+    source: teams-sd
+    anchor: feature-availability
+    row: "PTSN calling enablement (via Teams Phone)6 | Yes | Yes | Yes | Yes2 | Yes2 | Yes"
+    confidence: high
+
+  - id: teams.events
+    feature: teams/events
+    name: "Microsoft Teams: Teams Events"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Teams events has replaced Teams live events. Existing Teams live events that are already scheduled will continue to run through February 28, 2027. Available in Business Standard and Business Premium."
+    source: teams-sd
+    anchor: feature-availability
+    row: "Teams Events<sup7,8 | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.town-halls
+    feature: teams/town-halls
+    name: "Microsoft Teams: Town halls (Teams events)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Town halls (Teams events) | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.webinars
+    feature: teams/webinars
+    name: "Microsoft Teams: Webinars (Team events)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Webinars (Team events) | Yes | Yes | Yes | Yes | No | Yes5"
+    confidence: high
+
+  - id: teams.voip-calling
+    feature: teams/voip-calling
+    name: "Microsoft Teams: VoIP calling"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Direct routing must be configured for Teams voice and audio conferencing to work in GCCH and DoD."
+    source: teams-sd
+    anchor: feature-availability
+    row: "VoIP calling | Yes | Yes | Yes | Yes2 | Yes2 | Yes"
+    confidence: high
+
+  - id: teams.loop
+    feature: teams/loop
+    name: "Microsoft Teams: Loop Integrations"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-sd
+    anchor: feature-availability
+    row: "Loop Integrations | Yes | Yes | Yes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: teams.apps.microsoft-apps
+    feature: teams/apps/microsoft-apps
+    name: "Teams apps: Apps built by Microsoft"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Apps built by Microsoft | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.third-party-apps
+    feature: teams/apps/third-party-apps
+    name: "Teams apps: Third-party apps"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    note: "Third-party apps are turned off by default for GCC and aren't available for GCC High and DoD."
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Third-party apps | ✔️ | ❌ | ❌"
+    confidence: high
+
+  - id: teams.apps.custom-apps
+    feature: teams/apps/custom-apps
+    name: "Teams apps: Custom apps built for your org (LOB apps) distributed and used in specific organization"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Custom apps built for your org (LOB apps) distributed and used in specific organization | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.upload-custom-app
+    feature: teams/apps/upload-custom-app
+    name: "Teams apps: Upload a custom app"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Upload a custom app | ✔️ | ❌ | ❌"
+    confidence: high
+
+  - id: teams.apps.tabs
+    feature: teams/apps/tabs
+    name: "Teams apps: Tabs"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Tabs | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.bots
+    feature: teams/apps/bots
+    name: "Teams apps: Bots"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Bots | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.message-extensions
+    feature: teams/apps/message-extensions
+    name: "Teams apps: Message extensions"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Message extensions | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.message-actions
+    feature: teams/apps/message-actions
+    name: "Teams apps: Message actions"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Message actions | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.cards
+    feature: teams/apps/cards
+    name: "Teams apps: Cards: Adaptive, Hero, Thumbnail, Microsoft 365 connector, Receipt, Sign in, and OAuth cards"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Cards: Adaptive, Hero, Thumbnail, Microsoft 365 connector, Receipt, Sign in, and OAuth cards | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.dialogs
+    feature: teams/apps/dialogs
+    name: "Teams apps: Dialogs (referred as task modules in TeamsJS v1.x)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Dialogs (referred as task modules in TeamsJS v1.x) | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.link-unfurling
+    feature: teams/apps/link-unfurling
+    name: "Teams apps: Link unfurling"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Link unfurling | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.meeting-extensions
+    feature: teams/apps/meeting-extensions
+    name: "Teams apps: Meeting extensions"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Meeting extensions | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.webhooks-and-connectors
+    feature: teams/apps/webhooks-and-connectors
+    name: "Teams apps: Webhooks and connectors"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "GCC High supports Incoming Webhooks only."
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Webhooks and connectors | ✔️ | ✔️ | ❌"
+    confidence: high
+
+  - id: teams.apps.workflows
+    feature: teams/apps/workflows
+    name: "Teams apps: Workflows"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Workflows | ✔️ | ❌ | ❌"
+    confidence: high
+
+  - id: teams.apps.store
+    feature: teams/apps/store
+    name: "Teams apps: Teams Store"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Teams Store | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.store-flyouts
+    feature: teams/apps/store-flyouts
+    name: "Teams apps: In-context Teams Store or app flyouts"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "In-context Teams Store or app flyouts | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.manage-apps-in-teams
+    feature: teams/apps/manage-apps-in-teams
+    name: "Teams apps: Manage apps in Teams"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Manage apps in Teams | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.manage-apps-in-admin-center
+    feature: teams/apps/manage-apps-in-admin-center
+    name: "Teams apps: Manage apps in Teams Admin Center"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Manage apps in Teams Admin Center | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.graph-apis
+    feature: teams/apps/graph-apis
+    name: "Teams apps: Graph APIs"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Graph APIs | ✔️ | ✔️ | ✔️"
+    confidence: high
+
+  - id: teams.apps.developer-portal
+    feature: teams/apps/developer-portal
+    name: "Teams apps: Developer Portal for Teams"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    source: teams-apps
+    anchor: teams-app-capabilities
+    row: "Developer Portal for Teams | ✔️ | ❌ | ❌"
+    confidence: high

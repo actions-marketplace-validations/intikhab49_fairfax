@@ -1,0 +1,73 @@
+name: watch Microsoft's pages
+
+# Every Monday, re-read every Microsoft page fairfax cites. If a cited row or quote has changed,
+# open (or update) one issue that shows the cited text next to what the page says now, and fail
+# the run. When every row matches again, the issue is closed. A second job fails when a page in
+# the dataset hasn't been re-confirmed for 90 days (tools/mark_checked.py does that after a clean run).
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TITLE: Microsoft changed rows that fairfax cites
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e .
+
+      - name: Re-read every cited page
+        id: verify
+        run: |
+          set +e
+          fairfax verify --format md -o verify.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat verify.md
+          cat verify.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the issue
+        if: steps.verify.outputs.code == '1'
+        run: |
+          gh label create watch --color FBCA04 --description "Microsoft changed a page fairfax cites" 2>/dev/null || true
+          { cat verify.md; echo; echo "Found by the weekly watch: $RUN_URL"; } > body.md
+          n=$(gh issue list --state open --label watch --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue edit "$n" --body-file body.md
+            gh issue comment "$n" --body "Still changed on $(date -u +%F): $RUN_URL"
+          else
+            gh issue create --title "$TITLE" --label watch --body-file body.md
+          fi
+          exit 1
+
+      - name: Close the issue when everything matches again
+        if: steps.verify.outputs.code == '0'
+        run: |
+          n=$(gh issue list --state open --label watch --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue close "$n" --comment "Every cited row matches Microsoft's pages again ($(date -u +%F)): $RUN_URL"
+          fi
+
+      - name: Some pages couldn't be fetched
+        if: steps.verify.outputs.code == '2'
+        run: echo "::warning::Some Microsoft pages couldn't be fetched this week; nothing was compared for them."
+
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e .
+      - run: fairfax facts --stale 90

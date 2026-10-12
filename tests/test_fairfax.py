@@ -34,7 +34,7 @@ def test_dataset_is_large_cited_and_dated(ds):
     assert len(ds.endpoints) >= 40
     for item in [*ds.facts, *ds.rules, *ds.endpoints]:
         assert item.url.startswith("https://")
-        assert item.source.checked == "2026-10-11"
+        assert item.source.checked >= "2026-10-11"
     for f in ds.facts:
         assert f.row.strip()
 

@@ -414,7 +414,11 @@ endpoints:
     hosts: {commercial: [crm.dynamics.com, crm2.dynamics.com, crm3.dynamics.com, crm4.dynamics.com, crm5.dynamics.com, crm6.dynamics.com, crm7.dynamics.com, crm8.dynamics.com, crm11.dynamics.com, crm12.dynamics.com, crm14.dynamics.com, crm15.dynamics.com, crm16.dynamics.com, crm17.dynamics.com, crm19.dynamics.com, crm20.dynamics.com, crm22.dynamics.com, crm21.dynamics.com], gcc: crm9.dynamics.com, gcchigh: crm.microsoftdynamics.us, dod: crm.appsplatform.us}
     source: dv-regions
     anchor: ms--in-this-article
-    row: "NAM | crm.dynamics.com ; GCC | crm9.dynamics.com ; GCC High | crm.microsoftdynamics.us ; DoD: *.crm.appsplatform.us (Power Apps US Government network list)"
+    row: "NAM | crm.dynamics.com ; GCC | crm9.dynamics.com ; GCC High | crm.microsoftdynamics.us"
+    also:
+      - source: pa-usgov
+        anchor: power-apps-us-government-service-urls
+        quote: "*.crm.appsplatform.us (DoD)"
 
   - id: endpoint.power-bi-app
     service: "Power BI service"
@@ -422,7 +426,7 @@ endpoints:
     hosts: {commercial: app.powerbi.com, gcc: app.powerbigov.us, gcchigh: app.high.powerbigov.us, dod: app.mil.powerbigov.us}
     source: pbi-gov
     anchor: sign-in-to-power-bi-for-us-government
-    row: "commercial: app.powerbi.com ; gcc: app.powerbigov.us ; gcchigh: app.high.powerbigov.us ; dod: app.mil.powerbigov.us"
+    row: "Commercial version: https://app.powerbi.com ; GCC: https://app.powerbigov.us ; GCC High: https://app.high.powerbigov.us ; DoD: https://app.mil.powerbigov.us"
 
   - id: endpoint.power-bi-api
     service: "Power BI back-end APIs (US Government tiers)"
@@ -438,4 +442,4 @@ endpoints:
     hosts: {commercial: ps.compliance.protection.outlook.com, gcc: ps.compliance.protection.outlook.com, gcchigh: ps.compliance.protection.office365.us, dod: l5.ps.compliance.protection.office365.us}
     source: scc-ps
     anchor: step-2-connect-and-authenticate
-    row: "Microsoft 365 or Microsoft 365 GCC: default ; GCC High and DoD ConnectionUri values"
+    row: "The required value https://ps.compliance.protection.outlook.com/powershell-liveid/ is also the default value ; Microsoft 365 GCC High: ConnectionUri: https://ps.compliance.protection.office365.us/powershell-liveid/ ; Microsoft 365 DoD: ConnectionUri: https://l5.ps.compliance.protection.office365.us/powershell-liveid/"

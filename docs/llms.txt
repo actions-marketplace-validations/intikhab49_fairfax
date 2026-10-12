@@ -1,12 +1,16 @@
 # fairfax
 
-> Open source CLI and cited dataset that checks a Microsoft US government cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own feature availability tables. 187 features, 8 cross-cloud rules and 55 endpoint mappings; every entry quotes the Microsoft row it came from and carries the page's updated date and the date it was last checked.
+> Open source CLI and cited dataset that checks a Microsoft US government cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own feature availability tables. 633 features across Azure, Power Platform and Microsoft 365, 8 cross-cloud rules, 57 endpoint mappings and 9 cross-cloud sign-in errors; every entry quotes the Microsoft row it came from and carries the page's updated date and the date it was last checked.
 
-- Install: `pip install fairfax` (Python 3.10+, MIT, one dependency: PyYAML). Version 0.1.2.
-- `fairfax check plan.yaml`: findings grouped as blocked, cross-cloud, retiring, notes and ok; exits 1 when anything is blocked. Output as text, Markdown or JSON.
-- `fairfax scan <path> --tenant gcchigh --azure government`: finds commercial hosts in code (login.microsoftonline.com, graph.microsoft.com, *.vault.azure.net) and names the government host.
+- Install: `pip install fairfax` (Python 3.10+, MIT, one dependency: PyYAML). Version 0.2.0.
+- `fairfax check plan.yaml`: findings grouped as blocked, cross-cloud, retiring, notes and ok, with Microsoft 365 roadmap items on blocked features; exits 1 when anything is blocked. Text, Markdown, JSON or SARIF.
+- `fairfax scan <path> --tenant gcchigh --azure government`: finds commercial hosts in code (login.microsoftonline.com, graph.microsoft.com, *.vault.azure.net, api.security.microsoft.com) and names the government host.
+- `fairfax explain AADSTS900439 --tenant gcchigh`: decodes a cross-cloud sign-in error from the code or the whole message: Microsoft's wording, the cause and the right sign-in host.
 - `fairfax facts --grep <text>`: feature keys and their status per cloud. `--format json` for data.
-- It works offline. It never connects to a tenant or subscription, and it is not compliance advice.
+- `fairfax verify`: re-reads every cited Microsoft page and confirms each cited row is still there.
+- `fairfax mcp`: Model Context Protocol server (stdio) with find_features, check_plan, scan_code and explain_error tools. `claude mcp add fairfax -- fairfax mcp`.
+- GitHub Action: `uses: intikhab49/fairfax@v0.2.0` with `plan` and `scan` inputs; job summary, line annotations, optional SARIF upload to code scanning.
+- It works offline (except verify). It never connects to a tenant or subscription, and it is not compliance advice.
 - Independent project by Intikhab Azam, not affiliated with Microsoft.
 
 ## Availability tables
@@ -17,8 +21,27 @@
 - [Azure OpenAI models in Azure Government](https://intikhab49.github.io/fairfax/availability/azure-openai/): Which Azure OpenAI models Microsoft sells in Azure Government and their deployment types in usgovarizona and usgovvirginia. 11 models, each cited.
 - [Azure AI Language in Azure Government](https://intikhab49.github.io/fairfax/availability/azure-ai-language/): Which Azure AI Language features have a US Gov Virginia or US Gov Arizona region, and which one is retiring. 5 features, each cited.
 - [Power Platform in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/power-platform/): Which Power Apps, Power Automate, Copilot Studio, Power Pages, AI Builder and Dataverse features work in GCC, GCC High and DoD. 70 features, each cited.
+- [Microsoft 365 Copilot in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/microsoft-365-copilot/): Which Microsoft 365 Copilot features work in GCC, GCC High and DoD: Researcher, Create, agents, Copilot in Teams and more. 25 features, each cited.
+- [Microsoft Teams in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/teams/): Which Teams features and app capabilities work in GCC, GCC High and DoD: shared channels, webinars, third-party apps, workflows. 35 features, each cited.
+- [Exchange Online in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/exchange-online/): Which Exchange Online features work in GCC, GCC High and DoD, with Microsoft's key considerations for each. 90 features, each cited.
+- [SharePoint and OneDrive in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/sharepoint-onedrive/): SharePoint and OneDrive features Microsoft says are missing or limited in GCC, GCC High and DoD, quoted sentence by sentence. 13 features, each cited.
+- [Microsoft Purview in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/purview/): Status of Microsoft Purview features in GCC, GCC High and DoD (available, in development, on the engineering backlog) from Microsoft's three planning pages. 230 features.
+- [Microsoft Intune in GCC High and DoD](https://intikhab49.github.io/fairfax/availability/intune/): Which Intune features Microsoft lists as not available or planned for GCC High and DoD, such as Windows Autopilot and Remediations. 35 features, each cited.
+- [Defender for Endpoint and Defender XDR in GCC, GCC High and DoD](https://intikhab49.github.io/fairfax/availability/defender/): Feature parity of Defender for Endpoint, Defender XDR and Defender Vulnerability Management in GCC, GCC High and DoD, from Microsoft's tables. 18 features, each cited.
 - [Overview and sources](https://intikhab49.github.io/fairfax/availability/): every service, every cited Microsoft page, download links
-- [Endpoints](https://intikhab49.github.io/fairfax/endpoints/): 55 commercial-to-government host mappings
+- [Endpoints](https://intikhab49.github.io/fairfax/endpoints/): 57 commercial-to-government host mappings
+
+## Sign-in errors
+
+- [AADSTS50049 NoSuchInstanceForDiscovery](https://intikhab49.github.io/fairfax/errors/aadsts50049/): The authority your app was given isn't a known Microsoft Entra instance, often a typo in the sign-in host or a host from the wrong cloud.
+- [AADSTS90002 InvalidTenantName](https://intikhab49.github.io/fairfax/errors/aadsts90002/): Microsoft Entra ID can't find the tenant on the host you asked. Microsoft says this often happens because a cross-cloud app was used…
+- [AADSTS90038 NationalCloudTenantRedirection](https://intikhab49.github.io/fairfax/errors/aadsts90038/): The tenant you're signing in to belongs to a different national cloud from the sign-in host you used, and the two clouds don't federate.…
+- [AADSTS90051 InvalidNationalCloudId](https://intikhab49.github.io/fairfax/errors/aadsts90051/): The national cloud identifier in the request isn't valid, for example a misspelled or mixed-up cloud name in your authentication library's…
+- [AADSTS700016 UnauthorizedClient_DoesNotMatchRequest](https://intikhab49.github.io/fairfax/errors/aadsts700016/): The app wasn't found in the tenant. In US government setups a common cause is an app registered in one cloud (for example Azure…
+- [AADSTS900382 Confidential Client isn't supported in Cross Cloud request](https://intikhab49.github.io/fairfax/errors/aadsts900382/): Same message as AADSTS900432: a confidential client (an app with a secret or certificate) asked for a token across clouds, and Microsoft…
+- [AADSTS900432 Confidential Client isn't supported in Cross Cloud request](https://intikhab49.github.io/fairfax/errors/aadsts900432/): An app that signs in with a secret or certificate (a confidential client) asked for a token across clouds, for example an app registered…
+- [AADSTS900439 USGClientNotSupportedOnPublicEndpoint](https://intikhab49.github.io/fairfax/errors/aadsts900439/): Your app signed in a GCC High, DoD or Azure Government user through the commercial sign-in host, login.microsoftonline.com. Microsoft…
+- [AADSTS1000104 XCB2BResourceCloudNotAllowedOnIdentityTenant](https://intikhab49.github.io/fairfax/errors/aadsts1000104/): A user from one cloud tried to reach a resource in another cloud (cross-cloud B2B), and the tenant's settings don't allow that pairing of…
 
 ## Docs
 

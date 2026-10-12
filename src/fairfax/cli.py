@@ -9,8 +9,11 @@ import sys
 from . import __version__
 from . import check as check_mod
 from . import dataset as dataset_mod
+from . import explain as explain_mod
 from . import render
+from . import sarif
 from . import scan as scan_mod
+from . import verify as verify_mod
 from .dataset import CLOUDS, TENANTS
 
 
@@ -40,7 +43,8 @@ def cmd_check(a) -> int:
             print(f"fairfax: unknown feature {key!r}.{hint}", file=sys.stderr)
         print("fairfax: list feature keys with `fairfax facts --grep <word>`.", file=sys.stderr)
         return 2
-    fmt = {"text": render.check_text, "md": render.check_md, "json": render.check_json}[a.format]
+    fmt = {"text": render.check_text, "md": render.check_md, "json": render.check_json,
+           "sarif": sarif.check_sarif}[a.format]
     _emit(fmt(report), a.output)
     return 1 if report.failed(a.strict) else 0
 
@@ -58,10 +62,60 @@ def cmd_scan(a) -> int:
         print("fairfax: say which clouds you target: --plan plan.yaml, or --tenant and/or --azure.", file=sys.stderr)
         return 2
     hits, files = scan_mod.scan(a.paths, dataset_mod.load(), tenant, azure, a.exclude or [])
-    fmt = {"text": render.scan_text, "md": render.scan_md, "json": render.scan_json}[a.format]
+    fmt = {"text": render.scan_text, "md": render.scan_md, "json": render.scan_json, "sarif": sarif.scan_sarif}[a.format]
     _emit(fmt(hits, files, tenant, azure), a.output)
     bad = {"wrong", "check"} if a.strict else {"wrong"}
     return 1 if any(h.kind in bad for h in hits) else 0
+
+
+def _clouds(a) -> tuple:
+    """Tenant and Azure cloud from --tenant/--azure, falling back to --plan."""
+    tenant, azure = a.tenant, a.azure
+    if a.plan:
+        plan = check_mod.load_plan(a.plan)
+        tenant, azure = tenant or plan.tenant, azure or plan.azure
+    return tenant, azure
+
+
+def cmd_explain(a) -> int:
+    ds = dataset_mod.load()
+    if a.list:
+        sys.stdout.write(render.errors_list(ds))
+        return 0
+    text = " ".join(a.error)
+    if not text.strip():
+        print("fairfax: give an error code such as AADSTS900439, or paste the error message.", file=sys.stderr)
+        return 2
+    try:
+        tenant, azure = _clouds(a)
+    except check_mod.PlanError as e:
+        print(f"fairfax: {e}", file=sys.stderr)
+        return 2
+    result = explain_mod.explain(ds, text, tenant, azure)
+    if not result.matches and not result.unknown:
+        print("fairfax: no AADSTS code or known error message found. Codes fairfax decodes: "
+              "`fairfax explain --list`.", file=sys.stderr)
+        return 2
+    fmt = {"text": render.explain_text, "md": render.explain_md, "json": render.explain_json}[a.format]
+    _emit(fmt(result, ds), a.output)
+    return 0 if result.matches else 2
+
+
+def cmd_verify(a) -> int:
+    ds = dataset_mod.load()
+    unknown = [k for k in a.source or [] if k not in ds.sources]
+    if unknown:
+        print(f"fairfax: unknown source {', '.join(unknown)}. Sources: {', '.join(sorted(ds.sources))}", file=sys.stderr)
+        return 2
+    results = verify_mod.verify(ds, a.source)
+    fmt = {"text": render.verify_text, "md": render.verify_md, "json": render.verify_json}[a.format]
+    _emit(fmt(results), a.output)
+    return verify_mod.exit_code(results)
+
+
+def cmd_mcp(a) -> int:
+    from . import mcp
+    return mcp.serve()
 
 
 def cmd_facts(a) -> int:
@@ -93,7 +147,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     c = sub.add_parser("check", help="check a plan file and report what is blocked, cross-cloud or retiring")
     c.add_argument("plan", help="plan YAML: tenant, azure and a list of feature keys")
-    c.add_argument("--format", choices=["text", "md", "json"], default="text")
+    c.add_argument("--format", choices=["text", "md", "json", "sarif"], default="text")
     c.add_argument("-o", "--output", help="write the report to this file instead of stdout")
     c.add_argument("--strict", action="store_true", help="also exit 1 on cross-cloud and retiring findings")
     c.add_argument("--today", help=argparse.SUPPRESS)
@@ -105,7 +159,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--tenant", choices=TENANTS)
     s.add_argument("--azure", choices=CLOUDS)
     s.add_argument("--exclude", action="append", metavar="GLOB", help="skip paths matching this glob (repeatable)")
-    s.add_argument("--format", choices=["text", "md", "json"], default="text")
+    s.add_argument("--format", choices=["text", "md", "json", "sarif"], default="text")
     s.add_argument("-o", "--output", help="write the report to this file instead of stdout")
     s.add_argument("--strict", action="store_true", help="also exit 1 on endpoints marked CHECK")
     s.set_defaults(func=cmd_scan)
@@ -116,6 +170,25 @@ def build_parser() -> argparse.ArgumentParser:
     f.add_argument("--format", choices=["text", "json"], default="text")
     f.add_argument("--today", help=argparse.SUPPRESS)
     f.set_defaults(func=cmd_facts)
+
+    e = sub.add_parser("explain", help="decode a cross-cloud sign-in error such as AADSTS900439")
+    e.add_argument("error", nargs="*", help="an error code, or the whole error message")
+    e.add_argument("--plan", help="read tenant and azure from a plan file, to name the right sign-in host")
+    e.add_argument("--tenant", choices=TENANTS)
+    e.add_argument("--azure", choices=CLOUDS)
+    e.add_argument("--list", action="store_true", help="list the errors fairfax decodes")
+    e.add_argument("--format", choices=["text", "md", "json"], default="text")
+    e.add_argument("-o", "--output", help="write the result to this file instead of stdout")
+    e.set_defaults(func=cmd_explain)
+
+    v = sub.add_parser("verify", help="re-read Microsoft's pages and confirm every cited row is still there")
+    v.add_argument("--source", action="append", metavar="KEY", help="only check this source (repeatable)")
+    v.add_argument("--format", choices=["text", "md", "json"], default="text")
+    v.add_argument("-o", "--output", help="write the report to this file instead of stdout")
+    v.set_defaults(func=cmd_verify)
+
+    m = sub.add_parser("mcp", help="run an MCP server on stdio so coding agents can ask fairfax")
+    m.set_defaults(func=cmd_mcp)
     return p
 
 

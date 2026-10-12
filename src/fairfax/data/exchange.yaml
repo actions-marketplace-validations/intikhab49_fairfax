@@ -1,0 +1,929 @@
+# Generated from Microsoft's own tables by tools/build_m365.py. Each row is the source text the status came from.
+facts:
+  - id: exchange.hybrid-deployment-supported
+    feature: exchange/hybrid-deployment-supported
+    name: "Exchange Online: Hybrid deployment supported"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "For coexistence with Exchange Server on-premises, Microsoft requires installing at least one Exchange Server 2013 Client Access Server (or Exchange Server 2016.). Exchange Server 2010 and earlier aren't supported."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Hybrid deployment supported | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.imap-migration-supported
+    feature: exchange/imap-migration-supported
+    name: "Exchange Online: IMAP migration supported"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "IMAP migration supported | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.cutover-migration-supported
+    feature: exchange/cutover-migration-supported
+    name: "Exchange Online: Cutover migration supported"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Cutover migration supported | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.staged-migration-supported
+    feature: exchange/staged-migration-supported
+    name: "Exchange Online: Staged migration supported"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "GSuite migration isn't supported for GCC High and DoD. For more information, see Perform a GSuite migration."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Staged migration supported | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.role-based-permissions
+    feature: exchange/role-based-permissions
+    name: "Exchange Online: Role-based permissions"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Role-based permissions | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.role-groups
+    feature: exchange/role-groups
+    name: "Exchange Online: Role groups"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Role groups | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.role-assignment-policies
+    feature: exchange/role-assignment-policies
+    name: "Exchange Online: Role assignment policies"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Role assignment policies | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.archiving-exchange-online-based-mailboxes
+    feature: exchange/archiving-exchange-online-based-mailboxes
+    name: "Exchange Online: Archiving Exchange Online-based mailboxes"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Archiving Exchange Online-based mailboxes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.cloud-based-archiving-of-on-premises-mailboxes
+    feature: exchange/cloud-based-archiving-of-on-premises-mailboxes
+    name: "Exchange Online: Cloud-based archiving of on-premises mailboxes"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Cloud-based archiving of on-premises mailboxes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.messaging-records-management-mrm
+    feature: exchange/messaging-records-management-mrm
+    name: "Exchange Online: Messaging Records Management (MRM)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Messaging Records Management (MRM) | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.manual-retention-policies-labels-and-tags
+    feature: exchange/manual-retention-policies-labels-and-tags
+    name: "Exchange Online: Manual retention policies, labels, and tags"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Manual retention policies, labels, and tags | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.encryption-of-data-at-rest-bitlocker
+    feature: exchange/encryption-of-data-at-rest-bitlocker
+    name: "Exchange Online: Encryption of data at rest (BitLocker)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Encryption of data at rest (BitLocker) | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.irm-using-azure-information-protection
+    feature: exchange/irm-using-azure-information-protection
+    name: "Exchange Online: IRM using Azure Information Protection"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "For more information regarding limitations of AIP in GCC High and DoD, see Azure Information Protection Premium Government Service Description. / / Azure Information Protection isn't included in G1/F3, but it can be purchased as a separate add-on and will enable the supported Information Rights Management (IRM) features. Some Azure Information Protection features require a subscription to Office 365 ProPlus, which isn't included with Office 365 Government G1 or Office 365 Government F3."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "IRM using Azure Information Protection | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.irm-using-windows-server-ad-rms
+    feature: exchange/irm-using-windows-server-ad-rms
+    name: "Exchange Online: IRM using Windows Server AD RMS"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Windows Server AD RMS is an on-premises server that must be purchased and managed separately to enable the supported IRM features."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "IRM using Windows Server AD RMS | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-purview-advanced-message-encryption
+    feature: exchange/microsoft-purview-advanced-message-encryption
+    name: "Exchange Online: Microsoft Purview Advanced Message Encryption"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "See Message Encryption behavior across GCC High/DoD boundary in this article and in the article Compare versions of message encryption. Unique characteristics of Message Encryption in a GCC High deployment, which document behavioral nuances of Message Encryption when sending messages between GCC High/DoD and non-GCC High/DoD users."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft Purview Advanced Message Encryption | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-purview-customer-key
+    feature: exchange/microsoft-purview-customer-key
+    name: "Exchange Online: Microsoft Purview Customer Key"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Requires G5 service plan."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft Purview Customer Key | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.s-mime
+    feature: exchange/s-mime
+    name: "Exchange Online: S/MIME"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "S/MIME | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.in-place-hold-and-litigation-hold
+    feature: exchange/in-place-hold-and-litigation-hold
+    name: "Exchange Online: In-Place Hold and Litigation Hold"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Requires G3 or G5 service plan."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "In-Place Hold and Litigation Hold | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.in-place-ediscovery
+    feature: exchange/in-place-ediscovery
+    name: "Exchange Online: In-Place eDiscovery"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "In-Place eDiscovery | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.mail-flow-rules
+    feature: exchange/mail-flow-rules
+    name: "Exchange Online: Mail flow rules"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Mail flow rules | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-purview-data-loss-prevention
+    feature: exchange/microsoft-purview-data-loss-prevention
+    name: "Exchange Online: Microsoft Purview Data Loss Prevention"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Requires G3 or G5 service plan."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft Purview Data Loss Prevention | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.journaling
+    feature: exchange/journaling
+    name: "Exchange Online: Journaling"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Journaling | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.built-in-anti-spam-protection
+    feature: exchange/built-in-anti-spam-protection
+    name: "Exchange Online: Built-in anti-spam protection"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Built-in anti-spam protection | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.customize-anti-spam-policies
+    feature: exchange/customize-anti-spam-policies
+    name: "Exchange Online: Customize anti-spam policies"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Customize anti-spam policies | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.built-in-anti-malware-protection
+    feature: exchange/built-in-anti-malware-protection
+    name: "Exchange Online: Built-in anti-malware protection"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Built-in anti-malware protection | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.customize-anti-malware-policies
+    feature: exchange/customize-anti-malware-policies
+    name: "Exchange Online: Customize anti-malware policies"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Customize anti-malware policies | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.quarantine-administrator-management
+    feature: exchange/quarantine-administrator-management
+    name: "Exchange Online: Quarantine - administrator management"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Quarantine - administrator management | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.quarantine-end-user-self-management
+    feature: exchange/quarantine-end-user-self-management
+    name: "Exchange Online: Quarantine - end-user self-management"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Quarantine - end-user self-management | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-defender-for-office-365
+    feature: exchange/microsoft-defender-for-office-365
+    name: "Exchange Online: Microsoft Defender for Office 365"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Requires G5 Service plan (or purchase of add-on). / / Anti-phishing for user and domain impersonation and spoof intelligence aren't yet available in GCC High and DoD."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft Defender for Office 365 | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.custom-routing-of-outbound-mail
+    feature: exchange/custom-routing-of-outbound-mail
+    name: "Exchange Online: Custom routing of outbound mail"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Custom routing of outbound mail | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.secure-messaging-with-a-trusted-partner
+    feature: exchange/secure-messaging-with-a-trusted-partner
+    name: "Exchange Online: Secure messaging with a trusted partner"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Secure messaging with a trusted partner | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.conditional-mail-routing
+    feature: exchange/conditional-mail-routing
+    name: "Exchange Online: Conditional mail routing"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Conditional mail routing | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.adding-a-partner-to-an-inbound-safe-list
+    feature: exchange/adding-a-partner-to-an-inbound-safe-list
+    name: "Exchange Online: Adding a partner to an inbound safe list"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Adding a partner to an inbound safe list | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.hybrid-email-routing
+    feature: exchange/hybrid-email-routing
+    name: "Exchange Online: Hybrid email routing"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Hybrid email routing | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.capacity-alerts
+    feature: exchange/capacity-alerts
+    name: "Exchange Online: Capacity alerts"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Capacity alerts | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.clutter
+    feature: exchange/clutter
+    name: "Exchange Online: Clutter"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Clutter | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.mailtips
+    feature: exchange/mailtips
+    name: "Exchange Online: MailTips"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "MailTips | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.delegate-access
+    feature: exchange/delegate-access
+    name: "Exchange Online: Delegate access"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Delegate access | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.inbox-rules
+    feature: exchange/inbox-rules
+    name: "Exchange Online: Inbox rules"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Inbox rules | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.connected-accounts
+    feature: exchange/connected-accounts
+    name: "Exchange Online: Connected accounts"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    note: "This feature isn't supported in GCC High or DoD due to restrictions on outbound connections to third-party services. For more information about features impacted, see Connectivity with third-party services in this article."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Connected accounts | Yes | No | No"
+    confidence: high
+
+  - id: exchange.inactive-mailboxes
+    feature: exchange/inactive-mailboxes
+    name: "Exchange Online: Inactive mailboxes"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Requires G3 or G5 service plan."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Inactive mailboxes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.offline-address-book
+    feature: exchange/offline-address-book
+    name: "Exchange Online: Offline address book"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Offline address book | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.address-book-policies
+    feature: exchange/address-book-policies
+    name: "Exchange Online: Address book policies"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Address book policies | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.hierarchical-address-book
+    feature: exchange/hierarchical-address-book
+    name: "Exchange Online: Hierarchical address book"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Hierarchical address book | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.address-lists-and-global-address-list
+    feature: exchange/address-lists-and-global-address-list
+    name: "Exchange Online: Address lists and global address list"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Address lists and global address list | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-365-groups
+    feature: exchange/microsoft-365-groups
+    name: "Exchange Online: Office 365 Groups"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Guest access to Office 365 groups isn't supported in GCC High and DoD environments. For more information, see Azure Government Security + Identity."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Office 365 Groups | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.distribution-groups
+    feature: exchange/distribution-groups
+    name: "Exchange Online: Distribution Groups"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Distribution Groups | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.external-contacts-global
+    feature: exchange/external-contacts-global
+    name: "Exchange Online: External contacts (global)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Subject to org-relationship collaboration limitations in GCC High and DoD environments."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "External contacts (global) | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.contact-linking-with-social-networks
+    feature: exchange/contact-linking-with-social-networks
+    name: "Exchange Online: Contact linking with social networks"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    note: "This feature isn't supported in GCC High or DoD."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Contact linking with social networks | Yes | No | No"
+    confidence: high
+
+  - id: exchange.resource-mailboxes
+    feature: exchange/resource-mailboxes
+    name: "Exchange Online: Resource mailboxes"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Resource mailboxes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.conference-room-management
+    feature: exchange/conference-room-management
+    name: "Exchange Online: Conference room management"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Conference room management | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.out-of-office-replies
+    feature: exchange/out-of-office-replies
+    name: "Exchange Online: Out-of-office replies"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Out-of-office replies | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.internet-calendar-sharing
+    feature: exchange/internet-calendar-sharing
+    name: "Exchange Online: Internet Calendar sharing"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    note: "In GCC High, Internet Calendar publishing/sharing works for inbound connection to calendars shared by GCC High users, but not for GCC High users connecting outbound to a shared calendar outside of GCC High. / / In DoD–Internet Calendar sharing isn't supported due to the requirement for inbound/outbound connection allow listing in that environment."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Internet Calendar sharing | Yes | No | No"
+    confidence: high
+
+  - id: exchange.microsoft-365-admin-center-activity-reports
+    feature: exchange/microsoft-365-admin-center-activity-reports
+    name: "Exchange Online: Microsoft 365 Admin Center Activity Reports"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft 365 Admin Center Activity Reports | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-graph-reports-ga-release
+    feature: exchange/microsoft-graph-reports-ga-release
+    name: "Exchange Online: Microsoft Graph Reports (GA release)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft Graph Reports (GA release) | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.message-trace
+    feature: exchange/message-trace
+    name: "Exchange Online: Message trace"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Message trace | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.auditing-reports
+    feature: exchange/auditing-reports
+    name: "Exchange Online: Auditing reports"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Refer to the platform features section of the Office 365 US Government service description for updates/current availability."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Auditing reports | Yes | Yes | No"
+    confidence: high
+
+  - id: exchange.unified-messaging-reports
+    feature: exchange/unified-messaging-reports
+    name: "Exchange Online: Unified Messaging reports"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Unified Messaging reports | Yes | No | No"
+    confidence: high
+
+  - id: exchange.federated-sharing-including-calendar-publishing
+    feature: exchange/federated-sharing-including-calendar-publishing
+    name: "Exchange Online: Federated sharing (including calendar publishing)"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Limitations exist in both GCC High and DoD. See Free/Busy federation in this article."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Federated sharing (including calendar publishing) | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.site-mailboxes
+    feature: exchange/site-mailboxes
+    name: "Exchange Online: Site mailboxes"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Site mailboxes | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.public-folders
+    feature: exchange/public-folders
+    name: "Exchange Online: Public folders"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Public folders | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.to-do-on-the-web
+    feature: exchange/to-do-on-the-web
+    name: "Exchange Online: To Do on the Web"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "To Do on the Web | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.outlook-for-windows
+    feature: exchange/outlook-for-windows
+    name: "Exchange Online: Outlook for Windows"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "To meet GCC High and DoD compliance requirements, you must be running at least version 1803 of Office 365 ProPlus. Office 365 ProPlus isn't included with G1 or F3."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Outlook for Windows | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.outlook-on-the-web
+    feature: exchange/outlook-on-the-web
+    name: "Exchange Online: Outlook on the web"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Desktop Email Notifications are not supported for GCC. Outlook on the Web can be used in scenarios when Outlook for Windows is unable to display the IRM protected messages due to cross-boundaries restrictions (GCC High / Non-GCC High scenarios)."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Outlook on the web1 | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.outlook-for-mac
+    feature: exchange/outlook-for-mac
+    name: "Exchange Online: Outlook for Mac"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "To meet GCC High and DoD compliance requirements, you must be running at least version 1803 of Office 365 ProPlus. Office 365 ProPlus isn't included with G1 or F3."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Outlook for Mac | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.outlook-for-ios-and-android
+    feature: exchange/outlook-for-ios-and-android
+    name: "Exchange Online: Outlook for iOS and Android"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Outlook for iOS and Android | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.exchange-activesync
+    feature: exchange/exchange-activesync
+    name: "Exchange Online: Exchange ActiveSync"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Exchange ActiveSync | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.basic-mobility-and-security-for-microsoft-365
+    feature: exchange/basic-mobility-and-security-for-microsoft-365
+    name: "Exchange Online: Basic Mobility and Security for Microsoft 365"
+    by: tenant
+    status: {gcc: available, gcchigh: not-available, dod: not-available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Basic Mobility and Security for Microsoft 365 | Yes | No | No"
+    confidence: high
+
+  - id: exchange.pop-and-imap
+    feature: exchange/pop-and-imap
+    name: "Exchange Online: POP and IMAP"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "POP and IMAP | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.smtp
+    feature: exchange/smtp
+    name: "Exchange Online: SMTP"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "SMTP | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.ews-application-support
+    feature: exchange/ews-application-support
+    name: "Exchange Online: EWS application support"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Only egress to specific address spaces the customer can prove they own are allowed, so this precludes third-party services and broad IP ranges used by mobile devices."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "EWS application support2 | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.voice-mail
+    feature: exchange/voice-mail
+    name: "Exchange Online: Voice mail"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    note: "Integration of on-premises IP-PBX systems with Exchange Online Unified Messaging isn't supported."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Voice mail | No | No | No"
+    confidence: high
+
+  - id: exchange.integration-between-voice-mail-and-third-party-fax
+    feature: exchange/integration-between-voice-mail-and-third-party-fax
+    name: "Exchange Online: Integration between voice mail and third-party FAX"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    note: "Integration of on-premises IP-PBX systems with Exchange Online Unified Messaging isn't supported."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Integration between voice mail and third-party FAX | No | No | No"
+    confidence: high
+
+  - id: exchange.third-party-voice-mail-interoperability
+    feature: exchange/third-party-voice-mail-interoperability
+    name: "Exchange Online: Third-party voice mail interoperability"
+    by: tenant
+    status: {gcc: not-available, gcchigh: not-available, dod: not-available}
+    note: "Integration of on-premises IP-PBX systems with Exchange Online Unified Messaging isn't supported."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Third-party voice mail interoperability | No | No | No"
+    confidence: high
+
+  - id: exchange.skype-for-business-integration
+    feature: exchange/skype-for-business-integration
+    name: "Exchange Online: Skype for Business integration"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Skype for Business integration | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.mailbox-replication-at-datacenters
+    feature: exchange/mailbox-replication-at-datacenters
+    name: "Exchange Online: Mailbox replication at datacenters"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Mailbox replication at datacenters | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.deleted-mailbox-recovery
+    feature: exchange/deleted-mailbox-recovery
+    name: "Exchange Online: Deleted mailbox recovery"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Deleted mailbox recovery | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.deleted-item-recovery
+    feature: exchange/deleted-item-recovery
+    name: "Exchange Online: Deleted item recovery"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Deleted item recovery | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.single-item-recovery
+    feature: exchange/single-item-recovery
+    name: "Exchange Online: Single item recovery"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Single item recovery | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.presence-in-owa-and-outlook
+    feature: exchange/presence-in-owa-and-outlook
+    name: "Exchange Online: Presence in OWA and Outlook"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Presence in OWA and Outlook | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.sharepoint-interoperability
+    feature: exchange/sharepoint-interoperability
+    name: "Exchange Online: SharePoint interoperability"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "SharePoint interoperability | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.ews-connectivity-support
+    feature: exchange/ews-connectivity-support
+    name: "Exchange Online: EWS connectivity support"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "EWS connectivity support | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.smtp-relay-support
+    feature: exchange/smtp-relay-support
+    name: "Exchange Online: SMTP relay support"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "SMTP relay support | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.microsoft-office-365-portal-access
+    feature: exchange/microsoft-office-365-portal-access
+    name: "Exchange Online: Microsoft Office 365 portal access"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Refer to the platform features section of the Office 365 US Government service description for updates/current availability."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft Office 365 portal access | Yes | Yes | No"
+    confidence: high
+
+  - id: exchange.microsoft-365-admin-center-access
+    feature: exchange/microsoft-365-admin-center-access
+    name: "Exchange Online: Microsoft 365 admin center access"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Refer to the platform features section of the Office 365 US Government service description for updates/current availability."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Microsoft 365 admin center access | Yes | Yes | No"
+    confidence: high
+
+  - id: exchange.exchange-admin-center-access
+    feature: exchange/exchange-admin-center-access
+    name: "Exchange Online: Exchange admin center access"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Exchange admin center access | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.remote-windows-powershell-access
+    feature: exchange/remote-windows-powershell-access
+    name: "Exchange Online: Remote Windows PowerShell access"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Remote Windows PowerShell access | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.activesync-policies-for-mobile-devices
+    feature: exchange/activesync-policies-for-mobile-devices
+    name: "Exchange Online: ActiveSync policies for mobile devices"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "ActiveSync policies for mobile devices | Yes | Yes | Yes"
+    confidence: high
+
+  - id: exchange.usage-reporting
+    feature: exchange/usage-reporting
+    name: "Exchange Online: Usage reporting"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: not-available}
+    note: "Refer to the platform features section of the Office 365 US Government service description for updates/current availability."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Usage reporting | Yes | Yes | No"
+    confidence: high
+
+  - id: exchange.outlook-add-ins-and-outlook-mapi
+    feature: exchange/outlook-add-ins-and-outlook-mapi
+    name: "Exchange Online: Outlook add-ins and Outlook MAPI"
+    by: tenant
+    status: {gcc: available, gcchigh: available, dod: available}
+    note: "Only some OWA and Outlook add-ins are available in GCC High and DoD. See Add-ins in Outlook and Outlook Web App in this article."
+    source: exo-gov
+    anchor: exchange-online-features
+    row: "Outlook add-ins and Outlook MAPI | Yes | Yes | Yes"
+    confidence: high

@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "fairfax"
 dynamic = ["version"]
-description = "Check a planned Microsoft gov-cloud stack (GCC, GCC High, DoD, Azure Government) against Microsoft's own feature availability tables. Every finding cites the row it came from."
+description = "Check a Microsoft gov-cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own availability tables, from Azure to Microsoft 365 Copilot. Scan code for wrong-cloud hosts and decode AADSTS errors. Every finding cites the row it came from."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = ["PyYAML>=6"]
 authors = [{name = "Intikhab Azam"}]
-keywords = ["gcc-high", "gcc", "dod", "azure-government", "government-cloud", "microsoft-365", "feature-availability", "cloud-parity", "sentinel", "defender-for-cloud", "power-platform", "azure-openai", "endpoints", "fedramp", "linter"]
+keywords = ["gcc-high", "gcc", "dod", "azure-government", "government-cloud", "microsoft-365", "microsoft-365-copilot", "teams", "purview", "intune", "feature-availability", "cloud-parity", "sentinel", "defender", "power-platform", "azure-openai", "aadsts", "endpoints", "mcp-server", "github-action", "sarif", "fedramp", "linter"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",

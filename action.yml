@@ -1,0 +1,128 @@
+name: fairfax gov-cloud check
+description: >-
+  Check a Microsoft gov-cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own
+  availability tables, and catch endpoints from the wrong cloud in your code. Every finding is cited.
+author: intikhab49
+branding:
+  icon: cloud
+  color: blue
+
+inputs:
+  plan:
+    description: Plan file (tenant, azure and feature keys). If set, `fairfax check` runs on it and the scan uses its clouds.
+    required: false
+    default: ""
+  scan:
+    description: Space-separated paths to scan for wrong-cloud endpoints. Set to an empty string to skip the scan.
+    required: false
+    default: "."
+  tenant:
+    description: Tenant type for the scan when there's no plan (gcc, gcchigh or dod).
+    required: false
+    default: ""
+  azure:
+    description: Azure cloud for the scan when there's no plan (commercial or government).
+    required: false
+    default: ""
+  exclude:
+    description: Space-separated globs the scan skips, such as 'docs/* tests/*'.
+    required: false
+    default: ""
+  strict:
+    description: Also fail on cross-cloud and retiring findings, and on endpoints marked CHECK.
+    required: false
+    default: "false"
+  fail:
+    description: Fail the step when fairfax finds a problem. Set to false to only report.
+    required: false
+    default: "true"
+  sarif:
+    description: Where to write the SARIF file.
+    required: false
+    default: fairfax.sarif
+  upload-sarif:
+    description: Upload the SARIF file to GitHub code scanning (needs `security-events write` permission).
+    required: false
+    default: "false"
+
+outputs:
+  sarif:
+    description: Path of the SARIF file.
+    value: ${{ inputs.sarif }}
+  result:
+    description: 0 when nothing was found, 1 when fairfax found a problem.
+    value: ${{ steps.run.outputs.result }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install fairfax
+      shell: bash
+      run: |
+        python3 -m venv "$RUNNER_TEMP/fairfax" 2>/dev/null || python -m venv "$RUNNER_TEMP/fairfax"
+        bin="$RUNNER_TEMP/fairfax/bin"; [ -d "$bin" ] || bin="$RUNNER_TEMP/fairfax/Scripts"
+        "$bin/python" -m pip install --quiet --disable-pip-version-check "$GITHUB_ACTION_PATH"
+        echo "FAIRFAX_BIN=$bin" >> "$GITHUB_ENV"
+
+    - name: Run fairfax
+      id: run
+      shell: bash
+      env:
+        PLAN: ${{ inputs.plan }}
+        SCAN: ${{ inputs.scan }}
+        TENANT: ${{ inputs.tenant }}
+        AZURE: ${{ inputs.azure }}
+        EXCLUDE: ${{ inputs.exclude }}
+        STRICT: ${{ inputs.strict }}
+        SARIF: ${{ inputs.sarif }}
+      run: |
+        set +e  # fairfax exits 1 on findings; the exit codes are handled below
+        ff="$FAIRFAX_BIN/fairfax"; py="$FAIRFAX_BIN/python"
+        strict=(); [ "$STRICT" = "true" ] && strict=(--strict)
+        result=0; parts=()
+        if [ -n "$PLAN" ]; then
+          "$ff" check "$PLAN" "${strict[@]}" --format md >> "$GITHUB_STEP_SUMMARY"; rc=$?
+          [ $rc -eq 2 ] && exit 2; [ $rc -eq 1 ] && result=1
+          "$ff" check "$PLAN" --format sarif -o "$RUNNER_TEMP/fairfax-check.sarif" || true
+          parts+=("$RUNNER_TEMP/fairfax-check.sarif")
+        fi
+        if [ -n "$SCAN" ]; then
+          clouds=(); [ -n "$PLAN" ] && clouds+=(--plan "$PLAN")
+          [ -n "$TENANT" ] && clouds+=(--tenant "$TENANT"); [ -n "$AZURE" ] && clouds+=(--azure "$AZURE")
+          skip=(); for g in $EXCLUDE; do skip+=(--exclude "$g"); done
+          read -r -a paths <<< "$SCAN"
+          "$ff" scan "${paths[@]}" "${clouds[@]}" "${skip[@]}" "${strict[@]}" --format md >> "$GITHUB_STEP_SUMMARY"; rc=$?
+          [ $rc -eq 2 ] && exit 2; [ $rc -eq 1 ] && result=1
+          "$ff" scan "${paths[@]}" "${clouds[@]}" "${skip[@]}" --format sarif -o "$RUNNER_TEMP/fairfax-scan.sarif" || true
+          parts+=("$RUNNER_TEMP/fairfax-scan.sarif")
+        fi
+        # One SARIF file with a run per command, and an annotation on each finding's line.
+        "$py" - "$SARIF" "${parts[@]}" <<'PY'
+        import json, sys
+        out, parts = sys.argv[1], sys.argv[2:]
+        runs = [run for p in parts for run in json.load(open(p, encoding="utf-8"))["runs"]]
+        log = {"$schema": "https://json.schemastore.org/sarif-2.1.0.json", "version": "2.1.0", "runs": runs}
+        json.dump(log, open(out, "w", encoding="utf-8"), indent=2)
+        kind = {"error": "error", "warning": "warning", "note": "notice"}
+        for run in runs:
+            for r in run["results"]:
+                loc = r["locations"][0]["physicalLocation"]
+                msg = r["message"]["text"].replace("%", "%25").replace("\r", "").replace("\n", "%0A")
+                print(f"::{kind[r['level']]} file={loc['artifactLocation']['uri']},line={loc['region']['startLine']},"
+                      f"title=fairfax: {r['ruleId']}::{msg}")
+        PY
+        echo "result=$result" >> "$GITHUB_OUTPUT"
+
+    - name: Upload SARIF to code scanning
+      if: inputs.upload-sarif == 'true'
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.sarif }}
+        category: fairfax
+
+    - name: Fail on findings
+      if: inputs.fail == 'true' && steps.run.outputs.result == '1'
+      shell: bash
+      run: |
+        echo "fairfax found something your plan or code should change. The job summary has the details and Microsoft's citations."
+        exit 1
