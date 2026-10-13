@@ -277,7 +277,7 @@ When a row has changed, it prints the cited text next to the closest row on the 
 
 **When a page disappears.** The rows themselves ship inside the package, so `fairfax check` keeps working and keeps showing what Microsoft wrote and when. For the link, every cited page also has a Wayback Machine snapshot (`archived` in [`sources.yaml`](https://github.com/intikhab49/fairfax/blob/main/src/fairfax/data/sources.yaml)). A snapshot is only recorded after the same checks pass against it, so it is known to hold the rows it backs. Findings in `--format md` and `json` link to it, and `fairfax verify --archived` re-checks every cited row against the snapshots instead of the live pages.
 
-After a clean run, `tools/mark_checked.py` moves each page's checked date forward and saves a new snapshot of any page Microsoft has updated since its last one.
+After a clean run, the same workflow runs `tools/mark_checked.py`. It moves each page's checked date forward and saves a new snapshot of any page Microsoft has updated since its last one, then opens a pull request with the new dates and snapshots. There is only ever one such pull request; each Monday rebuilds it until it is merged.
 
 ## How it works
 

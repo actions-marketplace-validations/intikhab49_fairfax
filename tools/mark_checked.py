@@ -7,10 +7,15 @@ couldn't be fetched are left alone, so their old dates keep showing their real a
 It also keeps a copy of each page on the Wayback Machine, so a citation outlives the page it
 quotes. A page gets a new snapshot when it has none yet or Microsoft has updated it since the last
 one. The snapshot is only recorded (as `archived`) once the same checks pass against it, so every
-recorded copy is known to hold the rows it backs. Saving takes about a minute per page.
+recorded copy is known to hold the rows it backs. Saving takes about a minute per page. A page whose
+snapshot couldn't be saved keeps its old `page_updated`, so the next run tries again.
 
-Usage: python tools/mark_checked.py [--dry-run] [--no-archive]
+The weekly workflow (.github/workflows/watch.yml) runs this after a clean verify and opens a pull
+request with the result; --summary writes that pull request's description.
+
+Usage: python tools/mark_checked.py [--dry-run] [--no-archive] [--summary FILE]
 """
+import argparse
 import datetime as dt
 import re
 import sys
@@ -25,6 +30,7 @@ from fairfax import dataset, learn, verify  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[1] / "src" / "fairfax" / "data"
 FIELDS = ("checked", "page_updated", "archived")
+GIVE_UP = 3  # failed snapshots in a row before the rest are skipped: each try can take minutes
 
 
 def save_snapshot(url: str, tries: int = 3) -> str:
@@ -44,10 +50,10 @@ def save_snapshot(url: str, tries: int = 3) -> str:
     raise AssertionError("unreachable")
 
 
-def archive(results, dry: bool) -> dict:
-    """Source key -> new snapshot link, for re-confirmed pages that need one."""
+def archive(results, dry: bool) -> tuple:
+    """New snapshots for re-confirmed pages that need one: (key -> link, key -> why none was recorded)."""
     cited = verify.citations(dataset.load())
-    out = {}
+    links, failed, in_a_row = {}, {}, 0
     for r in results:
         s, page_now = r.source, r.page_updated or r.source.page_updated
         if r.state != "ok" or (s.archived and page_now <= s.page_updated):
@@ -55,18 +61,70 @@ def archive(results, dry: bool) -> dict:
         if dry:
             print(f"would archive {s.key}")
             continue
-        try:
-            link = save_snapshot(s.url)
-        except Exception as e:  # one page the Wayback Machine won't take shouldn't stop the others
-            print(f"not archived: {s.key} ({type(e).__name__}: {e})")
-            continue
-        check = verify.check_archived(replace(s, archived=link), cited.get(s.key, []))
-        if check.state == "ok":
-            out[s.key] = link
-            print(f"archived {s.key}: {link}")
+        if in_a_row >= GIVE_UP:
+            why = f"skipped after {in_a_row} failed snapshots in a row"
         else:
-            print(f"not archived: {s.key} (the snapshot is {check.state}: {check.error or 'rows missing'})")
+            try:
+                link = save_snapshot(s.url)
+                check = verify.check_archived(replace(s, archived=link), cited.get(s.key, []))
+                why = "" if check.state == "ok" else f"the snapshot is {check.state}: {check.error or 'rows missing'}"
+            except Exception as e:  # one page the Wayback Machine won't take shouldn't stop the others
+                why = f"{type(e).__name__}: {e}"
+            in_a_row = in_a_row + 1 if why else 0
+        if why:
+            failed[s.key] = why
+            print(f"not archived: {s.key} ({why})")
+        else:
+            links[s.key] = link
+            print(f"archived {s.key}: {link}")
+    return links, failed
+
+
+def updates_for(results, today: str, links: dict, failed: dict) -> dict:
+    """Source key -> fields to write, for every re-confirmed page."""
+    out = {}
+    for r in results:
+        if r.state != "ok":
+            continue
+        key = r.source.key
+        out[key] = {"checked": today}
+        if key not in failed:  # keep the old date, so the next run tries the snapshot again
+            out[key]["page_updated"] = r.page_updated or r.source.page_updated
+        if key in links:
+            out[key]["archived"] = f'"{links[key]}"'
     return out
+
+
+def summary(results, links: dict, failed: dict, today: str) -> str:
+    """Markdown for the weekly pull request: which pages Microsoft updated, their new snapshots, what was left alone."""
+    def cell(text):
+        return str(text).replace("|", "\\|").replace("\n", " ")
+
+    ok = [r for r in results if r.state == "ok"]
+    out = [f"{len(ok)} of {len(results)} cited pages still hold every cited row; their checked date moves to {today}."]
+    moved = [r for r in ok if r.source.key in links or r.source.key in failed
+             or (r.page_updated and r.page_updated != r.source.page_updated)]
+    if moved:
+        out += ["", "| Page | Microsoft updated it | Wayback Machine copy |", "|---|---|---|"]
+        for r in moved:
+            s = r.source
+            when = (f"{s.page_updated} → {r.page_updated}" if r.page_updated and r.page_updated != s.page_updated
+                    else "no new date")
+            if s.key in links:
+                copy = f"[new snapshot]({links[s.key]}), checked to hold the cited rows"
+            elif s.key in failed:
+                copy = f"not saved ({cell(failed[s.key])}); the old copy stays and the next run tries again"
+            else:
+                copy = "not saved (--no-archive or --dry-run)"
+            out.append(f"| [{cell(s.title)}]({s.url}) | {when} | {copy} |")
+    else:
+        out += ["", "Microsoft hasn't updated any of them since the last check, so no new snapshots were needed."]
+    left = [r for r in results if r.state != "ok"]
+    if left:
+        out += ["", "Left alone, so their dates keep showing their real age:", ""]
+        for r in left:
+            out.append(f"- [{r.source.title}]({r.source.url}): {r.state}" + (f" ({r.error})" if r.error else ""))
+    return "\n".join(out) + "\n"
 
 
 def apply(lines: list, updates: dict) -> tuple:
@@ -97,25 +155,28 @@ def apply(lines: list, updates: dict) -> tuple:
     return out, changed
 
 
-def main():
-    dry = "--dry-run" in sys.argv
+def main(argv=None):
+    p = argparse.ArgumentParser(description="Record that every cited page was re-confirmed today.")
+    p.add_argument("--dry-run", action="store_true", help="print what would change and write nothing")
+    p.add_argument("--no-archive", action="store_true", help="move the dates only, save no snapshots")
+    p.add_argument("--summary", metavar="FILE", help="also write a Markdown summary for the weekly pull request")
+    args = p.parse_args(argv)
     today = dt.date.today().isoformat()
     results = verify.verify(dataset.load())
-    updates = {r.source.key: {"checked": today, "page_updated": r.page_updated or r.source.page_updated}
-               for r in results if r.state == "ok"}
     for r in results:
         if r.state != "ok":
             print(f"left alone: {r.source.key} ({r.state})")
-    if "--no-archive" not in sys.argv:
-        for key, link in archive(results, dry).items():
-            updates[key]["archived"] = f'"{link}"'
+    links, failed = ({}, {}) if args.no_archive else archive(results, args.dry_run)
+    updates = updates_for(results, today, links, failed)
     for path in sorted(DATA.glob("*.yaml")):
         lines, changed = apply(path.read_text(encoding="utf-8").splitlines(), updates)
         if changed:
-            print(f"{'would update' if dry else 'updated'} {path.name}")
-            if not dry:
+            print(f"{'would update' if args.dry_run else 'updated'} {path.name}")
+            if not args.dry_run:
                 path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(f"{len(updates)} of {len(results)} pages re-confirmed on {today}.")
+    if args.summary:
+        Path(args.summary).write_text(summary(results, links, failed, today), encoding="utf-8")
     return 0 if len(updates) == len(results) else 1
 
 
