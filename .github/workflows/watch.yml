@@ -121,7 +121,8 @@ jobs:
           git push --force origin "$BRANCH"
           { cat "$RUNNER_TEMP/summary.md"; echo
             echo "Opened by the weekly watch, which ran the tests on this data: $RUN_URL"
-            echo "Each Monday rebuilds this pull request from \`$BASE\` until it is merged."; } > "$RUNNER_TEMP/body.md"
+            echo "Each Monday rebuilds this pull request from \`$BASE\` until it is merged."
+            echo "Merge it with **Rebase and merge**: a squash merge credits github-actions[bot] as the author."; } > "$RUNNER_TEMP/body.md"
           n=$(gh pr list --head "$BRANCH" --base "$BASE" --state open --json number --jq '.[0].number // empty')
           if [ -n "$n" ]; then
             gh pr edit "$n" --title "$title" --body-file "$RUNNER_TEMP/body.md"
