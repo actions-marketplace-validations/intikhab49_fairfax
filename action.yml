@@ -8,7 +8,7 @@ branding:
 
 inputs:
   plan:
-    description: Plan file (tenant, azure and feature keys). If set, `fairfax check` runs on it and the scan uses its clouds.
+    description: Plan file (tenant, azure and feature keys). If set, `fairfax check` runs on it and the scan uses its clouds, including any per-path overrides under `paths:`.
     required: false
     default: ""
   scan:

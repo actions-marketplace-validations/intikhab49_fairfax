@@ -47,12 +47,21 @@ class PlanError(ValueError):
 
 
 @dataclass
+class PathRule:
+    """A `paths:` entry: `fairfax scan` checks files matching `glob` (relative to the plan file) against these clouds."""
+    glob: str
+    tenant: str | None = None
+    azure: str | None = None
+
+
+@dataclass
 class Plan:
     tenant: str
     azure: str | None
     features: list
     name: str = ""
     path: str = ""
+    paths: list = field(default_factory=list)  # PathRule overrides; only `fairfax scan` uses them
 
 
 @dataclass
@@ -109,7 +118,7 @@ def load_plan(path: str | Path) -> Plan:
         raise PlanError(f"{path}: not valid YAML ({e})") from None
     if not isinstance(data, dict):
         raise PlanError(f"{path}: expected a mapping with tenant, azure and features")
-    extra = set(data) - {"name", "tenant", "azure", "features"}
+    extra = set(data) - {"name", "tenant", "azure", "features", "paths"}
     if extra:
         raise PlanError(f"{path}: unknown keys: {', '.join(sorted(extra))}")
     tenant, azure = data.get("tenant"), data.get("azure")
@@ -120,7 +129,33 @@ def load_plan(path: str | Path) -> Plan:
     features = data.get("features") or []
     if not isinstance(features, list) or not all(isinstance(f, str) for f in features):
         raise PlanError(f"{path}: features must be a list of feature keys")
-    return Plan(tenant, azure, list(dict.fromkeys(features)), str(data.get("name") or ""), str(path))
+    return Plan(tenant, azure, list(dict.fromkeys(features)), str(data.get("name") or ""), str(path),
+                _path_rules(path, data.get("paths")))
+
+
+def _path_rules(path, entries) -> list:
+    """The plan's `paths:` entries: a glob, and the tenant and/or Azure cloud for files that match it."""
+    if entries is None:
+        return []
+    if not isinstance(entries, list):
+        raise PlanError(f"{path}: paths must be a list of entries, each with a glob and a tenant or azure")
+    rules = []
+    for n, entry in enumerate(entries, 1):
+        where = f"{path}: paths entry {n}"
+        if not isinstance(entry, dict) or not isinstance(entry.get("glob"), str) or not entry["glob"].strip():
+            raise PlanError(f'{where} needs a glob, such as "services/billing/**"')
+        extra = set(entry) - {"glob", "tenant", "azure"}
+        if extra:
+            raise PlanError(f"{where}: unknown keys: {', '.join(sorted(map(str, extra)))}")
+        if "tenant" not in entry and "azure" not in entry:
+            raise PlanError(f"{where} ({entry['glob']}) sets neither tenant nor azure")
+        if "tenant" in entry and entry["tenant"] not in TENANTS:
+            raise PlanError(f"{where}: tenant must be one of {', '.join(TENANTS)} (got {entry['tenant']!r})")
+        if "azure" in entry and entry["azure"] not in CLOUDS:
+            raise PlanError(f"{where}: azure must be one of {', '.join(CLOUDS)} (got {entry['azure']!r})")
+        glob = entry["glob"].strip().replace("\\", "/")
+        rules.append(PathRule(glob[2:] if glob.startswith("./") else glob, entry.get("tenant"), entry.get("azure")))
+    return rules
 
 
 def where(by: str, key: str) -> str:

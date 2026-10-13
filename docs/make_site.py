@@ -711,6 +711,10 @@ def faq(ds) -> list[tuple[str, str]]:
          f"Graph. DoD uses `{graph['dod'][0]}` for Graph. A GCC tenant keeps `{entra['commercial'][0]}` and "
          f"`{graph['gcc'][0]}`. The endpoints page lists all {len(ds.endpoints)} mappings, and `fairfax scan` finds "
          "commercial hosts in your code."),
+        ("Can one repository mix GCC, GCC High and commercial clouds?",
+         "Yes. Under `paths:` in the plan file, each entry pairs a glob with a `tenant` or an `azure` cloud, so "
+         "`services/legacy-billing/**` can be checked against commercial Azure while the rest of the repository is "
+         "checked against Azure Government. `fairfax scan --plan plan.yaml` says which clouds it used for each finding."),
         ("Does fairfax need access to my tenant or Azure subscription?",
          "No. It reads a plan file and your source code on your own machine and never connects to Microsoft 365 or "
          "Azure. The data ships inside the package."),

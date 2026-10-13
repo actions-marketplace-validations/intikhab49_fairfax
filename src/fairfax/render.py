@@ -23,6 +23,16 @@ def _context(tenant, azure) -> str:
     return ", ".join(parts)
 
 
+def _overrides(rules) -> str:
+    return f", {len(rules)} path override{'s' if len(rules) != 1 else ''} from the plan" if rules else ""
+
+
+def checked_as(hit, code: bool = False) -> str:
+    """For a file whose clouds came from the plan's `paths:`: which clouds, and which globs set them."""
+    globs = ", ".join(f"`{g}`" if code else g for g in hit.from_paths)
+    return f"checked as {_context(hit.tenant, hit.azure)}, from paths: {globs}"
+
+
 def _summary(counts: dict) -> str:
     return ", ".join(f"{counts[g]} {g}" + ("s" if g == "note" and counts[g] != 1 else "") for g in GROUP_ORDER)
 
@@ -109,13 +119,13 @@ def _scan_summary(hits, files) -> str:
             f"in {touched} of {files} files scanned.")
 
 
-def scan_text(hits, files, tenant, azure) -> str:
-    out = [f"fairfax scan: {_context(tenant, azure)}"]
+def scan_text(hits, files, tenant, azure, rules=()) -> str:
+    out = [f"fairfax scan: {_context(tenant, azure)}{_overrides(rules)}"]
     current = None
     for h in hits:
         if h.path != current:
             current = h.path
-            out += ["", h.path]
+            out += ["", h.path + (f"  ({checked_as(h)})" if h.from_paths else "")]
         tag = "" if h.kind == "wrong" else "CHECK  "
         out.append(f"  {h.line}:{h.col}  {tag}{h.found}  ->  {' or '.join(h.expected)}")
         out.append(_wrap(h.why, 6))
@@ -124,19 +134,21 @@ def scan_text(hits, files, tenant, azure) -> str:
     return "\n".join(out) + "\n"
 
 
-def scan_md(hits, files, tenant, azure) -> str:
-    out = [f"# fairfax scan: {_context(tenant, azure)}", "", _scan_summary(hits, files)]
+def scan_md(hits, files, tenant, azure, rules=()) -> str:
+    out = [f"# fairfax scan: {_context(tenant, azure)}{_overrides(rules)}", "", _scan_summary(hits, files)]
     if hits:
         out += ["", "| Where | Found | Use | Why |", "|---|---|---|---|"]
         for h in hits:
+            where = f"`{h.path}:{h.line}`" + (f"<br>{checked_as(h, code=True)}" if h.from_paths else "")
             use = " or ".join(f"`{x}`" for x in h.expected)
             kind = "" if h.kind == "wrong" else "**check:** "
-            out.append(f"| `{h.path}:{h.line}` | `{h.found}` | {use} | {kind}{h.why} [source]({h.url}) |")
+            out.append(f"| {where} | `{h.found}` | {use} | {kind}{h.why} [source]({h.url}) |")
     return "\n".join(out) + "\n"
 
 
-def scan_json(hits, files, tenant, azure) -> str:
-    return json.dumps({"tenant": tenant, "azure": azure, "files": files,
+def scan_json(hits, files, tenant, azure, rules=()) -> str:
+    paths = [{"glob": r.glob, "tenant": r.tenant, "azure": r.azure} for r in rules]
+    return json.dumps({"tenant": tenant, "azure": azure, "paths": paths, "files": files,
                        "hits": [asdict(h) for h in hits]}, indent=2, ensure_ascii=False) + "\n"
 
 

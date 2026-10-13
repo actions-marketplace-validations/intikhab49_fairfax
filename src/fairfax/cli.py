@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import sys
+from pathlib import Path
 
 from . import __version__
 from . import check as check_mod
@@ -50,20 +51,22 @@ def cmd_check(a) -> int:
 
 
 def cmd_scan(a) -> int:
-    tenant, azure = a.tenant, a.azure
+    tenant, azure, rules, base = a.tenant, a.azure, [], None
     if a.plan:
         try:
             plan = check_mod.load_plan(a.plan)
         except check_mod.PlanError as e:
             print(f"fairfax: {e}", file=sys.stderr)
             return 2
+        # --tenant/--azure replace the plan's own clouds; its `paths:` entries still apply on top
         tenant, azure = tenant or plan.tenant, azure or plan.azure
+        rules, base = plan.paths, Path(a.plan).parent
     if not tenant and not azure:
         print("fairfax: say which clouds you target: --plan plan.yaml, or --tenant and/or --azure.", file=sys.stderr)
         return 2
-    hits, files = scan_mod.scan(a.paths, dataset_mod.load(), tenant, azure, a.exclude or [])
+    hits, files = scan_mod.scan(a.paths, dataset_mod.load(), tenant, azure, a.exclude or [], rules, base)
     fmt = {"text": render.scan_text, "md": render.scan_md, "json": render.scan_json, "sarif": sarif.scan_sarif}[a.format]
-    _emit(fmt(hits, files, tenant, azure), a.output)
+    _emit(fmt(hits, files, tenant, azure, rules), a.output)
     bad = {"wrong", "check"} if a.strict else {"wrong"}
     return 1 if any(h.kind in bad for h in hits) else 0
 
@@ -155,7 +158,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     s = sub.add_parser("scan", help="find Microsoft endpoints in code that belong to the wrong cloud")
     s.add_argument("paths", nargs="+", help="files or folders to scan")
-    s.add_argument("--plan", help="read tenant and azure from a plan file")
+    s.add_argument("--plan", help="read tenant and azure from a plan file, with any per-path overrides under paths:")
     s.add_argument("--tenant", choices=TENANTS)
     s.add_argument("--azure", choices=CLOUDS)
     s.add_argument("--exclude", action="append", metavar="GLOB", help="skip paths matching this glob (repeatable)")
