@@ -3,8 +3,12 @@ name: watch Microsoft's pages
 # Every Monday, re-read every Microsoft page fairfax cites. If a cited row or quote has changed,
 # or a page is gone (404/410), open (or update) one issue that shows the cited text next to what
 # the page says now, or the archived copy of a page that's gone, and fail the run. When every row
-# matches again, the issue is closed. A page that only times out is a warning, not an issue. A second job fails when a page in
-# the dataset hasn't been re-confirmed for 90 days (tools/mark_checked.py does that after a clean run).
+# matches again, the issue is closed. A page that only times out is a warning, not an issue.
+# When nothing changed or disappeared, the archive job runs tools/mark_checked.py: every page's
+# checked date moves forward and each page Microsoft has updated gets a new Wayback Machine
+# snapshot. The result goes into one pull request, rebuilt every week until it is merged. The stale
+# job fails when a page hasn't been re-confirmed for 90 days, which is what happens if those pull
+# requests stop being merged.
 on:
   schedule:
     - cron: "0 6 * * 1"
@@ -14,9 +18,14 @@ permissions:
   contents: read
   issues: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   verify:
     runs-on: ubuntu-latest
+    outputs:
+      code: ${{ steps.verify.outputs.code }}
     env:
       GH_TOKEN: ${{ github.token }}
       TITLE: Microsoft changed or removed pages that fairfax cites
@@ -62,6 +71,64 @@ jobs:
       - name: Some pages couldn't be fetched
         if: steps.verify.outputs.code == '2'
         run: echo "::warning::Some Microsoft pages couldn't be fetched this week; nothing was compared for them."
+
+  archive:
+    needs: verify
+    # 0: every cited row matches. 2: some pages only timed out, and mark_checked leaves those alone.
+    if: needs.verify.outputs.code == '0' || needs.verify.outputs.code == '2'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BASE: ${{ github.ref_name }}
+      BRANCH: re-confirm/${{ github.ref_name }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      # Authored as the maintainer, committed by this workflow.
+      GIT_AUTHOR_NAME: Intikhab Azam
+      GIT_AUTHOR_EMAIL: 147504027+intikhab49@users.noreply.github.com
+      GIT_COMMITTER_NAME: github-actions[bot]
+      GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[test]"
+
+      - name: Move the checked dates forward and snapshot the updated pages
+        # Exit 1 also means some pages were left alone; the summary is written only when the run finished.
+        run: python tools/mark_checked.py --summary "$RUNNER_TEMP/summary.md" || test -s "$RUNNER_TEMP/summary.md"
+
+      - name: Rebuild the website from the new dates
+        run: python docs/make_site.py
+
+      - name: Test the updated data
+        # A pull request opened by this workflow doesn't start the ci workflow, so the tests run here.
+        run: python -m pytest -q
+
+      - name: Open or update the pull request
+        run: |
+          if git diff --quiet -- src/fairfax/data; then
+            echo "Nothing new to record."
+            exit 0
+          fi
+          title="Re-confirm cited pages and refresh archived copies ($(date -u +%F))"
+          git switch -C "$BRANCH"
+          git commit -qam "$title"
+          git push --force origin "$BRANCH"
+          { cat "$RUNNER_TEMP/summary.md"; echo
+            echo "Opened by the weekly watch, which ran the tests on this data: $RUN_URL"
+            echo "Each Monday rebuilds this pull request from \`$BASE\` until it is merged."
+            echo "Merge it with **Rebase and merge**: a squash merge credits github-actions[bot] as the author."; } > "$RUNNER_TEMP/body.md"
+          n=$(gh pr list --head "$BRANCH" --base "$BASE" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh pr edit "$n" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --base "$BASE" --head "$BRANCH" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          fi
 
   stale:
     runs-on: ubuntu-latest
