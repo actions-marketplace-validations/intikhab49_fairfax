@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 from . import __version__
+from .render import checked_as
 
 SCHEMA = "https://json.schemastore.org/sarif-2.1.0.json"
 INFO = "https://intikhab49.github.io/fairfax/"
@@ -41,7 +42,8 @@ def _location(path: str, line: int, col: int = 1, end_col: int | None = None) ->
     return {"physicalLocation": {"artifactLocation": {"uri": _uri(path), "uriBaseId": "%SRCROOT%"}, "region": region}}
 
 
-def scan_sarif(hits, files, tenant, azure) -> str:
+def scan_sarif(hits, files, tenant, azure, path_rules=()) -> str:
+    """Each result's properties name the clouds its file was checked against, so `path_rules` needs no copy here."""
     rules, results = {}, []
     for h in hits:
         rules.setdefault(h.id, {
@@ -49,10 +51,13 @@ def scan_sarif(hits, files, tenant, azure) -> str:
             "shortDescription": {"text": f"{h.service}: host for the wrong Microsoft cloud"},
             "helpUri": h.url, "properties": {"tags": ["fairfax", "gov-cloud"]}})
         verb = "belongs to the wrong cloud" if h.kind == "wrong" else "may be right or wrong for this line"
+        text = f"{h.found} {verb}: use {' or '.join(h.expected)}. {h.why}"
+        if h.from_paths:
+            text += f" This file was {checked_as(h)}."
         results.append({
-            "ruleId": h.id, "level": LEVEL[h.kind],
-            "message": {"text": f"{h.found} {verb}: use {' or '.join(h.expected)}. {h.why}"},
-            "locations": [_location(h.path, h.line, h.col, h.col + len(h.found))]})
+            "ruleId": h.id, "level": LEVEL[h.kind], "message": {"text": text},
+            "locations": [_location(h.path, h.line, h.col, h.col + len(h.found))],
+            "properties": {"tenant": h.tenant, "azure": h.azure, "fromPaths": h.from_paths}})
     return _log(rules, results)
 
 

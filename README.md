@@ -173,7 +173,7 @@ Listed on the GitHub Marketplace as [fairfax gov-cloud check](https://github.com
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: intikhab49/fairfax@v0.2.2
+- uses: intikhab49/fairfax@v0.2.3
   with:
     plan: plan.yaml        # optional: check the plan's features
     scan: src              # paths to scan; the clouds come from the plan, or set tenant and azure
@@ -256,6 +256,24 @@ It knows the GCC exception. A GCC tenant keeps the worldwide Entra ID and Graph 
 It also catches the hosts that GCC does *not* share with commercial, such as the Defender XDR API (`api-gcc.security.microsoft.us` for GCC, `api-gov.security.microsoft.us` for GCC High and DoD), and mix-ups between government tiers, such as a GCC High app calling the GCC Power BI API (`api.powerbigov.us` instead of `api.high.powerbigov.us`).
 
 Add `fairfax: ignore` in a comment to skip a line, or `--exclude 'docs/*'` to skip paths. `--strict` makes CHECK lines fail too.
+
+### Mixed clouds in one repository
+
+If part of a repository targets other clouds, say one service still on commercial Azure, or an app for a partner's GCC tenant, give those paths their own clouds in the plan:
+
+```yaml
+tenant: gcchigh
+azure: government
+paths:
+  - glob: "services/legacy-billing/**"
+    azure: commercial
+  - glob: "apps/partner-portal/**"
+    tenant: gcc
+```
+
+`fairfax scan . --plan plan.yaml` then checks each file against the clouds its path maps to. A finding from such a file says which clouds it was checked against and which glob set them, and the JSON and SARIF output carry the same fields.
+
+Globs are relative to the plan file's folder, `*` also matches `/`, and a path without wildcards covers that file or that whole folder. When several globs match a file, the one that spells out more of the path wins, separately for `tenant` and `azure`; on a tie the later entry wins. `--tenant` and `--azure` replace the plan's top-level clouds, and `fairfax check` uses only those top-level ones.
 
 ## Verifying the data against Microsoft
 

@@ -2,14 +2,14 @@
 
 > Open source CLI and cited dataset that checks a Microsoft US government cloud plan (GCC, GCC High, DoD, Azure Government) against Microsoft's own feature availability tables. 633 features across Azure, Power Platform and Microsoft 365, 8 cross-cloud rules, 57 endpoint mappings and 9 cross-cloud sign-in errors; every entry quotes the Microsoft row it came from and carries the page's updated date and the date it was last checked.
 
-- Install: `pip install fairfax` (Python 3.10+, MIT, one dependency: PyYAML). Version 0.2.2.
+- Install: `pip install fairfax` (Python 3.10+, MIT, one dependency: PyYAML). Version 0.2.3.
 - `fairfax check plan.yaml`: findings grouped as blocked, cross-cloud, retiring, notes and ok, with Microsoft 365 roadmap items on blocked features; exits 1 when anything is blocked. Text, Markdown, JSON or SARIF.
 - `fairfax scan <path> --tenant gcchigh --azure government`: finds commercial hosts in code (login.microsoftonline.com, graph.microsoft.com, *.vault.azure.net, api.security.microsoft.com) and names the government host.
 - `fairfax explain AADSTS900439 --tenant gcchigh`: decodes a cross-cloud sign-in error from the code or the whole message: Microsoft's wording, the cause and the right sign-in host.
 - `fairfax facts --grep <text>`: feature keys and their status per cloud. `--format json` for data.
 - `fairfax verify`: re-reads every cited Microsoft page and confirms each cited row is still there. `--archived` runs the same check against the Wayback Machine snapshot recorded for each page.
 - `fairfax mcp`: Model Context Protocol server (stdio) with find_features, check_plan, scan_code and explain_error tools. `claude mcp add fairfax -- fairfax mcp`.
-- GitHub Action: `uses: intikhab49/fairfax@v0.2.2` with `plan` and `scan` inputs; job summary, line annotations, optional SARIF upload to code scanning. Marketplace listing: https://github.com/marketplace/actions/fairfax-gov-cloud-check
+- GitHub Action: `uses: intikhab49/fairfax@v0.2.3` with `plan` and `scan` inputs; job summary, line annotations, optional SARIF upload to code scanning. Marketplace listing: https://github.com/marketplace/actions/fairfax-gov-cloud-check
 - It works offline (except verify). It never connects to a tenant or subscription, and it is not compliance advice.
 - Independent project by Intikhab Azam, not affiliated with Microsoft.
 

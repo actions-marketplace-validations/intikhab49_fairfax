@@ -2,7 +2,8 @@
 
 A GCC tenant keeps the worldwide Entra ID and Graph endpoints, while GCC High, DoD and Azure
 Government have their own. The scanner knows which side each host belongs to, so it only flags
-a host that is wrong for the tenant and Azure cloud you name.
+a host that is wrong for the tenant and Azure cloud you name. A plan's `paths:` entries can name
+other clouds for parts of a repository; each finding records the clouds its file was checked against.
 """
 
 from __future__ import annotations
@@ -10,7 +11,7 @@ from __future__ import annotations
 import fnmatch
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .check import CLOUD_LABEL, TENANT_LABEL
@@ -36,6 +37,9 @@ class Hit:
     why: str
     url: str
     id: str
+    tenant: str | None = None  # the clouds this file was checked against
+    azure: str | None = None
+    from_paths: list = field(default_factory=list)  # the plan's `paths:` globs that set them, if any
 
 
 class HostIndex:
@@ -127,7 +131,43 @@ def read_text(path: Path) -> str | None:
     return data.decode("utf-8", errors="replace")
 
 
-def scan_text(text: str, path: str, index: HostIndex, tenant: str | None, azure: str | None) -> list:
+def specificity(glob: str) -> int:
+    """How much of a path a glob spells out: its length without the wildcards."""
+    return len(re.sub(r"\[[^\]]*\]|[*?]", "", glob))
+
+
+def matches(rel: str, glob: str) -> bool:
+    """fnmatch (where `*` also matches `/`); a glob without wildcards names a file or a whole folder."""
+    if not any(ch in glob for ch in "*?["):
+        name = glob.rstrip("/")
+        return rel == name or rel.startswith(name + "/")
+    return fnmatch.fnmatchcase(rel, glob)
+
+
+def clouds_for(rel: str | None, tenant: str | None, azure: str | None, rules: list) -> tuple:
+    """(tenant, azure, globs) for one file. For tenant and azure separately, the most specific matching
+    `paths:` glob that sets it wins, and the later one on a tie; without one, the plan's own value stays."""
+    chosen = {"tenant": (-1, tenant, None), "azure": (-1, azure, None)}
+    for rule in rules if rel is not None else ():
+        if matches(rel, rule.glob):
+            score = specificity(rule.glob)
+            for key, (best, _, _) in list(chosen.items()):
+                if getattr(rule, key) and score >= best:
+                    chosen[key] = (score, getattr(rule, key), rule.glob)
+    (_, t, from_t), (_, c, from_c) = chosen["tenant"], chosen["azure"]
+    return t, c, list(dict.fromkeys(g for g in (from_t, from_c) if g))
+
+
+def _relative(path: Path, root: Path) -> str | None:
+    """`path` relative to `root` with forward slashes, or None when it lies outside `root`."""
+    try:
+        return path.resolve().relative_to(root).as_posix()
+    except ValueError:
+        return None
+
+
+def scan_text(text: str, path: str, index: HostIndex, tenant: str | None, azure: str | None,
+              from_paths: list = ()) -> list:
     hits = []
     for n, line in enumerate(text.splitlines(), 1):
         if IGNORE_MARK in line:
@@ -141,17 +181,22 @@ def scan_text(text: str, path: str, index: HostIndex, tenant: str | None, azure:
             if verdict:
                 kind, fixes, why = verdict
                 e = found[1]
-                hits.append(Hit(path, n, m.start() + 1, host, kind, fixes, e.service, why, e.url, e.id))
+                hits.append(Hit(path, n, m.start() + 1, host, kind, fixes, e.service, why, e.url, e.id,
+                                tenant, azure, list(from_paths)))
     return hits
 
 
-def scan(paths: list, ds: Dataset, tenant: str | None, azure: str | None, exclude: list = ()) -> tuple:
+def scan(paths: list, ds: Dataset, tenant: str | None, azure: str | None, exclude: list = (),
+         rules: list = (), base: str | Path | None = None) -> tuple:
+    """Scan files for wrong-cloud hosts. `rules` are a plan's `paths:` entries, with globs relative to `base`."""
     index = HostIndex(ds.endpoints)
+    root = Path(base or ".").resolve()
     hits, files = [], 0
     for path in iter_files(paths, list(exclude)):
         text = read_text(path)
         if text is None:
             continue
         files += 1
-        hits += scan_text(text, path.as_posix(), index, tenant, azure)
+        t, c, globs = clouds_for(_relative(path, root), tenant, azure, rules) if rules else (tenant, azure, [])
+        hits += scan_text(text, path.as_posix(), index, t, c, globs)
     return hits, files
