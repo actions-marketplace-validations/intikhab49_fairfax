@@ -183,7 +183,7 @@ The action installs fairfax into its own virtual environment, so it leaves your 
 
 | Input | Default | What it does |
 |---|---|---|
-| `plan` | | plan file to check; the scan also reads its clouds |
+| `plan` | | plan file to check; the scan also reads its clouds, including any `paths:` overrides |
 | `scan` | `.` | space-separated paths to scan; empty skips the scan |
 | `tenant`, `azure` | | clouds for the scan when there's no plan |
 | `exclude` | | space-separated globs the scan skips |
@@ -419,6 +419,9 @@ Not through the Microsoft 365 data connectors. Microsoft marks that pairing as n
 
 **Which endpoints does GCC High use?**
 Among others, `login.microsoftonline.us` for sign-in, `graph.microsoft.us` for Microsoft Graph and `api-gov.security.microsoft.us` for the Defender XDR API. The [endpoints page](https://intikhab49.github.io/fairfax/endpoints/) lists all 57 mappings, and `fairfax scan` finds commercial hosts in your code.
+
+**Can one repository mix GCC, GCC High and commercial clouds?**
+Yes. Under `paths:` in the plan, each entry pairs a glob with a `tenant` or an `azure` cloud, so `services/legacy-billing/**` can be checked against commercial Azure while the rest of the repository is checked against Azure Government. See [Mixed clouds in one repository](#mixed-clouds-in-one-repository).
 
 **Can AI coding assistants use fairfax?**
 Yes. `fairfax mcp` is an MCP server with tools to find features, check a plan, scan code and explain errors. In Claude Code: `claude mcp add fairfax -- fairfax mcp`.
