@@ -5,90 +5,90 @@ sources:
     title: "Cloud feature availability for US Government customers"
     url: "https://learn.microsoft.com/en-us/azure/security/fundamentals/feature-availability"
     page_updated: 2026-09-03
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145934/https://learn.microsoft.com/en-us/azure/security/fundamentals/feature-availability"
   sentinel-fa:
     title: "Microsoft Sentinel feature support for Azure commercial/other clouds"
     url: "https://learn.microsoft.com/en-us/azure/sentinel/feature-availability"
     page_updated: 2026-09-29
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012140947/https://learn.microsoft.com/en-us/azure/sentinel/feature-availability"
   aml-parity:
     title: "Azure Machine Learning feature availability across clouds regions"
     url: "https://learn.microsoft.com/en-us/azure/machine-learning/reference-machine-learning-cloud-parity?view=azureml-api-2"
     page_updated: 2026-05-19
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012141856/https://learn.microsoft.com/en-us/azure/machine-learning/reference-machine-learning-cloud-parity?view=azureml-api-2"
   lang-regions:
     title: "Azure Language region support"
     url: "https://learn.microsoft.com/en-us/azure/ai-services/language-service/concepts/regional-support"
     page_updated: 2026-07-22
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012143738/https://learn.microsoft.com/en-us/azure/ai-services/language-service/concepts/regional-support"
   ctc-overview:
     title: "What is custom text classification?"
     url: "https://learn.microsoft.com/en-us/azure/ai-services/language-service/custom-text-classification/overview"
     page_updated: 2026-08-03
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142614/https://learn.microsoft.com/en-us/azure/ai-services/language-service/custom-text-classification/overview"
   aoai-gov:
     title: "Foundry Models sold by Azure in Azure Government"
     url: "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov"
     page_updated: 2026-09-01
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142039/https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-gov"
   graph-deployments:
     title: "Microsoft Graph national cloud deployments"
     url: "https://learn.microsoft.com/en-us/graph/deployments"
     page_updated: 2025-08-29
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012143307/https://learn.microsoft.com/en-us/graph/deployments"
   azgov-compare:
     title: "Compare Azure Government and global Azure"
     url: "https://learn.microsoft.com/en-us/azure/azure-government/compare-azure-government-global-azure"
     page_updated: 2026-08-18
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142108/https://learn.microsoft.com/en-us/azure/azure-government/compare-azure-government-global-azure"
   pa-usgov:
     title: "Power Apps US Government"
     url: "https://learn.microsoft.com/en-us/power-platform/admin/powerapps-us-government"
     page_updated: 2026-08-14
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145014/https://learn.microsoft.com/en-us/power-platform/admin/powerapps-us-government"
   pauto-usgov:
     title: "Power Automate US Government"
     url: "https://learn.microsoft.com/en-us/power-automate/us-govt"
     page_updated: 2025-05-08
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145040/https://learn.microsoft.com/en-us/power-automate/us-govt"
   gcc-sd:
     title: "Office 365 GCC"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc"
     page_updated: 2025-12-02
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012143116/https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/gcc"
   scc-ps:
     title: "Connect to Security & Compliance PowerShell"
     url: "https://learn.microsoft.com/en-us/powershell/exchange/connect-to-scc-powershell"
     page_updated: 2026-08-27
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145811/https://learn.microsoft.com/en-us/powershell/exchange/connect-to-scc-powershell?view=exchange-ps"
   dv-regions:
     title: "Datacenter regions"
     url: "https://learn.microsoft.com/en-us/power-platform/admin/new-datacenter-regions"
     page_updated: 2026-08-14
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142641/https://learn.microsoft.com/en-us/power-platform/admin/new-datacenter-regions"
   pbi-gov:
     title: "Power BI for US government customers"
     url: "https://learn.microsoft.com/en-us/fabric/enterprise/powerbi/service-government-us-overview"
     page_updated: 2026-07-29
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145206/https://learn.microsoft.com/en-us/fabric/enterprise/powerbi/service-government-us-overview"
   bap:
     title: "Business Applications feature availability in US Government clouds (PDF, May, 2026)"
     url: "https://aka.ms/BAPFunctionalParity"
     page_updated: 2026-06-15
-    checked: 2026-10-12
+    checked: 2026-10-19
     sha256: 5a26e18bc46fb23ebba43e94b9b561acaab80af151da472b28c7640a42a624e1
     archived: "https://web.archive.org/web/20260624171753/https://download.microsoft.com/download/2/3/2/232f775f-4060-4546-be2c-c62e3ea004df/Microsoft%20Business%20Application%20Feature%20Availability%20-%20USGOV.pdf"
