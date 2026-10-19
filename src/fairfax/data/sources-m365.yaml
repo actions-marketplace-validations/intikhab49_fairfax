@@ -4,101 +4,101 @@ sources:
     title: "Microsoft Copilot service description"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot"
     page_updated: 2026-08-21
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142544/https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/microsoft-365-copilot"
   teams-sd:
     title: "Microsoft Teams service description"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description"
     page_updated: 2026-10-12
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012150419/https://learn.microsoft.com/en-us/office365/servicedescriptions/teams-service-description"
   teams-apps:
     title: "Teams for Government Clouds"
     url: "https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/cloud-overview"
     page_updated: 2026-05-29
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012150349/https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/cloud-overview"
   exo-gov:
     title: "Exchange Online for US government environments"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments"
     page_updated: 2025-12-02
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012143044/https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/exchange-online-for-us-government-environments"
   spo-gov:
     title: "SharePoint for US government environments"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/sharepoint"
     page_updated: 2024-03-11
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012150129/https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/sharepoint"
   odb-gov:
     title: "OneDrive for US government environments"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/onedrive"
     page_updated: 2023-06-14
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012144821/https://learn.microsoft.com/en-us/office365/servicedescriptions/office-365-platform-service-description/office-365-us-government/onedrive"
   purview-gcc:
     title: "Plan for Microsoft Purview compliance and risk management solutions – GCC deployments"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments"
     page_updated: 2026-08-25
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145609/https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-deployments"
   purview-gcchigh:
     title: "Plan for Microsoft Purview compliance and risk management solutions – GCC High deployments"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments"
     page_updated: 2025-12-02
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145742/https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-gcc-high-deployments"
   purview-dod:
     title: "Plan for Microsoft Purview compliance and risk management solutions - DoD deployments"
     url: "https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments"
     page_updated: 2025-12-02
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012145340/https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/plan-for-microsoft-purview-dod-deployments"
   intune-gov:
     title: "Microsoft Intune for US Government GCC High and DoD service description"
     url: "https://learn.microsoft.com/en-us/intune/fundamentals/government-service"
     page_updated: 2026-10-08
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012143508/https://learn.microsoft.com/en-us/intune/fundamentals/government-service"
   mde-gov:
     title: "Microsoft Defender for Endpoint for US Government customers"
     url: "https://learn.microsoft.com/en-us/defender-endpoint/gov"
     page_updated: 2026-09-17
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012144617/https://learn.microsoft.com/en-us/defender-endpoint/gov"
   xdr-gov:
     title: "Microsoft Defender for US Government"
     url: "https://learn.microsoft.com/en-us/defender-xdr/usgov"
     page_updated: 2026-06-26
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012150818/https://learn.microsoft.com/en-us/defender-xdr/usgov"
   xdr-apis:
     title: "Supported Microsoft Defender XDR APIs"
     url: "https://learn.microsoft.com/en-us/defender-xdr/api-supported"
     page_updated: 2026-04-13
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012150649/https://learn.microsoft.com/en-us/defender-xdr/api-supported"
   mde-apis:
     title: "Supported Microsoft Defender for Endpoint APIs"
     url: "https://learn.microsoft.com/en-us/defender-endpoint/api/exposed-apis-list"
     page_updated: 2026-04-13
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012144547/https://learn.microsoft.com/en-us/defender-endpoint/api/exposed-apis-list"
   entra-errors:
     title: "Microsoft Entra authentication and authorization error codes"
     url: "https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes"
     page_updated: 2026-06-15
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142831/https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes"
   entra-breaking:
     title: "What's new for authentication?"
     url: "https://learn.microsoft.com/en-us/entra/identity-platform/reference-breaking-changes"
     page_updated: 2026-08-26
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012142800/https://learn.microsoft.com/en-us/entra/identity-platform/reference-breaking-changes"
   entra-national:
     title: "National clouds"
     url: "https://learn.microsoft.com/en-us/entra/identity-platform/authentication-national-cloud"
     page_updated: 2026-06-15
-    checked: 2026-10-12
+    checked: 2026-10-19
     archived: "https://web.archive.org/web/20261012143013/https://learn.microsoft.com/en-us/entra/identity-platform/authentication-national-cloud"
